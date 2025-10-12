@@ -1,0 +1,315 @@
+/* Custom styles for FitGenius */
+
+/* Custom colors based on weight loss website research */
+:root {
+  --primary-blue: #2C5D82;
+  --bright-turquoise: #1FBCC9;
+  --energizing-orange: #FF8A3D;
+  --coral-pink: #FF6F7A;
+  --health-green: #2ECC71;
+  --neutral-gray: #9AA0A6;
+  --light-gray: #B0B6BA;
+}
+
+/* Smooth animations */
+* {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Custom gradient backgrounds */
+.bg-primary-gradient {
+  background: linear-gradient(135deg, var(--primary-blue), var(--bright-turquoise));
+}
+
+.bg-cta-gradient {
+  background: linear-gradient(135deg, var(--energizing-orange), var(--coral-pink));
+}
+
+.bg-success-gradient {
+  background: linear-gradient(135deg, var(--health-green), var(--bright-turquoise));
+}
+
+/* Enhanced button styles */
+.btn-primary {
+  background: linear-gradient(135deg, var(--energizing-orange), var(--coral-pink));
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  color: white;
+  text-transform: none;
+  box-shadow: 0 4px 15px rgba(255, 138, 61, 0.3);
+  transform: translateY(0);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 138, 61, 0.4);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, var(--bright-turquoise), var(--primary-blue));
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  color: white;
+  box-shadow: 0 3px 10px rgba(31, 188, 201, 0.3);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(31, 188, 201, 0.4);
+}
+
+/* Card enhancements */
+.card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* Pricing card specific styles */
+.pricing-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--bright-turquoise), var(--health-green));
+}
+
+.pricing-card.popular {
+  border: 2px solid var(--bright-turquoise);
+  transform: scale(1.05);
+}
+
+.pricing-card.popular::before {
+  background: linear-gradient(90deg, var(--energizing-orange), var(--coral-pink));
+}
+
+/* Form enhancements */
+.form-input {
+  border: 2px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  width: 100%;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--bright-turquoise);
+  box-shadow: 0 0 0 3px rgba(31, 188, 201, 0.1);
+}
+
+.form-input.error {
+  border-color: #ef4444;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Progress bar */
+.progress-bar {
+  height: 8px;
+  background-color: #f3f4f6;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-blue), var(--bright-turquoise));
+  border-radius: 9999px;
+  transition: width 0.5s ease;
+}
+
+/* Loading animation */
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Questionnaire specific styles */
+.question-option {
+  padding: 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.question-option:hover {
+  border-color: var(--bright-turquoise);
+  background-color: rgba(31, 188, 201, 0.05);
+  transform: translateX(5px);
+}
+
+.question-option.selected {
+  border-color: var(--primary-blue);
+  background: linear-gradient(135deg, rgba(44, 93, 130, 0.1), rgba(31, 188, 201, 0.1));
+}
+
+/* Modal enhancements */
+.modal-overlay {
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  max-height: 90vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--bright-turquoise) #f1f1f1;
+}
+
+.modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: var(--bright-turquoise);
+  border-radius: 10px;
+}
+
+/* Feature icons */
+.feature-icon {
+  background: linear-gradient(135deg, var(--energizing-orange), var(--coral-pink));
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  box-shadow: 0 4px 20px rgba(255, 138, 61, 0.3);
+}
+
+.feature-icon.turquoise {
+  background: linear-gradient(135deg, var(--bright-turquoise), var(--primary-blue));
+  box-shadow: 0 4px 20px rgba(31, 188, 201, 0.3);
+}
+
+.feature-icon.green {
+  background: linear-gradient(135deg, var(--health-green), var(--bright-turquoise));
+  box-shadow: 0 4px 20px rgba(46, 204, 113, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .modal-content {
+    margin: 1rem;
+    max-width: calc(100vw - 2rem);
+  }
+  
+  .pricing-card.popular {
+    transform: none;
+  }
+  
+  .card:hover {
+    transform: none;
+  }
+  
+  .question-option:hover {
+    transform: none;
+  }
+}
+
+/* Typography enhancements */
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary-blue), var(--bright-turquoise));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-cta-gradient {
+  background: linear-gradient(135deg, var(--energizing-orange), var(--coral-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Success states */
+.success-checkmark {
+  animation: checkmark 0.6s ease-in-out;
+}
+
+@keyframes checkmark {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Floating elements animation */
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Custom scrollbar for the page */
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--primary-blue), var(--bright-turquoise));
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--bright-turquoise), var(--primary-blue));
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
