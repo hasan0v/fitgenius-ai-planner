@@ -6,8 +6,8 @@ export const renderer = jsxRenderer(({ children }) => {
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>FitGenius - AI-Powered Weight Loss Plans</title>
-        <meta name="description" content="Get personalized weight loss plans created by AI. Transform your body with custom meal plans, workouts, and expert guidance." />
+        <title>FitGenius - Personalized Weight Loss Plans</title>
+        <meta name="description" content="Get completely personalized weight loss plans tailored to your lifestyle. Transform your body with custom meal plans, workouts, and expert guidance." />
         
         {/* Tailwind CSS */}
         <script src="https://cdn.tailwindcss.com"></script>

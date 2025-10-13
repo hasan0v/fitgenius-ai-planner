@@ -267,95 +267,171 @@ const questions = [
 // Main application routes
 app.get('/', (c) => {
   return c.render(
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-turquoise-50">
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <header className="text-center mb-12">
-          <div className="flex items-center justify-center mb-4">
-            <div className="bg-gradient-to-r from-blue-600 to-turquoise-500 p-4 rounded-full shadow-lg">
-              <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-turquoise-50 relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-blue-200 to-turquoise-200 rounded-full opacity-20 animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-orange-200 to-pink-200 rounded-full opacity-20 animate-bounce" style="animation-delay: 2s;"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-green-200 to-blue-200 rounded-full opacity-15 animate-spin" style="animation-duration: 20s;"></div>
+      </div>
+
+      <div className="container mx-auto px-4 py-8 relative z-10">
+        {/* Hero Section */}
+        <section className="text-center mb-16 fade-in-up">
+          {/* Logo and Brand */}
+          <div className="flex items-center justify-center mb-8">
+            <div className="bg-gradient-to-r from-blue-600 to-turquoise-500 p-6 rounded-full shadow-2xl hover-lift">
+              <svg className="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
               </svg>
             </div>
           </div>
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-700 to-turquoise-600 bg-clip-text text-transparent mb-4">
+
+          <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-blue-700 via-turquoise-600 to-blue-800 bg-clip-text text-transparent mb-6 animate-gradient">
             FitGenius
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Your AI-Powered Personal Weight Loss Plan Generator
+          
+          <p className="text-2xl md:text-3xl text-gray-700 mb-4 font-light">
+            Your Personal Weight Loss Journey
           </p>
-          <div className="bg-white rounded-2xl shadow-xl p-8 max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">
-              Transform Your Body, Transform Your Life
+          
+          <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+            Discover a completely <span className="font-bold text-turquoise-600">personalized transformation plan</span> 
+            created just for you. Every recommendation is tailored to your unique lifestyle, goals, and preferences.
+          </p>
+
+          {/* Hero Image */}
+          <div className="mb-12 hover-lift">
+            <img 
+              src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+              alt="Healthy lifestyle transformation" 
+              className="rounded-2xl shadow-2xl mx-auto max-w-4xl w-full object-cover h-96 md:h-[500px]"
+            />
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="mb-16">
+          <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-12 max-w-6xl mx-auto border border-white/50">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-8 text-center">
+              Why Choose a <span className="text-gradient">Personalized</span> Approach?
             </h2>
-            <p className="text-lg text-gray-600 mb-8">
-              Get a personalized 30-day weight loss plan created by advanced AI, tailored specifically for your goals, lifestyle, and preferences.
+            
+            <p className="text-lg text-gray-600 mb-12 text-center max-w-3xl mx-auto">
+              Unlike generic diet plans, our system creates a completely unique program based on your specific needs, 
+              preferences, and lifestyle. Every detail matters in your transformation journey.
             </p>
             
-            {/* Features */}
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
-              <div className="text-center">
-                <div className="bg-gradient-to-r from-orange-400 to-pink-500 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+            {/* Feature Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+              <div className="text-center group hover-lift">
+                <div className="bg-gradient-to-br from-orange-400 to-pink-500 p-4 rounded-2xl w-20 h-20 mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
+                  <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                   </svg>
                 </div>
-                <h3 className="font-semibold text-gray-800 mb-2">Personalized AI Plan</h3>
-                <p className="text-sm text-gray-600">20+ questions to create your perfect plan</p>
+                <h3 className="font-bold text-gray-800 mb-3 text-lg">100% Personalized</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">Every recommendation is crafted specifically for your unique profile and goals</p>
               </div>
-              <div className="text-center">
-                <div className="bg-gradient-to-r from-turquoise-400 to-blue-500 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              
+              <div className="text-center group hover-lift">
+                <div className="bg-gradient-to-br from-turquoise-400 to-blue-500 p-4 rounded-2xl w-20 h-20 mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
+                  <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 11H7v6h2v-6zm4 0h-2v6h2v-6zm4 0h-2v6h2v-6zM4 7v2h16V7H4z M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-8H6v8z"/>
+                  </svg>
+                </div>
+                <h3 className="font-bold text-gray-800 mb-3 text-lg">Lifestyle Integration</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">Plans that fit seamlessly into your daily routine and work schedule</p>
+              </div>
+              
+              <div className="text-center group hover-lift">
+                <div className="bg-gradient-to-br from-green-400 to-blue-500 p-4 rounded-2xl w-20 h-20 mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
+                  <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
                   </svg>
                 </div>
-                <h3 className="font-semibold text-gray-800 mb-2">Beautiful PDF Guide</h3>
-                <p className="text-sm text-gray-600">10+ pages of detailed daily plans</p>
+                <h3 className="font-bold text-gray-800 mb-3 text-lg">Detailed Guide</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">Comprehensive 30-day plan with daily guidance and motivation</p>
               </div>
-              <div className="text-center">
-                <div className="bg-gradient-to-r from-green-400 to-blue-500 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              
+              <div className="text-center group hover-lift">
+                <div className="bg-gradient-to-br from-purple-400 to-pink-500 p-4 rounded-2xl w-20 h-20 mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
+                  <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4 8-8-1.41-1.42z"/>
                   </svg>
                 </div>
-                <h3 className="font-semibold text-gray-800 mb-2">Proven Results</h3>
-                <p className="text-sm text-gray-600">Based on scientific principles</p>
+                <h3 className="font-bold text-gray-800 mb-3 text-lg">Proven Methods</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">Science-based approaches tailored to your specific needs</p>
               </div>
             </div>
             
-            {/* CTA Button */}
-            <button 
-              onclick="startQuestionnaire()" 
-              className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg transform transition duration-200 hover:scale-105"
-            >
-              Start Your Transformation - Free Assessment
-            </button>
+            {/* Success Stories Section */}
+            <div className="bg-gradient-to-r from-blue-50 to-turquoise-50 rounded-2xl p-8 mb-12">
+              <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Real Transformations</h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="text-center">
+                  <img 
+                    src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+                    alt="Success story" 
+                    className="w-20 h-20 rounded-full mx-auto mb-4 object-cover shadow-lg"
+                  />
+                  <p className="text-sm text-gray-600 italic mb-2">"Lost 12kg in 2 months with my personalized plan!"</p>
+                  <p className="text-xs text-gray-500 font-semibold">Sarah M.</p>
+                </div>
+                <div className="text-center">
+                  <img 
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+                    alt="Success story" 
+                    className="w-20 h-20 rounded-full mx-auto mb-4 object-cover shadow-lg"
+                  />
+                  <p className="text-sm text-gray-600 italic mb-2">"Finally a plan that fits my busy lifestyle."</p>
+                  <p className="text-xs text-gray-500 font-semibold">Ahmed R.</p>
+                </div>
+                <div className="text-center">
+                  <img 
+                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+                    alt="Success story" 
+                    className="w-20 h-20 rounded-full mx-auto mb-4 object-cover shadow-lg"
+                  />
+                  <p className="text-sm text-gray-600 italic mb-2">"Best investment in my health journey!"</p>
+                  <p className="text-xs text-gray-500 font-semibold">Leyla K.</p>
+                </div>
+              </div>
+            </div>
             
-            {/* Pricing Preview */}
-            <div className="mt-8 grid md:grid-cols-3 gap-4 text-sm">
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-blue-800">Basic Plan</h4>
-                <p className="text-blue-600">30-day weight loss plan</p>
-                <p className="font-bold text-blue-800">9.90 AZN</p>
-              </div>
-              <div className="bg-turquoise-50 p-4 rounded-lg border-2 border-turquoise-300">
-                <h4 className="font-semibold text-turquoise-800">Premium Plan</h4>
-                <p className="text-turquoise-600">+ Meal suggestions</p>
-                <p className="font-bold text-turquoise-800">14.90 AZN</p>
-              </div>
-              <div className="bg-orange-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-orange-800">Complete Plan</h4>
-                <p className="text-orange-600">+ Workouts + Supplements</p>
-                <p className="font-bold text-orange-800">29.90 AZN</p>
-              </div>
+            {/* Call to Action */}
+            <div className="text-center">
+              <h3 className="text-3xl font-bold text-gray-800 mb-6">
+                Ready to Start Your <span className="text-gradient">Personal</span> Transformation?
+              </h3>
+              <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                Take our comprehensive assessment to discover what your unique body needs for successful, 
+                sustainable weight loss that fits your life.
+              </p>
+              
+              <button 
+                onclick="startQuestionnaire()" 
+                className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-bold py-5 px-10 rounded-full text-xl shadow-xl transform transition duration-300 hover:scale-105 hover:shadow-2xl pulse-glow"
+              >
+                <span className="flex items-center">
+                  <svg className="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                  Start Your Personal Assessment
+                </span>
+              </button>
+              
+              <p className="text-sm text-gray-500 mt-4">
+                ✨ Free assessment • 💯 Personalized results • 🔒 Secure & private
+              </p>
             </div>
           </div>
-        </header>
+        </section>
       </div>
       
       {/* Questionnaire Modal */}
-      <div id="questionnaire-modal" className="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-        <div className="bg-white rounded-2xl shadow-xl p-8 m-4 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div id="questionnaire-modal" className="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center z-50">
+        <div className="bg-white rounded-3xl shadow-2xl p-8 m-4 max-w-3xl w-full max-h-[90vh] overflow-y-auto transform transition-all duration-300 scale-95 opacity-0" id="modal-content">
           <div id="questionnaire-content">
             {/* Dynamic content will be loaded here */}
           </div>
@@ -542,7 +618,7 @@ async function generateAIPlan(responses: any, userPath: string, planType: string
     idealOutcome: responses[20] || ''
   }
   
-  const prompt = `You are an expert nutritionist, fitness trainer, and wellness coach. Create a comprehensive, personalized 30-day weight loss plan for the following client:
+  const prompt = `As a team of expert nutritionists, fitness trainers, and wellness coaches, create a comprehensive, personalized 30-day weight loss plan for the following client. Focus on practical, science-based recommendations without mentioning AI or automated systems:
 
 CLIENT PROFILE:
 - Name: ${userInfo.name}
