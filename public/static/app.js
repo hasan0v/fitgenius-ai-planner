@@ -1,6 +1,8 @@
 let currentSession = null;
 let currentQuestionIndex = 0;
 let responses = {};
+let questionHistory = []; // Track question history for back navigation
+let responseHistory = {}; // Track response history
 
 // Start questionnaire with animation
 async function startQuestionnaire() {
@@ -13,11 +15,19 @@ async function startQuestionnaire() {
         const data = await response.json();
         currentSession = data.sessionId;
         
+        // Reset navigation history
+        questionHistory = [data.question];
+        responseHistory = {};
+        currentQuestionIndex = 0;
+        
         const modal = document.getElementById('questionnaire-modal');
         const modalContent = document.getElementById('modal-content');
         
+        // Prevent body scroll when modal is open
+        document.body.style.overflow = 'hidden';
+        
         modal.classList.remove('hidden');
-        modal.classList.add('flex', 'modal-show');
+        modal.classList.add('modal-show');
         
         // Animate modal content
         setTimeout(() => {
@@ -25,15 +35,15 @@ async function startQuestionnaire() {
             modalContent.classList.add('scale-100', 'opacity-100');
         }, 50);
         
-        displayQuestion(data.question);
+        displayQuestion(data.question, 0, false);
     } catch (error) {
         console.error('Error starting questionnaire:', error);
         showErrorMessage('Failed to start questionnaire. Please try again.');
     }
 }
 
-// Display question with animations
-function displayQuestion(question, progress = 0) {
+// Display question with animations and back button
+function displayQuestion(question, progress = 0, showBack = true) {
     const content = document.getElementById('questionnaire-content');
     
     // Calculate actual progress
@@ -41,14 +51,24 @@ function displayQuestion(question, progress = 0) {
     
     let questionHtml = `
         <div class="mb-8 fade-in-up">
-            <div class="flex justify-between items-center mb-4">
-                <span class="text-sm font-medium text-gray-500">Question ${question.id} of 20</span>
+            <div class="flex justify-between items-center mb-6">
+                <div class="flex items-center space-x-4">
+                    ${showBack && questionHistory.length > 1 ? `
+                        <button onclick="goBackQuestion()" class="back-button flex items-center px-4 py-2 rounded-lg text-gray-600 hover:text-gray-800 font-medium transition-all duration-300">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                            </svg>
+                            Back
+                        </button>
+                    ` : ''}
+                    <span class="text-sm font-medium text-gray-500">Question ${question.id} of 20</span>
+                </div>
                 <span class="text-sm font-medium text-turquoise-600">${Math.round(actualProgress)}% Complete</span>
             </div>
-            <div class="w-full bg-gray-200 rounded-full h-3 mb-6 overflow-hidden">
+            <div class="w-full bg-gray-200 rounded-full h-3 mb-8 overflow-hidden">
                 <div class="progress-fill h-3 rounded-full transition-all duration-500 ease-out" style="width: ${actualProgress}%"></div>
             </div>
-            <h3 class="text-2xl font-bold text-gray-800 mb-6 leading-tight">${question.text}</h3>
+            <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 leading-tight">${question.text}</h3>
         </div>
     `;
     
@@ -72,25 +92,28 @@ function displayQuestion(question, progress = 0) {
         questionHtml += '</div>';
         
     } else if (question.type === 'multiple') {
-        questionHtml += '<div class="space-y-3">';
+        questionHtml += '<div class="space-y-4">';
         question.options.forEach((option, index) => {
+            const isChecked = responseHistory[question.id] && responseHistory[question.id].includes(option.value) ? 'checked' : '';
             questionHtml += `
-                <label class="flex items-center p-4 border-2 border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                <label class="flex items-center p-6 border-2 border-gray-200 rounded-xl hover:bg-gray-50 cursor-pointer transition-all duration-300 hover:border-turquoise-300 group">
                     <input 
                         type="checkbox" 
                         value="${option.value}"
-                        class="mr-3 h-4 w-4 text-blue-600 rounded"
+                        class="mr-4 h-5 w-5 text-turquoise-600 rounded focus:ring-turquoise-500 focus:ring-2"
                         onchange="updateMultipleAnswer('${question.id}')"
+                        ${isChecked}
                     >
-                    <span>${option.text}</span>
+                    <span class="text-gray-700 group-hover:text-gray-900 font-medium">${option.text}</span>
                 </label>
             `;
         });
         questionHtml += `
             </div>
-            <div class="mt-6 flex justify-between">
-                <button onclick="previousQuestion()" class="px-6 py-2 text-gray-600 hover:text-gray-800">← Previous</button>
-                <button onclick="submitMultipleAnswer('${question.id}')" class="bg-gradient-to-r from-blue-600 to-turquoise-500 text-white px-6 py-3 rounded-lg hover:shadow-lg">Next →</button>
+            <div class="mt-8 flex justify-end">
+                <button onclick="submitMultipleAnswer('${question.id}')" class="bg-gradient-to-r from-blue-600 to-turquoise-500 text-white px-8 py-4 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 font-semibold">
+                    Continue →
+                </button>
             </div>
         `;
         
@@ -212,6 +235,9 @@ function submitTextareaAnswer(questionId) {
 // Submit answer to server
 async function submitAnswer(questionId, answer) {
     try {
+        // Save response to history
+        responseHistory[questionId] = answer;
+        
         const response = await fetch('/api/questionnaire/answer', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -228,12 +254,29 @@ async function submitAnswer(questionId, answer) {
             showPlanSelection(data.userPath, data.responses);
         } else {
             currentQuestionIndex++;
-            displayQuestion(data.question, data.progress);
+            // Add new question to history
+            questionHistory.push(data.question);
+            displayQuestion(data.question, data.progress, true);
         }
         
     } catch (error) {
         console.error('Error submitting answer:', error);
-        alert('Failed to submit answer. Please try again.');
+        showErrorMessage('Failed to submit answer. Please try again.');
+    }
+}
+
+// Go back to previous question
+function goBackQuestion() {
+    if (questionHistory.length > 1) {
+        // Remove current question from history
+        questionHistory.pop();
+        currentQuestionIndex--;
+        
+        // Get previous question
+        const prevQuestion = questionHistory[questionHistory.length - 1];
+        const progress = (prevQuestion.id / 20) * 100;
+        
+        displayQuestion(prevQuestion, progress, true);
     }
 }
 
@@ -586,33 +629,41 @@ function showLoading(message) {
     `;
 }
 
-// Close questionnaire with animation
+// Close questionnaire with animation and confirmation
 function closeQuestionnaire() {
+    // Show confirmation if user has made progress
+    if (questionHistory.length > 1) {
+        if (!confirm('Are you sure you want to exit? Your progress will be lost.')) {
+            return;
+        }
+    }
+    
     const modal = document.getElementById('questionnaire-modal');
     const modalContent = document.getElementById('modal-content');
+    
+    // Restore body scroll
+    document.body.style.overflow = '';
     
     modalContent.classList.add('scale-95', 'opacity-0');
     
     setTimeout(() => {
         modal.classList.add('hidden');
-        modal.classList.remove('flex', 'modal-show');
+        modal.classList.remove('modal-show');
         modalContent.classList.remove('scale-100', 'opacity-100');
         
         // Reset state
         currentSession = null;
         currentQuestionIndex = 0;
         responses = {};
+        questionHistory = [];
+        responseHistory = {};
     }, 200);
 }
 
 // Initialize when page loads
 document.addEventListener('DOMContentLoaded', function() {
-    // Add click outside modal to close
-    document.getElementById('questionnaire-modal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeQuestionnaire();
-        }
-    });
+    // Prevent accidental clicks outside modal by removing click handler
+    // Modal can only be closed via close button or ESC key
     
     // Add escape key to close modal
     document.addEventListener('keydown', function(e) {
@@ -622,7 +673,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Add staggered animation to features on load
-    const features = document.querySelectorAll('.hover-lift');
+    const features = document.querySelectorAll('.feature-card');
     features.forEach((feature, index) => {
         feature.style.animationDelay = `${index * 0.1}s`;
         feature.classList.add('fade-in-up');

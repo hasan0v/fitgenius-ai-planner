@@ -287,7 +287,7 @@ app.get('/', (c) => {
             </div>
           </div>
 
-          <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-blue-700 via-turquoise-600 to-blue-800 bg-clip-text text-transparent mb-6 animate-gradient">
+          <h1 className="logo-text text-6xl md:text-8xl font-black bg-gradient-to-r from-blue-700 via-turquoise-600 to-blue-800 bg-clip-text text-transparent mb-6 animate-gradient tracking-tight">
             FitGenius
           </h1>
           
@@ -324,44 +324,44 @@ app.get('/', (c) => {
             
             {/* Feature Grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-              <div className="text-center group hover-lift">
-                <div className="bg-gradient-to-br from-orange-400 to-pink-500 p-4 rounded-2xl w-20 h-20 mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
+              <div className="text-center group feature-card">
+                <div className="bg-gradient-to-br from-orange-400 to-pink-500 p-4 rounded-2xl w-20 h-20 mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-2xl transition-all duration-500 group-hover:scale-110">
                   <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                   </svg>
                 </div>
-                <h3 className="font-bold text-gray-800 mb-3 text-lg">100% Personalized</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">Every recommendation is crafted specifically for your unique profile and goals</p>
+                <h3 className="font-bold text-gray-800 mb-3 text-lg group-hover:text-orange-600 transition-colors duration-300">100% Personalized</h3>
+                <p className="text-sm text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">Every recommendation is crafted specifically for your unique profile and goals</p>
               </div>
               
-              <div className="text-center group hover-lift">
-                <div className="bg-gradient-to-br from-turquoise-400 to-blue-500 p-4 rounded-2xl w-20 h-20 mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
+              <div className="text-center group feature-card">
+                <div className="bg-gradient-to-br from-turquoise-400 to-blue-500 p-4 rounded-2xl w-20 h-20 mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-2xl transition-all duration-500 group-hover:scale-110">
                   <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M9 11H7v6h2v-6zm4 0h-2v6h2v-6zm4 0h-2v6h2v-6zM4 7v2h16V7H4z M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-8H6v8z"/>
                   </svg>
                 </div>
-                <h3 className="font-bold text-gray-800 mb-3 text-lg">Lifestyle Integration</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">Plans that fit seamlessly into your daily routine and work schedule</p>
+                <h3 className="font-bold text-gray-800 mb-3 text-lg group-hover:text-turquoise-600 transition-colors duration-300">Lifestyle Integration</h3>
+                <p className="text-sm text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">Plans that fit seamlessly into your daily routine and work schedule</p>
               </div>
               
-              <div className="text-center group hover-lift">
-                <div className="bg-gradient-to-br from-green-400 to-blue-500 p-4 rounded-2xl w-20 h-20 mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
+              <div className="text-center group feature-card">
+                <div className="bg-gradient-to-br from-green-400 to-blue-500 p-4 rounded-2xl w-20 h-20 mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-2xl transition-all duration-500 group-hover:scale-110">
                   <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
                   </svg>
                 </div>
-                <h3 className="font-bold text-gray-800 mb-3 text-lg">Detailed Guide</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">Comprehensive 30-day plan with daily guidance and motivation</p>
+                <h3 className="font-bold text-gray-800 mb-3 text-lg group-hover:text-green-600 transition-colors duration-300">Detailed Guide</h3>
+                <p className="text-sm text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">Comprehensive 30-day plan with daily guidance and motivation</p>
               </div>
               
-              <div className="text-center group hover-lift">
-                <div className="bg-gradient-to-br from-purple-400 to-pink-500 p-4 rounded-2xl w-20 h-20 mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
+              <div className="text-center group feature-card">
+                <div className="bg-gradient-to-br from-purple-400 to-pink-500 p-4 rounded-2xl w-20 h-20 mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-2xl transition-all duration-500 group-hover:scale-110">
                   <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4 8-8-1.41-1.42z"/>
                   </svg>
                 </div>
-                <h3 className="font-bold text-gray-800 mb-3 text-lg">Proven Methods</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">Science-based approaches tailored to your specific needs</p>
+                <h3 className="font-bold text-gray-800 mb-3 text-lg group-hover:text-purple-600 transition-colors duration-300">Proven Methods</h3>
+                <p className="text-sm text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">Science-based approaches tailored to your specific needs</p>
               </div>
             </div>
             
@@ -429,11 +429,24 @@ app.get('/', (c) => {
         </section>
       </div>
       
-      {/* Questionnaire Modal */}
-      <div id="questionnaire-modal" className="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center z-50">
-        <div className="bg-white rounded-3xl shadow-2xl p-8 m-4 max-w-3xl w-full max-h-[90vh] overflow-y-auto transform transition-all duration-300 scale-95 opacity-0" id="modal-content">
-          <div id="questionnaire-content">
-            {/* Dynamic content will be loaded here */}
+      {/* Questionnaire Modal - Fullscreen */}
+      <div id="questionnaire-modal" className="fixed inset-0 bg-gradient-to-br from-blue-900/95 to-turquoise-900/95 backdrop-blur-sm hidden z-50">
+        <div className="w-full h-full flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-4xl h-full max-h-[95vh] overflow-y-auto transform transition-all duration-300 scale-95 opacity-0 relative" id="modal-content">
+            {/* Close button - only show on larger screens */}
+            <button 
+              onclick="closeQuestionnaire()" 
+              className="absolute top-6 right-6 w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 z-10 hidden md:flex"
+              title="Close (ESC)"
+            >
+              <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+              </svg>
+            </button>
+            
+            <div id="questionnaire-content" className="p-8 md:p-12">
+              {/* Dynamic content will be loaded here */}
+            </div>
           </div>
         </div>
       </div>
