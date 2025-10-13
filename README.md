@@ -10,6 +10,7 @@
 
 - **Interactive Questionnaire System**: 20 comprehensive questions with smart routing based on user responses
 - **AI-Powered Plan Generation**: Integration with OpenRouter Gemini 2.5 Pro for personalized plan creation
+- **Inspiring Visual Motivation**: Muscle transformation images throughout the website to motivate users
 - **Three-Tier Pricing Model**: 
   - Basic Plan (9.90 AZN): Core weight loss plan
   - Premium Plan (14.90 AZN): + Detailed meal suggestions and recipes
@@ -19,6 +20,16 @@
 - **Responsive Design**: Mobile-first UI with engaging gradients and animations
 - **User Path Classification**: Beginner/Intermediate/Advanced routing based on responses
 - **Progress Tracking**: Real-time questionnaire progress and plan preview
+- **Fullscreen Quiz Modal**: Immersive assessment experience with back navigation
+
+### 🏋️‍♀️ Visual Motivation System
+
+- **Hero Section**: Side-by-side transformation images with motivational badges
+- **Inspiration Gallery**: 4-image grid showcasing different fitness achievements
+- **Success Stories**: Large transformation images from Azerbaijan users
+- **Quiz Flow**: Random motivational images every 5 questions during assessment
+- **Pricing Cards**: Individual transformation images for each plan tier
+- **Bottom Motivation**: Dual success images flanking inspirational quotes
 
 ## 🎯 Functional Entry Points
 
@@ -130,6 +141,8 @@ npx wrangler d1 migrations apply fitgenius-production
 
 **Development Server**: https://3000-iq7a03eg7ft9kmvq7klpe-cbeee0f9.sandbox.novita.ai
 
+**GitHub Repository**: https://github.com/hasan0v/Weight-Loss-Plan-Generator
+
 **Production Deployment**: Ready for Cloudflare Pages deployment
 
 ## 💡 User Guide
@@ -147,12 +160,27 @@ npx wrangler d1 migrations apply fitgenius-production
 3. **Testing**: Use `npm test` to verify service endpoints
 4. **Deployment**: Run `npm run deploy:prod` for production deployment
 
+## 🎯 User Psychology & Motivation
+
+### Visual Inspiration Elements
+- **Social Proof**: Real transformation images showing "it's possible"
+- **Aspirational Content**: Users can visualize their potential results
+- **Motivation Triggers**: Strategic placement throughout the user journey
+- **Local Connection**: Azerbaijan-based success stories for relatability
+- **Gender Representation**: Both male and female transformation examples
+
+### Engagement Features
+- **Achievement Badges**: Overlay badges on images with motivational text
+- **Hover Effects**: Smooth scale and shadow animations on image hover
+- **Glassmorphism Effects**: Modern blur and transparency effects
+- **Responsive Design**: Images look great on all device sizes
+
 ## 🚀 Deployment Status
 
 - **Platform**: Cloudflare Pages (Ready for deployment)
 - **Status**: ✅ Development Complete - Ready for Production
 - **Tech Stack**: Hono + TypeScript + Tailwind CSS + D1 Database
-- **Last Updated**: 2025-10-12
+- **Last Updated**: 2025-10-13
 
 ## 🔐 Security & Compliance
 
@@ -163,4 +191,4 @@ npx wrangler d1 migrations apply fitgenius-production
 
 ---
 
-**FitGenius** represents a complete end-to-end solution for personalized weight loss planning, combining advanced AI technology with secure payment processing and beautiful user experience design. The application is production-ready and can be deployed immediately to serve real customers in the Azerbaijan market.
+**FitGenius** represents a complete end-to-end solution for personalized weight loss planning, combining advanced AI technology with secure payment processing and beautiful user experience design. The application now features inspiring muscle transformation images throughout to motivate users and show them they CAN achieve their fitness goals. Ready for production deployment to serve real customers in the Azerbaijan market.
