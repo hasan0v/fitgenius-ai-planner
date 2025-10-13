@@ -42,6 +42,38 @@ async function startQuestionnaire() {
     }
 }
 
+// Get random motivational image
+function getMotivationalImage() {
+    const images = [
+        {
+            url: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+            text: "Strong & Confident",
+            message: "You have the power to transform!"
+        },
+        {
+            url: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+            text: "Powerful & Determined",
+            message: "Every rep brings you closer!"
+        },
+        {
+            url: "https://images.unsplash.com/photo-1550259979-ed79b48d2a30?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+            text: "Fit & Healthy",
+            message: "Your body is capable of amazing things!"
+        },
+        {
+            url: "https://images.unsplash.com/photo-1605296867424-35fc25c9212a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+            text: "Sculpted & Strong",
+            message: "Consistency creates champions!"
+        },
+        {
+            url: "https://images.unsplash.com/photo-1594381898411-846e7d193883?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+            text: "Athletic & Confident",
+            message: "Believe in your transformation!"
+        }
+    ];
+    return images[Math.floor(Math.random() * images.length)];
+}
+
 // Display question with animations and back button
 function displayQuestion(question, progress = 0, showBack = true) {
     const content = document.getElementById('questionnaire-content');
@@ -49,7 +81,24 @@ function displayQuestion(question, progress = 0, showBack = true) {
     // Calculate actual progress
     const actualProgress = Math.max(progress, (question.id / 20) * 100);
     
+    // Add motivational image every 5 questions
+    const showMotivationalImage = question.id % 5 === 0 && question.id > 1;
+    let motivationalSection = '';
+    
+    if (showMotivationalImage) {
+        const motivImg = getMotivationalImage();
+        motivationalSection = `
+            <div class="mb-8 text-center bg-gradient-to-r from-blue-50 to-turquoise-50 rounded-2xl p-6">
+                <img src="${motivImg.url}" alt="${motivImg.text}" 
+                     class="w-32 h-32 rounded-full mx-auto mb-4 object-cover shadow-lg hover-lift" />
+                <p class="text-lg font-bold text-turquoise-600 mb-2">💪 ${motivImg.text}</p>
+                <p class="text-md text-gray-600">${motivImg.message}</p>
+            </div>
+        `;
+    }
+    
     let questionHtml = `
+        ${motivationalSection}
         <div class="mb-8 fade-in-up">
             <div class="flex justify-between items-center mb-6">
                 <div class="flex items-center space-x-4">
@@ -338,6 +387,37 @@ function showPlanSelection(userPath, responses) {
                 </div>
             </div>
 
+            <!-- Success Gallery -->
+            <div class="mb-8 bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">💪 See What You Can Achieve!</h3>
+                <div class="grid grid-cols-3 gap-4 max-w-md mx-auto mb-4">
+                    <div class="hover-lift">
+                        <img 
+                            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+                            alt="Strong woman transformation" 
+                            class="rounded-xl shadow-lg w-full h-24 object-cover hover:scale-105 transition-transform duration-300"
+                        />
+                    </div>
+                    <div class="hover-lift">
+                        <img 
+                            src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+                            alt="Muscular man success" 
+                            class="rounded-xl shadow-lg w-full h-24 object-cover hover:scale-105 transition-transform duration-300"
+                        />
+                    </div>
+                    <div class="hover-lift">
+                        <img 
+                            src="https://images.unsplash.com/photo-1594381898411-846e7d193883?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+                            alt="Fit athletic transformation" 
+                            class="rounded-xl shadow-lg w-full h-24 object-cover hover:scale-105 transition-transform duration-300"
+                        />
+                    </div>
+                </div>
+                <p class="text-sm font-semibold text-turquoise-600">
+                    "Your transformation starts with your decision to begin!"
+                </p>
+            </div>
+
             <!-- Plan Selection Header -->
             <div class="mb-8">
                 <h3 class="text-3xl font-bold text-gray-800 mb-4">Choose Your Transformation Package</h3>
@@ -350,6 +430,15 @@ function showPlanSelection(userPath, responses) {
             <div class="grid gap-8 max-w-5xl mx-auto">
                 <!-- Basic Plan -->
                 <div class="pricing-card-enter border-2 border-gray-200 rounded-2xl p-8 hover:border-blue-400 transition-all duration-300 hover:shadow-xl bg-white">
+                    <!-- Plan Image -->
+                    <div class="text-center mb-6">
+                        <img 
+                            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                            alt="Essential transformation" 
+                            class="w-24 h-24 rounded-full mx-auto mb-3 object-cover shadow-lg hover-lift"
+                        />
+                        <p class="text-sm text-blue-600 font-semibold">🎆 Start Your Journey</p>
+                    </div>
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <h3 class="text-2xl font-bold text-gray-800 mb-2">Essential Plan</h3>
@@ -377,7 +466,16 @@ function showPlanSelection(userPath, responses) {
                     <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-turquoise-500 to-blue-500 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg">
                         ⭐ MOST POPULAR
                     </div>
-                    <div class="flex justify-between items-start mb-6 mt-4">
+                    <!-- Plan Image -->
+                    <div class="text-center mb-6 mt-4">
+                        <img 
+                            src="https://images.unsplash.com/photo-1550259979-ed79b48d2a30?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                            alt="Complete transformation" 
+                            class="w-24 h-24 rounded-full mx-auto mb-3 object-cover shadow-lg hover-lift"
+                        />
+                        <p class="text-sm text-turquoise-600 font-semibold">💪 Transform Completely</p>
+                    </div>
+                    <div class="flex justify-between items-start mb-6">
                         <div>
                             <h3 class="text-2xl font-bold text-turquoise-800 mb-2">Complete Plan</h3>
                             <p class="text-turquoise-700">Everything you need to succeed</p>
@@ -402,6 +500,15 @@ function showPlanSelection(userPath, responses) {
                 
                 <!-- Ultimate Plan -->
                 <div class="pricing-card-enter border-2 border-orange-400 rounded-2xl p-8 bg-gradient-to-br from-orange-50 to-pink-50">
+                    <!-- Plan Image -->
+                    <div class="text-center mb-6">
+                        <img 
+                            src="https://images.unsplash.com/photo-1605296867424-35fc25c9212a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                            alt="Ultimate transformation" 
+                            class="w-24 h-24 rounded-full mx-auto mb-3 object-cover shadow-lg hover-lift"
+                        />
+                        <p class="text-sm text-orange-600 font-semibold">🏆 Achieve Excellence</p>
+                    </div>
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <h3 class="text-2xl font-bold text-orange-800 mb-2">Ultimate Plan</h3>

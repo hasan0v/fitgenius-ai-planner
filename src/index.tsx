@@ -300,13 +300,47 @@ app.get('/', (c) => {
             created just for you. Every recommendation is tailored to your unique lifestyle, goals, and preferences.
           </p>
 
-          {/* Hero Image */}
-          <div className="mb-12 hover-lift">
-            <img 
-              src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-              alt="Healthy lifestyle transformation" 
-              className="rounded-2xl shadow-2xl mx-auto max-w-4xl w-full object-cover h-96 md:h-[500px]"
-            />
+          {/* Hero Transformation Images */}
+          <div className="mb-12">
+            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+              {/* Before/After Woman */}
+              <div className="hover-lift text-center">
+                <h3 className="text-xl font-bold text-gray-700 mb-4">You Can Achieve This Too!</h3>
+                <div className="relative">
+                  <img 
+                    src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                    alt="Fit woman transformation" 
+                    className="rounded-2xl shadow-2xl w-full object-cover h-72 md:h-80"
+                  />
+                  <div className="absolute bottom-4 left-4 bg-gradient-to-r from-pink-500 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                    💪 Your Future Self
+                  </div>
+                </div>
+              </div>
+              
+              {/* Muscled Man */}
+              <div className="hover-lift text-center">
+                <h3 className="text-xl font-bold text-gray-700 mb-4">Start Your Transformation Today!</h3>
+                <div className="relative">
+                  <img 
+                    src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                    alt="Muscled man fitness transformation" 
+                    className="rounded-2xl shadow-2xl w-full object-cover h-72 md:h-80"
+                  />
+                  <div className="absolute bottom-4 left-4 bg-gradient-to-r from-blue-500 to-turquoise-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                    🏆 Achieve Your Goals
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Motivational Text */}
+            <div className="text-center mt-8">
+              <p className="text-lg font-semibold text-gray-700">
+                <span className="text-gradient">"Every fitness journey starts with a single decision."</span>
+              </p>
+              <p className="text-md text-gray-600 mt-2">Your personalized plan will show you exactly how to get there.</p>
+            </div>
           </div>
         </section>
 
@@ -337,7 +371,7 @@ app.get('/', (c) => {
               <div className="text-center group feature-card">
                 <div className="bg-gradient-to-br from-turquoise-400 to-blue-500 p-4 rounded-2xl w-20 h-20 mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-2xl transition-all duration-500 group-hover:scale-110">
                   <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M9 11H7v6h2v-6zm4 0h-2v6h2v-6zm4 0h-2v6h2v-6zM4 7v2h16V7H4z M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-8H6v8z"/>
+                    <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
                   </svg>
                 </div>
                 <h3 className="font-bold text-gray-800 mb-3 text-lg group-hover:text-turquoise-600 transition-colors duration-300">Lifestyle Integration</h3>
@@ -365,14 +399,53 @@ app.get('/', (c) => {
               </div>
             </div>
             
-            {/* Success Stories Section */}
+            {/* Success Stories Section with Muscled Bodies */}
             <div className="bg-gradient-to-r from-blue-50 to-turquoise-50 rounded-2xl p-8 mb-12">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Real Transformations</h3>
+              <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Real Transformations - You Can Do This Too!</h3>
+              
+              {/* Main Transformation Images */}
+              <div className="grid md:grid-cols-2 gap-8 mb-8">
+                {/* Fit Woman */}
+                <div className="text-center hover-lift">
+                  <div className="relative mb-4">
+                    <img 
+                      src="https://images.unsplash.com/photo-1550259979-ed79b48d2a30?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                      alt="Fit muscular woman" 
+                      className="w-full h-64 rounded-2xl object-cover shadow-2xl"
+                    />
+                    <div className="absolute top-4 right-4 bg-pink-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                      💪 Strong & Confident
+                    </div>
+                  </div>
+                  <p className="text-lg font-semibold text-gray-700 mb-2">"I achieved my dream body in 3 months!"</p>
+                  <p className="text-sm text-gray-600 italic">Lost 15kg • Gained muscle definition • Boosted confidence</p>
+                  <p className="text-xs text-gray-500 font-semibold mt-2">Aysel T. - Baku</p>
+                </div>
+                
+                {/* Muscular Man */}
+                <div className="text-center hover-lift">
+                  <div className="relative mb-4">
+                    <img 
+                      src="https://images.unsplash.com/photo-1605296867424-35fc25c9212a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                      alt="Muscular man fitness transformation" 
+                      className="w-full h-64 rounded-2xl object-cover shadow-2xl"
+                    />
+                    <div className="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                      🏆 Transformation King
+                    </div>
+                  </div>
+                  <p className="text-lg font-semibold text-gray-700 mb-2">"From overweight to fitness inspiration!"</p>
+                  <p className="text-sm text-gray-600 italic">Lost 25kg • Built lean muscle • Changed my life</p>
+                  <p className="text-xs text-gray-500 font-semibold mt-2">Elchin M. - Azerbaijan</p>
+                </div>
+              </div>
+              
+              {/* Additional Success Stories */}
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="text-center">
                   <img 
-                    src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
-                    alt="Success story" 
+                    src="https://images.unsplash.com/photo-1594381898411-846e7d193883?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+                    alt="Fit woman success" 
                     className="w-20 h-20 rounded-full mx-auto mb-4 object-cover shadow-lg"
                   />
                   <p className="text-sm text-gray-600 italic mb-2">"Lost 12kg in 2 months with my personalized plan!"</p>
@@ -380,8 +453,8 @@ app.get('/', (c) => {
                 </div>
                 <div className="text-center">
                   <img 
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
-                    alt="Success story" 
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+                    alt="Muscular man success" 
                     className="w-20 h-20 rounded-full mx-auto mb-4 object-cover shadow-lg"
                   />
                   <p className="text-sm text-gray-600 italic mb-2">"Finally a plan that fits my busy lifestyle."</p>
@@ -389,8 +462,8 @@ app.get('/', (c) => {
                 </div>
                 <div className="text-center">
                   <img 
-                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
-                    alt="Success story" 
+                    src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+                    alt="Athletic woman success" 
                     className="w-20 h-20 rounded-full mx-auto mb-4 object-cover shadow-lg"
                   />
                   <p className="text-sm text-gray-600 italic mb-2">"Best investment in my health journey!"</p>
@@ -399,6 +472,53 @@ app.get('/', (c) => {
               </div>
             </div>
             
+            {/* Inspiration Gallery */}
+            <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8 mb-12">
+              <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+                💪 Your Inspiration Gallery - See What's Possible!
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                <div className="hover-lift">
+                  <img 
+                    src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                    alt="Strong fit woman" 
+                    className="rounded-xl shadow-lg w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                  <p className="text-xs text-center mt-2 font-semibold text-gray-600">Strong & Confident</p>
+                </div>
+                <div className="hover-lift">
+                  <img 
+                    src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                    alt="Muscular man training" 
+                    className="rounded-xl shadow-lg w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                  <p className="text-xs text-center mt-2 font-semibold text-gray-600">Powerful & Lean</p>
+                </div>
+                <div className="hover-lift">
+                  <img 
+                    src="https://images.unsplash.com/photo-1550259979-ed79b48d2a30?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                    alt="Athletic woman" 
+                    className="rounded-xl shadow-lg w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                  <p className="text-xs text-center mt-2 font-semibold text-gray-600">Toned & Healthy</p>
+                </div>
+                <div className="hover-lift">
+                  <img 
+                    src="https://images.unsplash.com/photo-1605296867424-35fc25c9212a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                    alt="Fit muscular man" 
+                    className="rounded-xl shadow-lg w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                  <p className="text-xs text-center mt-2 font-semibold text-gray-600">Sculpted & Defined</p>
+                </div>
+              </div>
+              <div className="text-center">
+                <p className="text-lg font-bold text-turquoise-600 mb-2">
+                  "️ Each transformation started with one decision - to begin."
+                </p>
+                <p className="text-md text-gray-600">Your personalized plan will guide you to your own success story.</p>
+              </div>
+            </div>
+
             {/* Call to Action */}
             <div className="text-center">
               <h3 className="text-3xl font-bold text-gray-800 mb-6">
@@ -424,6 +544,26 @@ app.get('/', (c) => {
               <p className="text-sm text-gray-500 mt-4">
                 ✨ Free assessment • 💯 Personalized results • 🔒 Secure & private
               </p>
+              
+              {/* Additional Motivation */}
+              <div className="mt-8 bg-gradient-to-r from-orange-100 to-pink-100 rounded-2xl p-6 max-w-2xl mx-auto">
+                <div className="flex items-center justify-center space-x-4">
+                  <img 
+                    src="https://images.unsplash.com/photo-1594381898411-846e7d193883?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                    alt="Transformation motivation" 
+                    className="w-16 h-16 rounded-full object-cover shadow-lg"
+                  />
+                  <div className="text-left">
+                    <p className="text-sm font-bold text-gray-700">"️ Your body can do it. It's your mind you need to convince."</p>
+                    <p className="text-xs text-gray-500 mt-1">Join thousands who've already transformed their lives</p>
+                  </div>
+                  <img 
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                    alt="Success motivation" 
+                    className="w-16 h-16 rounded-full object-cover shadow-lg"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </section>
