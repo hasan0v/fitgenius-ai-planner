@@ -13,7 +13,7 @@ export const renderer = jsxRenderer(({ children }) => {
         <script src="https://cdn.tailwindcss.com"></script>
         
         {/* Google Fonts */}
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:wght@700;800;900&family=Rajdhani:wght@700&family=Bebas+Neue&display=swap" rel="stylesheet" />
         
         {/* Font Awesome Icons */}
         <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />

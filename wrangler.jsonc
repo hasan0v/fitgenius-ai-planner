@@ -5,5 +5,12 @@
   "pages_build_output_dir": "./dist",
   "compatibility_flags": [
     "nodejs_compat"
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "fitgenius-db",
+      "database_id": "b8882878-32ea-43dc-802d-b5a1b7793553"
+    }
   ]
 }

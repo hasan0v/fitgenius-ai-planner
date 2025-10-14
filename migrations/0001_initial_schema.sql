@@ -11,8 +11,8 @@ CREATE TABLE IF NOT EXISTS users (
   activity_level TEXT,
   dietary_preferences TEXT,
   health_conditions TEXT,
-  questionnaire_data TEXT, -- JSON string of all responses
-  user_path TEXT, -- beginner/intermediate/advanced
+  questionnaire_data TEXT,
+  user_path TEXT,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -20,14 +20,14 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS orders (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   user_id INTEGER NOT NULL,
-  plan_type TEXT NOT NULL, -- basic/premium/complete
+  plan_type TEXT NOT NULL,
   amount DECIMAL(10,2) NOT NULL,
-  currency TEXT DEFAULT 'AZN',
-  status TEXT DEFAULT 'pending', -- pending/paid/failed/refunded
+  currency TEXT DEFAULT 'USD',
+  status TEXT DEFAULT 'pending',
   kapital_order_id TEXT,
   kapital_session_id TEXT,
-  ai_plan_content TEXT, -- JSON string of AI generated plan
-  pdf_url TEXT, -- URL to generated PDF
+  ai_plan_content TEXT,
+  pdf_url TEXT,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   paid_at DATETIME,
   FOREIGN KEY (user_id) REFERENCES users(id)
@@ -35,10 +35,10 @@ CREATE TABLE IF NOT EXISTS orders (
 
 -- Questionnaire sessions for temporary data storage
 CREATE TABLE IF NOT EXISTS questionnaire_sessions (
-  id TEXT PRIMARY KEY, -- UUID
+  id TEXT PRIMARY KEY,
   current_step INTEGER DEFAULT 1,
-  responses TEXT, -- JSON string of responses so far
-  user_path TEXT, -- determined path based on responses
+  responses TEXT,
+  user_path TEXT,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   expires_at DATETIME DEFAULT (datetime('now', '+24 hours'))
 );

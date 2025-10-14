@@ -3,6 +3,8 @@ import { cors } from 'hono/cors'
 import { serveStatic } from 'hono/cloudflare-workers'
 import { renderer } from './renderer'
 
+type D1Database = any;
+
 type Bindings = {
   DB: D1Database;
   OPENROUTER_API_KEY: string;
@@ -17,8 +19,8 @@ const app = new Hono<{ Bindings: Bindings }>()
 // Enable CORS for API routes
 app.use('/api/*', cors())
 
-// Serve static files
-app.use('/static/*', serveStatic({ root: './public' }))
+// Serve static files - will be handled by Cloudflare Pages
+// app.use('/static/*', serveStatic({ root: './public' }))
 
 // Use JSX renderer
 app.use(renderer)
@@ -62,20 +64,21 @@ const questions = [
     text: "Please provide your basic information:",
     type: "form",
     fields: [
-      { name: "name", type: "text", placeholder: "Your full name", required: true },
-      { name: "email", type: "email", placeholder: "Email address", required: true },
-      { name: "age", type: "number", placeholder: "Age", min: 16, max: 80, required: true },
-      { name: "gender", type: "select", options: ["Female", "Male", "Other"], required: true }
+      { name: "Name", type: "text", placeholder: "Your full name", required: true },
+      { name: "Email", type: "email", placeholder: "Email address", required: true },
+      { name: "Age", type: "number", placeholder: "Age", min: 16, max: 100, required: true },
+      { name: "Gender", type: "select", options: ["Female", "Male", "Other"], required: true }
     ]
   },
   {
     id: 5,
-    text: "Physical measurements:",
+    text: "📏 Let's get your measurements",
+    subtitle: "This helps us calculate your perfect calorie target and track your amazing progress!",
     type: "form",
     fields: [
-      { name: "height", type: "number", placeholder: "Height (cm)", min: 140, max: 220, required: true },
-      { name: "current_weight", type: "number", placeholder: "Current weight (kg)", min: 40, max: 200, required: true },
-      { name: "target_weight", type: "number", placeholder: "Target weight (kg)", min: 40, max: 200, required: true }
+      { name: "height", type: "number", placeholder: "Height (cm)", min: 120, max: 250, required: true, icon: "📏", label: "Height" },
+      { name: "current_weight", type: "number", placeholder: "Current weight (kg)", min: 30, max: 300, required: true, icon: "⚖️", label: "Current Weight" },
+      { name: "target_weight", type: "number", placeholder: "Target weight (kg)", min: 30, max: 300, required: true, icon: "🎯", label: "Target Weight" }
     ]
   },
   {
@@ -267,93 +270,181 @@ const questions = [
 // Main application routes
 app.get('/', (c) => {
   return c.render(
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-turquoise-50 relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-blue-200 to-turquoise-200 rounded-full opacity-20 animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-orange-200 to-pink-200 rounded-full opacity-20 animate-bounce" style="animation-delay: 2s;"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-green-200 to-blue-200 rounded-full opacity-15 animate-spin" style="animation-duration: 20s;"></div>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
+      {/* Subtle Background Pattern */}
+      <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
+        <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-br from-orange-200 to-pink-200 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-40 left-20 w-80 h-80 bg-gradient-to-br from-blue-200 to-turquoise-200 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="container mx-auto px-4 py-8 relative z-10">
-        {/* Hero Section */}
-        <section className="text-center mb-16 fade-in-up">
-          {/* Logo and Brand */}
-          <div className="flex items-center justify-center mb-8">
-            <div className="bg-gradient-to-r from-blue-600 to-turquoise-500 p-6 rounded-full shadow-2xl hover-lift">
-              <svg className="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+      <div className="container mx-auto px-4 py-6 relative z-10">
+        {/* Navigation Bar */}
+        <nav className="flex items-center justify-between mb-8 py-4">
+          <div className="flex items-center space-x-3">
+            <img src="/images/logo.png" alt="FitGenius Logo" className="h-16 w-auto hover:scale-105 transition-transform duration-300" loading="eager" />
+          </div>
+          
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-6">
+            <a href="#features" className="text-gray-600 hover:text-cyan-600 font-medium transition-colors">Features</a>
+            <a href="#testimonials" className="text-gray-600 hover:text-cyan-600 font-medium transition-colors">Success Stories</a>
+            <button onclick="startQuestionnaire()" className="bg-gradient-to-r from-orange-500 to-pink-500 text-white px-6 py-2.5 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+              Start Now
+            </button>
+          </div>
+          
+          {/* Mobile Navigation - Icons Only */}
+          <div className="flex md:hidden items-center space-x-3">
+            <a href="#features" className="p-2.5 rounded-full bg-white shadow-md hover:shadow-lg hover:bg-cyan-50 transition-all" title="Features">
+              <svg className="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
               </svg>
+            </a>
+            <a href="#testimonials" className="p-2.5 rounded-full bg-white shadow-md hover:shadow-lg hover:bg-cyan-50 transition-all" title="Success Stories">
+              <svg className="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/>
+              </svg>
+            </a>
+            <button onclick="startQuestionnaire()" className="p-2.5 rounded-full bg-gradient-to-r from-orange-500 to-pink-500 text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all" title="Start Now">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </button>
+          </div>
+        </nav>
+
+        {/* Hero Section */}
+        <section className="text-center mb-20 fade-in-up">
+          <div className="max-w-4xl mx-auto">
+            {/* Hero Badge */}
+            <div className="inline-flex items-center bg-gradient-to-r from-orange-100 to-pink-100 rounded-full px-6 py-2 mb-6 border border-orange-200">
+              <svg className="w-5 h-5 text-orange-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+              <span className="text-orange-700 font-semibold text-sm">AI-Powered Personal Transformation Plans</span>
+            </div>
+
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-6 leading-tight">
+              Transform Your Body,
+              <span className="block mt-2 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 bg-clip-text text-transparent">
+                Transform Your Life
+              </span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Get a <span className="font-bold text-orange-600">100% personalized</span> 30-day weight loss plan
+              tailored to your body, lifestyle, and goals. No generic advice—just results.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+              <button 
+                onclick="startQuestionnaire()" 
+                className="group bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-bold py-4 px-8 rounded-full text-lg shadow-xl transform transition duration-300 hover:scale-105 hover:shadow-2xl flex items-center"
+              >
+                <span>Start Your Free Assessment</span>
+                <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+              </button>
+              <a href="#testimonials" className="bg-white text-gray-700 font-semibold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl border-2 border-gray-200 hover:border-cyan-400 transition-all duration-300 inline-block">
+                Watch Success Stories
+              </a>
+            </div>
+
+            {/* Social Proof */}
+            <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-gray-600">
+              <div className="flex items-center">
+                <div className="flex -space-x-2 mr-3">
+                  <img src="https://i.pravatar.cc/40?img=1" alt="User" className="w-8 h-8 rounded-full border-2 border-white" loading="lazy" />
+                  <img src="https://i.pravatar.cc/40?img=2" alt="User" className="w-8 h-8 rounded-full border-2 border-white" loading="lazy" />
+                  <img src="https://i.pravatar.cc/40?img=3" alt="User" className="w-8 h-8 rounded-full border-2 border-white" loading="lazy" />
+                  <img src="https://i.pravatar.cc/40?img=4" alt="User" className="w-8 h-8 rounded-full border-2 border-white" loading="lazy" />
+                </div>
+                <span className="font-semibold text-gray-700">2,847+ transformations</span>
+              </div>
+              <div className="flex items-center">
+                <svg className="w-5 h-5 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+                <span className="font-semibold text-gray-700">4.9/5 rating</span>
+              </div>
+              <div className="flex items-center">
+                <svg className="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span className="font-semibold text-gray-700">30-day guarantee</span>
+              </div>
             </div>
           </div>
 
-          <h1 className="logo-text text-6xl md:text-8xl font-black bg-gradient-to-r from-blue-700 via-turquoise-600 to-blue-800 bg-clip-text text-transparent mb-6 animate-gradient tracking-tight">
-            FitGenius
-          </h1>
-          
-          <p className="text-2xl md:text-3xl text-gray-700 mb-4 font-light">
-            Your Personal Weight Loss Journey
-          </p>
-          
-          <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Discover a completely <span className="font-bold text-turquoise-600">personalized transformation plan</span> 
-            created just for you. Every recommendation is tailored to your unique lifestyle, goals, and preferences.
-          </p>
-
-          {/* Hero Transformation Images */}
-          <div className="mb-12">
-            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              {/* Before/After Woman */}
-              <div className="hover-lift text-center">
-                <h3 className="text-xl font-bold text-gray-700 mb-4">You Can Achieve This Too!</h3>
-                <div className="relative">
-                  <img 
-                    src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                    alt="Fit woman transformation" 
-                    className="rounded-2xl shadow-2xl w-full object-cover h-72 md:h-80"
-                  />
-                  <div className="absolute bottom-4 left-4 bg-gradient-to-r from-pink-500 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-                    💪 Your Future Self
-                  </div>
+          {/* Hero Image Section */}
+          <div className="mt-16 max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="relative group overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                <img 
+                  src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=400&h=500&q=80" 
+                  alt="Fit woman transformation" 
+                  className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="eager"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="text-2xl font-bold mb-1">-15kg</p>
+                  <p className="text-sm opacity-90">in 3 months</p>
+                </div>
+                <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                  ✓ Verified
                 </div>
               </div>
               
-              {/* Muscled Man */}
-              <div className="hover-lift text-center">
-                <h3 className="text-xl font-bold text-gray-700 mb-4">Start Your Transformation Today!</h3>
-                <div className="relative">
-                  <img 
-                    src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                    alt="Muscled man fitness transformation" 
-                    className="rounded-2xl shadow-2xl w-full object-cover h-72 md:h-80"
-                  />
-                  <div className="absolute bottom-4 left-4 bg-gradient-to-r from-blue-500 to-turquoise-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-                    🏆 Achieve Your Goals
-                  </div>
+              <div className="relative group overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                <img 
+                  src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=400&h=500&q=80" 
+                  alt="Muscular man transformation" 
+                  className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="eager"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="text-2xl font-bold mb-1">-22kg</p>
+                  <p className="text-sm opacity-90">in 4 months</p>
+                </div>
+                <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                  ✓ Verified
                 </div>
               </div>
-            </div>
-            
-            {/* Motivational Text */}
-            <div className="text-center mt-8">
-              <p className="text-lg font-semibold text-gray-700">
-                <span className="text-gradient">"Every fitness journey starts with a single decision."</span>
-              </p>
-              <p className="text-md text-gray-600 mt-2">Your personalized plan will show you exactly how to get there.</p>
+              
+              <div className="relative group overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                <img 
+                  src="https://images.unsplash.com/photo-1550259979-ed79b48d2a30?auto=format&fit=crop&w=400&h=500&q=80" 
+                  alt="Athletic woman transformation" 
+                  className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="eager"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="text-2xl font-bold mb-1">-12kg</p>
+                  <p className="text-sm opacity-90">in 2 months</p>
+                </div>
+                <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                  ✓ Verified
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Features Section */}
-        <section className="mb-16">
+        <section id="features" className="mb-20">
           <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-12 max-w-6xl mx-auto border border-white/50">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6 text-center">
               Why Choose a <span className="text-gradient">Personalized</span> Approach?
             </h2>
             
-            <p className="text-lg text-gray-600 mb-12 text-center max-w-3xl mx-auto">
+            <p className="text-base text-gray-600 mb-10 text-center max-w-3xl mx-auto">
               Unlike generic diet plans, our system creates a completely unique program based on your specific needs, 
-              preferences, and lifestyle. Every detail matters in your transformation journey.
+              preferences, and lifestyle.
             </p>
             
             {/* Feature Grid */}
@@ -369,12 +460,12 @@ app.get('/', (c) => {
               </div>
               
               <div className="text-center group feature-card">
-                <div className="bg-gradient-to-br from-turquoise-400 to-blue-500 p-4 rounded-2xl w-20 h-20 mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-2xl transition-all duration-500 group-hover:scale-110">
+                <div className="bg-gradient-to-br from-cyan-400 to-blue-500 p-4 rounded-2xl w-20 h-20 mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-2xl transition-all duration-500 group-hover:scale-110">
                   <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
                   </svg>
                 </div>
-                <h3 className="font-bold text-gray-800 mb-3 text-lg group-hover:text-turquoise-600 transition-colors duration-300">Lifestyle Integration</h3>
+                <h3 className="font-bold text-gray-800 mb-3 text-lg group-hover:text-cyan-600 transition-colors duration-300">Lifestyle Integration</h3>
                 <p className="text-sm text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">Plans that fit seamlessly into your daily routine and work schedule</p>
               </div>
               
@@ -399,171 +490,105 @@ app.get('/', (c) => {
               </div>
             </div>
             
-            {/* Success Stories Section with Muscled Bodies */}
-            <div className="bg-gradient-to-r from-blue-50 to-turquoise-50 rounded-2xl p-8 mb-12">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Real Transformations - You Can Do This Too!</h3>
+            {/* Success Stories Section - More Credible */}
+            <div id="testimonials" className="bg-gradient-to-r from-blue-50 to-turquoise-50 rounded-2xl p-8 mb-10">
+              <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Real Transformations from Our Community</h3>
               
-              {/* Main Transformation Images */}
-              <div className="grid md:grid-cols-2 gap-8 mb-8">
-                {/* Fit Woman */}
-                <div className="text-center hover-lift">
-                  <div className="relative mb-4">
+              {/* Main Transformation Stories - Grid */}
+              <div className="grid md:grid-cols-3 gap-6 mb-6">
+                {/* Success Story 1 */}
+                <div className="bg-white rounded-xl p-5 shadow-md hover-lift">
+                  <div className="flex items-center gap-3 mb-3">
                     <img 
-                      src="https://images.unsplash.com/photo-1550259979-ed79b48d2a30?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-                      alt="Fit muscular woman" 
-                      className="w-full h-64 rounded-2xl object-cover shadow-2xl"
+                      src="https://randomuser.me/api/portraits/women/44.jpg" 
+                      alt="Aysel profile" 
+                      className="w-14 h-14 rounded-full object-cover shadow-md"
+                      loading="lazy"
                     />
-                    <div className="absolute top-4 right-4 bg-pink-500 text-white px-3 py-1 rounded-full text-sm font-bold">
-                      💪 Strong & Confident
+                    <div>
+                      <p className="font-bold text-gray-800">Naoe T.</p>
+                      <div className="flex text-yellow-400 text-xs">
+                        ⭐⭐⭐⭐⭐
+                      </div>
                     </div>
                   </div>
-                  <p className="text-lg font-semibold text-gray-700 mb-2">"I achieved my dream body in 3 months!"</p>
-                  <p className="text-sm text-gray-600 italic">Lost 15kg • Gained muscle definition • Boosted confidence</p>
-                  <p className="text-xs text-gray-500 font-semibold mt-2">Aysel T. - Baku</p>
+                  <p className="text-sm text-gray-600 mb-2">"Lost 15kg in 3 months! The personalized meal plan fit perfectly with my busy work schedule."</p>
+                  <p className="text-xs text-gray-400">March 2025 • Osaka</p>
                 </div>
                 
-                {/* Muscular Man */}
-                <div className="text-center hover-lift">
-                  <div className="relative mb-4">
+                {/* Success Story 2 */}
+                <div className="bg-white rounded-xl p-5 shadow-md hover-lift">
+                  <div className="flex items-center gap-3 mb-3">
                     <img 
-                      src="https://images.unsplash.com/photo-1605296867424-35fc25c9212a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-                      alt="Muscular man fitness transformation" 
-                      className="w-full h-64 rounded-2xl object-cover shadow-2xl"
+                      src="https://randomuser.me/api/portraits/men/32.jpg" 
+                      alt="Elchin profile" 
+                      className="w-14 h-14 rounded-full object-cover shadow-md"
+                      loading="lazy"
                     />
-                    <div className="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold">
-                      🏆 Transformation King
+                    <div>
+                      <p className="font-bold text-gray-800">Michael M.</p>
+                      <div className="flex text-yellow-400 text-xs">
+                        ⭐⭐⭐⭐⭐
+                      </div>
                     </div>
                   </div>
-                  <p className="text-lg font-semibold text-gray-700 mb-2">"From overweight to fitness inspiration!"</p>
-                  <p className="text-sm text-gray-600 italic">Lost 25kg • Built lean muscle • Changed my life</p>
-                  <p className="text-xs text-gray-500 font-semibold mt-2">Elchin M. - Azerbaijan</p>
+                  <p className="text-sm text-gray-600 mb-2">"Dropped 22kg and built muscle! The workout routine was challenging but achievable."</p>
+                  <p className="text-xs text-gray-400">January 2025 • Rome</p>
+                </div>
+                
+                {/* Success Story 3 */}
+                <div className="bg-white rounded-xl p-5 shadow-md hover-lift">
+                  <div className="flex items-center gap-3 mb-3">
+                    <img 
+                      src="https://randomuser.me/api/portraits/women/65.jpg" 
+                      alt="Leyla profile" 
+                      className="w-14 h-14 rounded-full object-cover shadow-md"
+                      loading="lazy"
+                    />
+                    <div>
+                      <p className="font-bold text-gray-800">Leyla K.</p>
+                      <div className="flex text-yellow-400 text-xs">
+                        ⭐⭐⭐⭐⭐
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-600 mb-2">"Finally a plan that works! Lost 12kg and feel more energetic than ever."</p>
+                  <p className="text-xs text-gray-400">February 2025 • Tabriz</p>
                 </div>
               </div>
               
-              {/* Additional Success Stories */}
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-center">
-                  <img 
-                    src="https://images.unsplash.com/photo-1594381898411-846e7d193883?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
-                    alt="Fit woman success" 
-                    className="w-20 h-20 rounded-full mx-auto mb-4 object-cover shadow-lg"
-                  />
-                  <p className="text-sm text-gray-600 italic mb-2">"Lost 12kg in 2 months with my personalized plan!"</p>
-                  <p className="text-xs text-gray-500 font-semibold">Sarah M.</p>
-                </div>
-                <div className="text-center">
-                  <img 
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
-                    alt="Muscular man success" 
-                    className="w-20 h-20 rounded-full mx-auto mb-4 object-cover shadow-lg"
-                  />
-                  <p className="text-sm text-gray-600 italic mb-2">"Finally a plan that fits my busy lifestyle."</p>
-                  <p className="text-xs text-gray-500 font-semibold">Ahmed R.</p>
-                </div>
-                <div className="text-center">
-                  <img 
-                    src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
-                    alt="Athletic woman success" 
-                    className="w-20 h-20 rounded-full mx-auto mb-4 object-cover shadow-lg"
-                  />
-                  <p className="text-sm text-gray-600 italic mb-2">"Best investment in my health journey!"</p>
-                  <p className="text-xs text-gray-500 font-semibold">Leyla K.</p>
-                </div>
+              {/* Trust Badge */}
+              <div className="text-center mt-6 p-4 bg-white rounded-lg">
+                <p className="text-lg font-semibold text-gray-800">
+                  <span className="text-yellow-400 text-2xl mr-2">⭐</span>
+                  Rated 4.9/5 from 2,847 verified users
+                </p>
               </div>
             </div>
             
-            {/* Inspiration Gallery */}
-            <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8 mb-12">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-                💪 Your Inspiration Gallery - See What's Possible!
-              </h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                <div className="hover-lift">
-                  <img 
-                    src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
-                    alt="Strong fit woman" 
-                    className="rounded-xl shadow-lg w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                  <p className="text-xs text-center mt-2 font-semibold text-gray-600">Strong & Confident</p>
-                </div>
-                <div className="hover-lift">
-                  <img 
-                    src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
-                    alt="Muscular man training" 
-                    className="rounded-xl shadow-lg w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                  <p className="text-xs text-center mt-2 font-semibold text-gray-600">Powerful & Lean</p>
-                </div>
-                <div className="hover-lift">
-                  <img 
-                    src="https://images.unsplash.com/photo-1550259979-ed79b48d2a30?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
-                    alt="Athletic woman" 
-                    className="rounded-xl shadow-lg w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                  <p className="text-xs text-center mt-2 font-semibold text-gray-600">Toned & Healthy</p>
-                </div>
-                <div className="hover-lift">
-                  <img 
-                    src="https://images.unsplash.com/photo-1605296867424-35fc25c9212a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
-                    alt="Fit muscular man" 
-                    className="rounded-xl shadow-lg w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                  <p className="text-xs text-center mt-2 font-semibold text-gray-600">Sculpted & Defined</p>
-                </div>
-              </div>
-              <div className="text-center">
-                <p className="text-lg font-bold text-turquoise-600 mb-2">
-                  "️ Each transformation started with one decision - to begin."
-                </p>
-                <p className="text-md text-gray-600">Your personalized plan will guide you to your own success story.</p>
-              </div>
-            </div>
-
             {/* Call to Action */}
-            <div className="text-center">
-              <h3 className="text-3xl font-bold text-gray-800 mb-6">
-                Ready to Start Your <span className="text-gradient">Personal</span> Transformation?
+            <div className="text-center mt-12">
+              <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+                Ready to Start Your Transformation?
               </h3>
-              <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-                Take our comprehensive assessment to discover what your unique body needs for successful, 
-                sustainable weight loss that fits your life.
+              <p className="text-base text-gray-600 mb-8 max-w-2xl mx-auto">
+                Take our 3-minute assessment to discover what your body needs for successful, 
+                sustainable weight loss.
               </p>
               
               <button 
                 onclick="startQuestionnaire()" 
-                className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-bold py-5 px-10 rounded-full text-xl shadow-xl transform transition duration-300 hover:scale-105 hover:shadow-2xl pulse-glow"
+                className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-bold py-4 px-10 rounded-full text-lg shadow-xl transform transition duration-300 hover:scale-105 hover:shadow-2xl pulse-glow inline-flex items-center"
               >
-                <span className="flex items-center">
-                  <svg className="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                  </svg>
-                  Start Your Personal Assessment
-                </span>
+                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+                Get Your Personal Plan
               </button>
               
-              <p className="text-sm text-gray-500 mt-4">
+              <p className="text-xs text-gray-500 mt-4">
                 ✨ Free assessment • 💯 Personalized results • 🔒 Secure & private
               </p>
-              
-              {/* Additional Motivation */}
-              <div className="mt-8 bg-gradient-to-r from-orange-100 to-pink-100 rounded-2xl p-6 max-w-2xl mx-auto">
-                <div className="flex items-center justify-center space-x-4">
-                  <img 
-                    src="https://images.unsplash.com/photo-1594381898411-846e7d193883?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                    alt="Transformation motivation" 
-                    className="w-16 h-16 rounded-full object-cover shadow-lg"
-                  />
-                  <div className="text-left">
-                    <p className="text-sm font-bold text-gray-700">"️ Your body can do it. It's your mind you need to convince."</p>
-                    <p className="text-xs text-gray-500 mt-1">Join thousands who've already transformed their lives</p>
-                  </div>
-                  <img 
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                    alt="Success motivation" 
-                    className="w-16 h-16 rounded-full object-cover shadow-lg"
-                  />
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -597,23 +622,21 @@ app.get('/', (c) => {
 })
 
 // API Routes
-// In-memory storage for development (replace with D1 in production)
-const sessions = new Map()
+// Database connection through Cloudflare D1
 
 app.post('/api/questionnaire/start', async (c) => {
   const sessionId = crypto.randomUUID()
   
   try {
-    // Store in memory for development
-    sessions.set(sessionId, {
-      current_step: 1,
-      responses: {},
-      user_path: null,
-      created_at: new Date()
-    })
+    // Store in D1 database
+    await c.env.DB.prepare(`
+      INSERT INTO questionnaire_sessions (id, current_step, responses, created_at, expires_at)
+      VALUES (?, 1, '{}', datetime('now'), datetime('now', '+24 hours'))
+    `).bind(sessionId).run()
     
     return c.json({ sessionId, question: questions[0] })
   } catch (error) {
+    console.error('Failed to start questionnaire:', error)
     return c.json({ error: 'Failed to start questionnaire' }, 500)
   }
 })
@@ -622,21 +645,26 @@ app.post('/api/questionnaire/answer', async (c) => {
   const { sessionId, questionId, answer } = await c.req.json()
   
   try {
-    // Get current session from memory
-    const session = sessions.get(sessionId)
+    // Get current session from D1
+    const session = await c.env.DB.prepare(
+      'SELECT * FROM questionnaire_sessions WHERE id = ?'
+    ).bind(sessionId).first()
     
     if (!session) {
       return c.json({ error: 'Session not found' }, 404)
     }
     
+    // Parse existing responses
+    const responses = JSON.parse(session.responses || '{}')
+    
     // Update responses
-    session.responses[questionId] = answer
+    responses[questionId] = answer
     
     // Determine user path based on responses
     let userPath = session.user_path
-    if (!userPath && session.responses[1] && session.responses[2]) {
-      const goal = session.responses[1]
-      const experience = session.responses[2]
+    if (!userPath && responses[1] && responses[2]) {
+      const goal = responses[1]
+      const experience = responses[2]
       
       if (goal?.includes && goal.includes('lose_weight') && experience?.includes && experience.includes('never_tried')) {
         userPath = 'beginner'
@@ -647,21 +675,25 @@ app.post('/api/questionnaire/answer', async (c) => {
       }
     }
     
-    // Update session
-    session.user_path = userPath
-    session.current_step += 1
+    // Update session in database
+    const currentStep = session.current_step + 1
+    await c.env.DB.prepare(`
+      UPDATE questionnaire_sessions 
+      SET current_step = ?, responses = ?, user_path = ?
+      WHERE id = ?
+    `).bind(currentStep, JSON.stringify(responses), userPath, sessionId).run()
     
     // Check if questionnaire is complete
-    if (session.current_step > questions.length) {
-      return c.json({ complete: true, userPath, responses: session.responses })
+    if (currentStep > questions.length) {
+      return c.json({ complete: true, userPath, responses })
     }
     
     // Return next question
-    const nextQuestion = questions[session.current_step - 1]
+    const nextQuestion = questions[currentStep - 1]
     return c.json({ 
       question: nextQuestion, 
       userPath, 
-      progress: (session.current_step / questions.length) * 100 
+      progress: (currentStep / questions.length) * 100 
     })
     
   } catch (error) {
@@ -670,73 +702,77 @@ app.post('/api/questionnaire/answer', async (c) => {
   }
 })
 
-// In-memory storage for orders (development only)
-const orders = new Map()
-const users = new Map()
-let nextUserId = 1
-let nextOrderId = 1
-
+// Generate personalized plan and create order
 app.post('/api/generate-plan', async (c) => {
   const { sessionId, planType } = await c.req.json()
   
   try {
-    // Get session data from memory
-    const session = sessions.get(sessionId)
+    // Get session data from D1
+    const session = await c.env.DB.prepare(
+      'SELECT * FROM questionnaire_sessions WHERE id = ?'
+    ).bind(sessionId).first()
     
     if (!session) {
       return c.json({ error: 'Session not found' }, 404)
     }
     
-    const responses = session.responses
+    const responses = JSON.parse(session.responses || '{}')
     
     // Generate AI plan using OpenRouter (or fallback)
     const aiPlan = await generateAIPlan(responses, session.user_path, planType, c.env?.OPENROUTER_API_KEY || 'demo')
     
-    // Create user record in memory
-    const userId = nextUserId++
-    users.set(userId, {
-      id: userId,
-      email: responses[4]?.email || '',
-      name: responses[4]?.name || '',
-      age: responses[4]?.age || 0,
-      gender: responses[4]?.gender || '',
-      height: responses[5]?.height || 0,
-      current_weight: responses[5]?.current_weight || 0,
-      target_weight: responses[5]?.target_weight || 0,
-      activity_level: responses[3] || '',
-      dietary_preferences: responses[7] || [],
-      health_conditions: responses[8] || [],
-      questionnaire_data: responses,
-      user_path: session.user_path || 'beginner',
-      created_at: new Date()
-    })
+    // Extract user data from responses
+    const userData = responses[4] || {}
+    const measurements = responses[5] || {}
     
-    // Determine plan price
-    const prices = { basic: 9.90, premium: 14.90, complete: 29.90 }
-    const amount = prices[planType] || 9.90
+    // Create or update user in database
+    const userResult = await c.env.DB.prepare(`
+      INSERT INTO users (email, name, age, gender, height, current_weight, target_weight, 
+                        activity_level, dietary_preferences, questionnaire_data, user_path)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      ON CONFLICT(email) DO UPDATE SET
+        name = excluded.name,
+        age = excluded.age,
+        questionnaire_data = excluded.questionnaire_data,
+        user_path = excluded.user_path
+      RETURNING id
+    `).bind(
+      userData.Email,
+      userData.Name,
+      userData.Age,
+      userData.Gender,
+      measurements.height,
+      measurements.current_weight,
+      measurements.target_weight,
+      responses[3],
+      JSON.stringify(responses[7]),
+      JSON.stringify(responses),
+      session.user_path
+    ).first()
     
-    // Create order in memory
-    const orderId = nextOrderId++
-    orders.set(orderId, {
-      id: orderId,
-      user_id: userId,
-      plan_type: planType,
-      amount: amount,
-      status: 'pending',
-      ai_plan_content: aiPlan,
-      created_at: new Date()
-    })
+    const userId = userResult.id
     
-    return c.json({ 
-      orderId: orderId,
-      userId: userId,
-      amount,
-      planType,
-      preview: aiPlan.preview // Show a preview of the plan
-    })
+    // Determine plan amount in USD
+    const planAmounts: Record<string, number> = {
+      'basic': 9.90,
+      'premium': 14.90,
+      'complete': 29.90
+    }
+    const amount = planAmounts[planType as string] || 14.90
+    
+    // Create order in database
+    const orderResult = await c.env.DB.prepare(`
+      INSERT INTO orders (user_id, plan_type, amount, currency, status, ai_plan_content)
+      VALUES (?, ?, ?, 'USD', 'pending', ?)
+      RETURNING id
+    `).bind(userId, planType, amount, JSON.stringify(aiPlan)).first()
+    
+    const orderId = orderResult.id
+    
+    return c.json({ orderId, preview: aiPlan.preview })
     
   } catch (error) {
-    console.error('Error generating plan:', error)
+    console.error('Plan generation error:', error)
     return c.json({ error: 'Failed to generate plan' }, 500)
   }
 })
@@ -897,7 +933,7 @@ Format your response as structured JSON with clear sections and subsections. Mak
       throw new Error(`OpenRouter API error: ${response.statusText}`)
     }
 
-    const data = await response.json()
+    const data = await response.json() as any
     let planContent = data.choices[0].message.content
 
     // Try to parse as JSON, if it fails, structure it
@@ -995,22 +1031,21 @@ function generateFallbackPlan(userInfo: any, planType: string) {
 }
 
 app.get('/api/payment/:orderId', async (c) => {
-  const orderId = parseInt(c.req.param('orderId'))
+  const orderId = c.req.param('orderId')
   
   try {
-    const order = orders.get(orderId)
+    const order = await c.env.DB.prepare(`
+      SELECT o.*, u.email, u.name 
+      FROM orders o
+      JOIN users u ON o.user_id = u.id
+      WHERE o.id = ?
+    `).bind(orderId).first()
     
     if (!order) {
       return c.json({ error: 'Order not found' }, 404)
     }
     
-    const user = users.get(order.user_id)
-    
-    return c.json({
-      ...order,
-      name: user?.name,
-      email: user?.email
-    })
+    return c.json(order)
     
   } catch (error) {
     return c.json({ error: 'Failed to get order' }, 500)
@@ -1019,26 +1054,32 @@ app.get('/api/payment/:orderId', async (c) => {
 
 // Generate PDF after payment
 app.post('/api/generate-pdf/:orderId', async (c) => {
-  const orderId = parseInt(c.req.param('orderId'))
+  const orderId = c.req.param('orderId')
   
   try {
-    const order = orders.get(orderId)
-    const user = order ? users.get(order.user_id) : null
+    const order = await c.env.DB.prepare(`
+      SELECT o.*, u.* 
+      FROM orders o
+      JOIN users u ON o.user_id = u.id
+      WHERE o.id = ? AND o.status = 'paid'
+    `).bind(orderId).first()
     
-    if (!order || !user || order.status !== 'paid') {
+    if (!order) {
       return c.json({ error: 'Order not found or not paid' }, 404)
     }
     
+    // Parse AI plan content
+    const aiPlanContent = JSON.parse(order.ai_plan_content || '{}')
+    const questionnaireData = JSON.parse(order.questionnaire_data || '{}')
+    
     // Generate beautiful PDF
-    const pdfContent = await generatePDFContent(
-      { ...order, ...user }, 
-      order.ai_plan_content, 
-      user.questionnaire_data
-    )
+    const pdfContent = await generatePDFContent(order, aiPlanContent, questionnaireData)
     const pdfUrl = await createPDF(pdfContent, orderId.toString())
     
     // Update order with PDF URL
-    order.pdf_url = pdfUrl
+    await c.env.DB.prepare(`
+      UPDATE orders SET pdf_url = ? WHERE id = ?
+    `).bind(pdfUrl, orderId).run()
     
     return c.json({ pdfUrl, success: true })
     
@@ -1075,19 +1116,27 @@ app.post('/api/payment/create', async (c) => {
   const { orderId } = await c.req.json()
   
   try {
-    const order = orders.get(parseInt(orderId))
-    const user = order ? users.get(order.user_id) : null
+    // Get order and user from D1 database
+    const order = await c.env.DB.prepare(`
+      SELECT o.*, u.email, u.name 
+      FROM orders o
+      JOIN users u ON o.user_id = u.id
+      WHERE o.id = ?
+    `).bind(orderId).first()
     
-    if (!order || !user) {
+    if (!order) {
       return c.json({ error: 'Order not found' }, 404)
     }
     
     // Create Kapital Bank payment
-    const paymentData = await createKapitalPayment({...order, ...user}, c.env || {})
+    const paymentData = await createKapitalPayment(order, c.env || {})
     
     // Update order with Kapital session info
-    order.kapital_order_id = paymentData.orderId
-    order.kapital_session_id = paymentData.sessionId
+    await c.env.DB.prepare(`
+      UPDATE orders 
+      SET kapital_order_id = ?, kapital_session_id = ?
+      WHERE id = ?
+    `).bind(paymentData.orderId, paymentData.sessionId, orderId).run()
     
     return c.json({
       paymentUrl: paymentData.paymentUrl,
@@ -1105,8 +1154,8 @@ async function createKapitalPayment(order: any, env: any) {
   // Kapital Bank API integration
   const paymentRequest = {
     merchantId: env.KAPITAL_MERCHANT_ID,
-    amount: Math.round(order.amount * 100), // Convert to qəpik (cents)
-    currency: '944', // AZN currency code
+    amount: Math.round(order.amount * 100), // Convert to cents
+    currency: '840', // USD currency code
     description: `FitGenius ${order.plan_type} Plan - Order #${order.id}`,
     language: 'AZ',
     approveUrl: env.KAPITAL_APPROVE_URL,
@@ -1132,20 +1181,25 @@ app.get('/payment/approve', async (c) => {
   const sessionId = c.req.query('SESSIONID')
   
   try {
+    if (!orderId || !sessionId) {
+      throw new Error('Missing payment parameters')
+    }
     // Verify payment with Kapital Bank
     const isValid = await verifyKapitalPayment(orderId, sessionId)
     
     if (isValid) {
-      // Find and update order status
-      let foundOrder = null
-      for (const [id, order] of orders) {
-        if (order.kapital_order_id === orderId && order.kapital_session_id === sessionId) {
-          order.status = 'paid'
-          order.paid_at = new Date()
-          foundOrder = order
-          break
-        }
-      }
+      // Find and update order status in database
+      await c.env.DB.prepare(`
+        UPDATE orders 
+        SET status = 'paid', paid_at = datetime('now')
+        WHERE kapital_order_id = ? AND kapital_session_id = ?
+      `).bind(orderId, sessionId).run()
+      
+      // Get the updated order
+      const foundOrder = await c.env.DB.prepare(`
+        SELECT * FROM orders 
+        WHERE kapital_order_id = ? AND kapital_session_id = ?
+      `).bind(orderId, sessionId).first()
       
       if (foundOrder) {
         
