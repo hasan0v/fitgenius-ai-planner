@@ -78,11 +78,24 @@ function getMotivationalImage() {
 function displayQuestion(question, progress = 0, showBack = true) {
     const content = document.getElementById('questionnaire-content');
     
+    // Ensure question object is valid with fallbacks
+    if (!question || typeof question !== 'object') {
+        console.error('Invalid question object:', question);
+        showNotification('Error loading question. Please refresh the page.', 'error');
+        return;
+    }
+    
+    // Ensure question has required properties with fallbacks
+    const questionId = question?.id || 1;
+    const questionText = question?.text || 'Loading question...';
+    const questionType = question?.type || 'single';
+    const questionOptions = question?.options || [];
+    
     // Calculate actual progress
-    const actualProgress = Math.max(progress, (question.id / 20) * 100);
+    const actualProgress = Math.max(progress, (questionId / 20) * 100);
     
     // Add motivational image every 5 questions
-    const showMotivationalImage = question.id % 5 === 0 && question.id > 1;
+    const showMotivationalImage = questionId % 5 === 0 && questionId > 1;
     let motivationalSection = '';
     
     if (showMotivationalImage) {
@@ -110,23 +123,23 @@ function displayQuestion(question, progress = 0, showBack = true) {
                             Back
                         </button>
                     ` : ''}
-                    <span class="text-sm font-medium text-gray-500">Question ${question.id} of 20</span>
+                    <span class="text-sm font-medium text-gray-500">Question ${questionId} of 20</span>
                 </div>
                 <span class="text-sm font-medium text-turquoise-600">${Math.round(actualProgress)}% Complete</span>
             </div>
             <div class="w-full bg-gray-200 rounded-full h-3 mb-8 overflow-hidden">
                 <div class="progress-fill h-3 rounded-full transition-all duration-500 ease-out" style="width: ${actualProgress}%"></div>
             </div>
-            <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 leading-tight">${question.text}</h3>
+            <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 leading-tight">${questionText}</h3>
         </div>
     `;
     
-    if (question.type === 'single') {
+    if (questionType === 'single') {
         questionHtml += '<div class="space-y-3 max-w-lg mx-auto">';
-        question.options.forEach((option, index) => {
+        questionOptions.forEach((option, index) => {
             questionHtml += `
                 <button 
-                    onclick="selectSingleAnswer('${question.id}', '${option.value}')"
+                    onclick="selectSingleAnswer('${questionId}', '${option.value}')"
                     class="option-button stagger-fade w-full text-left p-5 border-2 border-gray-200 rounded-xl hover:border-cyan-400 hover:bg-blue-50 transition-all duration-200 group"
                     data-value="${option.value}"
                     style="animation-delay: ${index * 0.1}s"
@@ -140,17 +153,17 @@ function displayQuestion(question, progress = 0, showBack = true) {
         });
         questionHtml += '</div>';
         
-    } else if (question.type === 'multiple') {
+    } else if (questionType === 'multiple') {
         questionHtml += '<div class="space-y-3 max-w-lg mx-auto">';
-        question.options.forEach((option, index) => {
-            const isChecked = responseHistory[question.id] && responseHistory[question.id].includes(option.value) ? 'checked' : '';
+        questionOptions.forEach((option, index) => {
+            const isChecked = responseHistory[questionId] && responseHistory[questionId].includes(option.value) ? 'checked' : '';
             questionHtml += `
                 <label class="flex items-center p-5 border-2 border-gray-200 rounded-xl hover:bg-blue-50 cursor-pointer transition-all duration-200 hover:border-cyan-400 group ${isChecked ? 'bg-blue-50 border-cyan-500' : ''}">
                     <input 
                         type="checkbox" 
                         value="${option.value}"
                         class="mr-4 h-5 w-5 text-cyan-600 rounded focus:ring-cyan-500 focus:ring-2"
-                        onchange="updateMultipleAnswer('${question.id}')"
+                        onchange="updateMultipleAnswer('${questionId}')"
                         ${isChecked}
                     >
                     <span class="text-gray-700 group-hover:text-gray-900 font-medium">${option.text}</span>
@@ -160,7 +173,7 @@ function displayQuestion(question, progress = 0, showBack = true) {
         questionHtml += `
             </div>
             <div class="mt-8 flex justify-end">
-                <button onclick="submitMultipleAnswer('${question.id}')" class="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-8 py-3 rounded-xl hover:shadow-xl font-semibold transition-all hover:scale-105 flex items-center gap-2">
+                <button onclick="submitMultipleAnswer('${questionId}')" class="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-8 py-3 rounded-xl hover:shadow-xl font-semibold transition-all hover:scale-105 flex items-center gap-2">
                     Continue
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
@@ -169,14 +182,14 @@ function displayQuestion(question, progress = 0, showBack = true) {
             </div>
         `;
         
-    } else if (question.type === 'form') {
+    } else if (questionType === 'form') {
         // Add subtitle if exists
-        if (question.subtitle) {
+        if (question?.subtitle) {
             questionHtml += `<p class="text-gray-600 text-center mb-6 text-base">${question.subtitle}</p>`;
         }
         
         questionHtml += '<div class="space-y-5 max-w-lg mx-auto">';
-        question.fields.forEach(field => {
+        (question?.fields || []).forEach(field => {
             if (field.type === 'select') {
                 questionHtml += `
                     <div class="form-field-wrapper">
@@ -232,7 +245,7 @@ function displayQuestion(question, progress = 0, showBack = true) {
         questionHtml += `
             </div>
             <div class="mt-8 flex justify-end">
-                <button onclick="submitFormAnswer('${question.id}')" class="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-8 py-3 rounded-xl hover:shadow-xl font-semibold transition-all hover:scale-105 flex items-center gap-2">
+                <button onclick="submitFormAnswer('${questionId}')" class="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-8 py-3 rounded-xl hover:shadow-xl font-semibold transition-all hover:scale-105 flex items-center gap-2">
                     Next
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
@@ -241,18 +254,18 @@ function displayQuestion(question, progress = 0, showBack = true) {
             </div>
         `;
         
-    } else if (question.type === 'textarea') {
+    } else if (questionType === 'textarea') {
         questionHtml += `
             <div class="max-w-lg mx-auto">
                 <textarea 
-                    id="textarea-${question.id}"
-                    placeholder="${question.placeholder}"
+                    id="textarea-${questionId}"
+                    placeholder="${question?.placeholder || 'Please provide your answer...'}"
                     rows="5"
                     class="w-full p-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-all resize-none text-base"
                 ></textarea>
             </div>
             <div class="mt-8 flex justify-end">
-                <button onclick="submitTextareaAnswer('${question.id}')" class="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-8 py-3 rounded-xl hover:shadow-xl font-semibold transition-all hover:scale-105 flex items-center gap-2">
+                <button onclick="submitTextareaAnswer('${questionId}')" class="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-8 py-3 rounded-xl hover:shadow-xl font-semibold transition-all hover:scale-105 flex items-center gap-2">
                     Next
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
@@ -435,7 +448,7 @@ function goBackQuestion() {
         
         // Get previous question
         const prevQuestion = questionHistory[questionHistory.length - 1];
-        const progress = (prevQuestion.id / 20) * 100;
+        const progress = ((prevQuestion?.id || 1) / 20) * 100;
         
         displayQuestion(prevQuestion, progress, true);
     }
@@ -669,7 +682,7 @@ function showPlanSelection(userPath, responses) {
                             </svg>
                         </div>
                         <p class="text-gray-800 font-bold text-lg mb-1">Secure Payment</p>
-                        <p class="text-blue-600 font-black text-xl">Kapital Bank</p>
+                        <p class="text-blue-600 font-black text-xl">Epoint</p>
                         <p class="text-gray-600 text-sm mt-2">Bank-level encryption for your safety</p>
                     </div>
                     <div class="flex flex-col items-center">

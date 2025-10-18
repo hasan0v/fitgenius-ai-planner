@@ -8,10 +8,13 @@ type D1Database = any;
 type Bindings = {
   DB: D1Database;
   OPENROUTER_API_KEY: string;
-  KAPITAL_MERCHANT_ID: string;
-  KAPITAL_APPROVE_URL: string;
-  KAPITAL_CANCEL_URL: string;
-  KAPITAL_DECLINE_URL: string;
+  GEMINI_API_KEY: string;
+  EPOINT_API_URL: string;
+  EPOINT_CHECK_URL: string;
+  EPOINT_PUBLIC_KEY: string;
+  EPOINT_PRIVATE_KEY: string;
+  EPOINT_SUCCESS_URL: string;
+  EPOINT_ERROR_URL: string;
 }
 
 const app = new Hono<{ Bindings: Bindings }>()
@@ -140,11 +143,11 @@ const questions = [
     text: "What's your weekly budget for groceries?",
     type: "single",
     options: [
-      { value: "budget_50", text: "Under 50 AZN" },
-      { value: "budget_100", text: "50-100 AZN" },
-      { value: "budget_150", text: "100-150 AZN" },
-      { value: "budget_200", text: "150-200 AZN" },
-      { value: "budget_unlimited", text: "200+ AZN (budget is not a concern)" }
+      { value: "budget_50", text: "Under 50 USD" },
+      { value: "budget_100", text: "50-100 USD" },
+      { value: "budget_150", text: "100-150 USD" },
+      { value: "budget_200", text: "150-200 USD" },
+      { value: "budget_unlimited", text: "200+ USD (budget is not a concern)" }
     ]
   },
   {
@@ -616,6 +619,65 @@ app.get('/', (c) => {
         </div>
       </div>
       
+      {/* Footer */}
+      <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-12 mt-20">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            {/* About */}
+            <div>
+              <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">FitGenius</h3>
+              <p className="text-gray-400 text-sm">
+                Your AI-powered partner in achieving sustainable weight loss and building healthier habits.
+              </p>
+            </div>
+            
+            {/* Legal */}
+            <div>
+              <h4 className="font-semibold mb-4 text-cyan-400">Legal</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="/terms" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+                <li><a href="/privacy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                <li><a href="/refund" className="text-gray-400 hover:text-white transition-colors">Refund Policy</a></li>
+              </ul>
+            </div>
+            
+            {/* Support */}
+            <div>
+              <h4 className="font-semibold mb-4 text-cyan-400">Support</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="mailto:support@fitgenius.com" className="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+                <li><a href="#faq" className="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+              </ul>
+            </div>
+            
+            {/* Connect */}
+            <div>
+              <h4 className="font-semibold mb-4 text-cyan-400">Connect</h4>
+              <div className="flex space-x-4">
+                <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors">
+                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors">
+                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                </a>
+                <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors">
+                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          {/* Bottom Bar */}
+          <div className="border-t border-gray-700 pt-8 text-center text-sm text-gray-400">
+            <p>&copy; {new Date().getFullYear()} FitGenius. All rights reserved.</p>
+            <p className="mt-2 text-xs">
+              <span className="text-yellow-400">⚠️</span> Medical Disclaimer: This service provides general wellness information only. 
+              Always consult with a healthcare provider before starting any weight loss program.
+            </p>
+          </div>
+        </div>
+      </footer>
+      
       <script src="/static/app.js"></script>
     </div>
   )
@@ -628,6 +690,12 @@ app.post('/api/questionnaire/start', async (c) => {
   const sessionId = crypto.randomUUID()
   
   try {
+    // Check if database is available
+    if (!c.env?.DB) {
+      console.warn('Database not available, proceeding without persistence')
+      return c.json({ sessionId, question: questions[0] })
+    }
+    
     // Store in D1 database
     await c.env.DB.prepare(`
       INSERT INTO questionnaire_sessions (id, current_step, responses, created_at, expires_at)
@@ -637,7 +705,8 @@ app.post('/api/questionnaire/start', async (c) => {
     return c.json({ sessionId, question: questions[0] })
   } catch (error) {
     console.error('Failed to start questionnaire:', error)
-    return c.json({ error: 'Failed to start questionnaire' }, 500)
+    // Return the question anyway so the frontend can work
+    return c.json({ sessionId, question: questions[0] })
   }
 })
 
@@ -645,13 +714,30 @@ app.post('/api/questionnaire/answer', async (c) => {
   const { sessionId, questionId, answer } = await c.req.json()
   
   try {
+    // Check if database is available
+    if (!c.env?.DB) {
+      console.warn('Database not available, returning next question directly')
+      const nextQuestion = questions[parseInt(questionId)] || questions[questions.length - 1]
+      return c.json({ 
+        question: nextQuestion, 
+        userPath: 'beginner', 
+        progress: (parseInt(questionId) / questions.length) * 100 
+      })
+    }
+    
     // Get current session from D1
     const session = await c.env.DB.prepare(
       'SELECT * FROM questionnaire_sessions WHERE id = ?'
     ).bind(sessionId).first()
     
     if (!session) {
-      return c.json({ error: 'Session not found' }, 404)
+      // Return next question anyway to keep flow working
+      const nextQuestion = questions[parseInt(questionId)] || questions[questions.length - 1]
+      return c.json({ 
+        question: nextQuestion, 
+        userPath: 'beginner', 
+        progress: (parseInt(questionId) / questions.length) * 100 
+      })
     }
     
     // Parse existing responses
@@ -698,7 +784,14 @@ app.post('/api/questionnaire/answer', async (c) => {
     
   } catch (error) {
     console.error('Answer processing error:', error)
-    return c.json({ error: 'Failed to process answer' }, 500)
+    // Return next question to keep flow working
+    const nextQuestionIndex = parseInt(questionId) || 1
+    const nextQuestion = questions[nextQuestionIndex] || questions[questions.length - 1]
+    return c.json({ 
+      question: nextQuestion, 
+      userPath: 'beginner', 
+      progress: (nextQuestionIndex / questions.length) * 100 
+    })
   }
 })
 
@@ -807,7 +900,7 @@ async function generateAIPlan(responses: any, userPath: string, planType: string
     idealOutcome: responses[20] || ''
   }
   
-  const prompt = `As a team of expert nutritionists, fitness trainers, and wellness coaches, create a comprehensive, personalized 30-day weight loss plan for the following client. Focus on practical, science-based recommendations without mentioning AI or automated systems:
+  const prompt = `Create a comprehensive, personalized 30-day weight loss plan as a JSON object. Focus on practical, science-based recommendations:
 
 CLIENT PROFILE:
 - Name: ${userInfo.name}
@@ -898,17 +991,31 @@ ${planType === 'complete' ? `6. EXERCISE PROGRAM
    - Handling cravings and temptations
    - Adjusting for special occasions
 
-Ensure the plan is:
-- Scientifically sound and safe
-- Realistic and sustainable
-- Culturally appropriate for Azerbaijan
-- Adaptable to their lifestyle
-- Motivational and encouraging
-
-Format your response as structured JSON with clear sections and subsections. Make it detailed enough for a 10+ page PDF guide.`
+IMPORTANT: Return ONLY valid JSON in this exact structure:
+{
+  "executiveSummary": { "greeting": "string", "overview": "string", "motivation": "string" },
+  "nutritionTargets": { "dailyCalories": number, "protein": "string", "carbs": "string", "fats": "string", "water": "string" },
+  "weeklyPlan": [
+    { "week": 1, "focus": "string", "goals": ["string"], "mealStructure": "string", "tips": ["string"] }
+  ],
+  "mealPlan": {
+    "breakfast": [{ "name": "string", "calories": number, "description": "string" }],
+    "lunch": [{ "name": "string", "calories": number, "description": "string" }],
+    "dinner": [{ "name": "string", "calories": number, "description": "string" }],
+    "snacks": [{ "name": "string", "calories": number }]
+  },
+  "workoutPlan": {
+    "schedule": [{ "day": "string", "type": "string", "exercises": ["string"], "duration": "string" }]
+  },
+  "progressTracking": { "weekly": ["string"], "measurements": ["string"], "tips": ["string"] },
+  "mindset": { "affirmations": ["string"], "challenges": ["string"], "habits": ["string"] }
+}`
 
   try {
-    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    // Try OpenRouter first
+    if (apiKey && apiKey !== 'demo' && !apiKey.includes('your_')) {
+      console.log('Attempting OpenRouter API...')
+      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${apiKey}`,
@@ -917,7 +1024,7 @@ Format your response as structured JSON with clear sections and subsections. Mak
         'X-Title': 'FitGenius Weight Loss Plan Generator'
       },
       body: JSON.stringify({
-        model: 'google/gemini-2.0-flash-exp:free',
+        model: 'google/gemini-2.5-flash-lite-preview-09-2025',
         messages: [
           {
             role: 'user',
@@ -929,43 +1036,124 @@ Format your response as structured JSON with clear sections and subsections. Mak
       })
     })
 
-    if (!response.ok) {
-      throw new Error(`OpenRouter API error: ${response.statusText}`)
+      if (!response.ok) {
+        throw new Error(`OpenRouter API error: ${response.statusText}`)
+      }
+
+      const data = await response.json() as any
+      let planContent = data.choices[0].message.content
+      
+      // Try to parse as JSON
+      try {
+        const parsedPlan = JSON.parse(planContent)
+        return {
+          fullPlan: parsedPlan,
+          preview: generatePreview(parsedPlan, userInfo)
+        }
+      } catch {
+        // If not JSON, create structured plan
+        return {
+          fullPlan: {
+            executiveSummary: planContent.substring(0, 500) + '...',
+            caloricTargets: { dailyCalories: Math.round(1200 + (userInfo.currentWeight * 12)) },
+            weeklyBreakdown: [{
+              week: 1,
+              focus: 'Building foundation habits',
+              content: 'Focus on establishing meal timing and portion control...'
+            }]
+          },
+          preview: generatePreview(null, userInfo)
+        }
+      }
+    } else {
+      console.warn('OpenRouter API key not configured, trying Gemini...')
     }
-
-    const data = await response.json() as any
-    let planContent = data.choices[0].message.content
-
-    // Try to parse as JSON, if it fails, structure it
-    try {
-      const parsedPlan = JSON.parse(planContent)
-      return {
-        fullPlan: parsedPlan,
-        preview: generatePreview(parsedPlan, userInfo)
-      }
-    } catch {
-      // If not JSON, create structured plan
-      return {
-        fullPlan: {
-          executiveSummary: planContent.substring(0, 500) + '...',
-          caloricTargets: { dailyCalories: Math.round(1200 + (userInfo.currentWeight * 12)) },
-          weeklyBreakdown: [{
-            week: 1,
-            focus: 'Building foundation habits',
-            content: 'Focus on establishing meal timing and portion control...'
-          }]
+  } catch (openRouterError) {
+    console.error('OpenRouter failed:', openRouterError)
+    console.log('Trying Gemini API as fallback...')
+  }
+  
+  // Try Gemini API as fallback
+  try {
+    // Note: env might not be available in function signature, need to pass it
+    const geminiKey = (globalThis as any).GEMINI_API_KEY
+    
+    if (geminiKey && !geminiKey.includes('your-')) {
+      console.log('Attempting Gemini 2.5 Pro API...')
+      
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro-latest:generateContent?key=${geminiKey}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
         },
-        preview: generatePreview(null, userInfo)
+        body: JSON.stringify({
+          contents: [{
+            parts: [{
+              text: prompt
+            }]
+          }],
+          generationConfig: {
+            temperature: 0.7,
+            maxOutputTokens: 8000,
+            responseMimeType: 'application/json'
+          }
+        })
+      })
+      
+      if (response.ok) {
+        const data: any = await response.json()
+        const planContent = data.candidates?.[0]?.content?.parts?.[0]?.text
+        
+        if (planContent) {
+          try {
+            const parsedPlan = JSON.parse(planContent)
+            return {
+              fullPlan: parsedPlan,
+              preview: generatePreview(parsedPlan, userInfo)
+            }
+          } catch {
+            // If not valid JSON, use text content
+            return {
+              fullPlan: {
+                executiveSummary: { greeting: `Hi ${userInfo.name}!`, overview: planContent.substring(0, 500) },
+                nutritionTargets: { dailyCalories: Math.round(1200 + (userInfo.currentWeight * 10)) }
+              },
+              preview: generatePreview(null, userInfo)
+            }
+          }
+        }
       }
+    }
+  } catch (geminiError) {
+    console.error('Gemini API also failed:', geminiError)
+  }
+  
+  // Final fallback: use comprehensive hardcoded plan
+  console.log('Using comprehensive hardcoded fallback plan')
+  try {
+    const fallbackPlan = generateFallbackPlan(userInfo, planType)
+    return {
+      fullPlan: fallbackPlan,
+      preview: generatePreview(fallbackPlan, userInfo)
     }
   } catch (error) {
     console.error('AI generation error:', error)
-    // Return a fallback plan
+    // Return a minimal fallback plan
+    const minimalPlan = generateFallbackPlan(userInfo, planType)
     return {
-      fullPlan: generateFallbackPlan(userInfo, planType),
+      fullPlan: minimalPlan,
       preview: generatePreview(null, userInfo)
     }
   }
+}
+
+// Remove old error handling that's now integrated above
+// The function now handles all fallbacks internally
+function oldCodeBlock_ToRemove() {
+  const data = {} as any
+  let planContent = data.choices?.[0]?.message?.content || ''
+
+  // This comment marks where old code was removed - fallback logic now integrated above
 }
 
 function generatePreview(plan: any, userInfo: any) {
@@ -993,40 +1181,101 @@ function generateFallbackPlan(userInfo: any, planType: string) {
   const dailyCalories = Math.round(1200 + (userInfo.currentWeight * 10))
   
   return {
-    executiveSummary: `Welcome ${userInfo.name}! This personalized 30-day plan is designed to help you lose weight safely and sustainably. Based on your profile, we've calculated your daily caloric needs and created a structured approach that fits your lifestyle.`,
-    caloricTargets: {
+    executiveSummary: {
+      greeting: `Welcome ${userInfo.name}!`,
+      overview: `This personalized 30-day plan is designed to help you lose weight safely and sustainably. Based on your profile, we've calculated your daily caloric needs and created a structured approach that fits your lifestyle.`,
+      motivation: `You're taking an important step towards a healthier you. Let's make this journey successful together!`
+    },
+    nutritionTargets: {
       dailyCalories: dailyCalories,
-      protein: Math.round(userInfo.currentWeight * 1.6),
-      carbs: Math.round(dailyCalories * 0.45 / 4),
-      fats: Math.round(dailyCalories * 0.25 / 9),
+      protein: `${Math.round(userInfo.currentWeight * 1.6)}g (25-30%)`,
+      carbs: `${Math.round(dailyCalories * 0.45 / 4)}g (40-45%)`,
+      fats: `${Math.round(dailyCalories * 0.25 / 9)}g (25-30%)`,
       water: '2.5-3 liters daily'
     },
-    weeklyBreakdown: [
+    weeklyPlan: [
       {
         week: 1,
         focus: 'Foundation Building',
-        goals: 'Establish meal timing and portion control',
-        tips: 'Focus on consistency over perfection'
+        goals: ['Establish meal timing', 'Practice portion control', 'Stay hydrated'],
+        mealStructure: 'Breakfast (400 cal), Lunch (500 cal), Dinner (400 cal), Snacks (200 cal)',
+        tips: ['Focus on consistency over perfection', 'Prepare meals in advance', 'Track your water intake']
       },
       {
         week: 2,
         focus: 'Habit Formation', 
-        goals: 'Increase vegetable intake and reduce processed foods',
-        tips: 'Meal prep on weekends for busy weekdays'
+        goals: ['Increase vegetable intake', 'Reduce processed foods', 'Add light exercise'],
+        mealStructure: 'Continue with Week 1 structure, add more vegetables',
+        tips: ['Meal prep on weekends', 'Try new healthy recipes', 'Walk 20 minutes daily']
       },
       {
         week: 3,
         focus: 'Optimization',
-        goals: 'Fine-tune portions based on hunger and energy',
-        tips: 'Listen to your body and adjust as needed'
+        goals: ['Fine-tune portions', 'Increase activity', 'Manage stress'],
+        mealStructure: 'Adjust portions based on hunger and energy levels',
+        tips: ['Listen to your body', 'Add strength training', 'Practice mindful eating']
       },
       {
         week: 4,
         focus: 'Sustainability',
-        goals: 'Plan for long-term success beyond 30 days',
-        tips: 'Celebrate your progress and plan your next phase'
+        goals: ['Build lasting habits', 'Plan for maintenance', 'Celebrate progress'],
+        mealStructure: 'Continue optimized meal structure',
+        tips: ['Review your progress', 'Set new goals', 'Plan your next phase']
       }
-    ]
+    ],
+    mealPlan: {
+      breakfast: [
+        { name: 'Greek Yogurt with Berries', calories: 350, description: 'High protein, antioxidants' },
+        { name: 'Oatmeal with Banana', calories: 400, description: 'Fiber-rich, sustained energy' },
+        { name: 'Scrambled Eggs with Toast', calories: 380, description: 'Protein-packed start' },
+        { name: 'Smoothie Bowl', calories: 420, description: 'Fruits, protein powder, nuts' },
+        { name: 'Avocado Toast', calories: 390, description: 'Healthy fats, whole grain' }
+      ],
+      lunch: [
+        { name: 'Grilled Chicken Salad', calories: 450, description: 'Lean protein, mixed greens' },
+        { name: 'Quinoa Buddha Bowl', calories: 500, description: 'Complete protein, vegetables' },
+        { name: 'Turkey Wrap', calories: 480, description: 'Whole wheat, lean meat, veggies' },
+        { name: 'Lentil Soup', calories: 420, description: 'Plant protein, fiber' },
+        { name: 'Tuna Salad', calories: 460, description: 'Omega-3, low-carb' }
+      ],
+      dinner: [
+        { name: 'Baked Salmon with Vegetables', calories: 480, description: 'Omega-3, roasted veggies' },
+        { name: 'Chicken Stir-Fry', calories: 450, description: 'Lean protein, colorful vegetables' },
+        { name: 'Vegetable Pasta', calories: 420, description: 'Whole grain, tomato sauce' },
+        { name: 'Grilled Fish with Salad', calories: 440, description: 'Light, nutritious' },
+        { name: 'Turkey Meatballs', calories: 460, description: 'Lean protein, marinara' }
+      ],
+      snacks: [
+        { name: 'Apple with Almond Butter', calories: 180 },
+        { name: 'Protein Bar', calories: 200 },
+        { name: 'Mixed Nuts', calories: 160 },
+        { name: 'Carrot Sticks with Hummus', calories: 120 }
+      ]
+    },
+    workoutPlan: planType !== 'basic' ? {
+      schedule: [
+        { day: 'Monday', type: 'Cardio', exercises: ['Brisk walking 30min', 'Light stretching'], duration: '30 minutes' },
+        { day: 'Wednesday', type: 'Strength', exercises: ['Bodyweight squats', 'Push-ups', 'Planks'], duration: '25 minutes' },
+        { day: 'Friday', type: 'Cardio', exercises: ['Jogging or cycling 30min'], duration: '30 minutes' },
+        { day: 'Saturday', type: 'Active Recovery', exercises: ['Yoga or stretching'], duration: '20 minutes' }
+      ]
+    } : undefined,
+    progressTracking: {
+      weekly: ['Weigh yourself same time each week', 'Take progress photos', 'Measure waist circumference'],
+      measurements: ['Weight', 'Waist', 'Energy levels', 'Sleep quality', 'Mood'],
+      tips: ['Focus on trends not daily fluctuations', 'Celebrate non-scale victories', 'Adjust plan based on results']
+    },
+    mindset: {
+      affirmations: [
+        'I am committed to my health journey',
+        'Every healthy choice matters',
+        'I am becoming stronger every day',
+        'Progress, not perfection',
+        'I deserve to feel my best'
+      ],
+      challenges: ['Stay consistent when motivation is low', 'Plan for social situations', 'Manage stress without food'],
+      habits: ['Drink water first thing', 'Prep meals weekly', 'Move daily', 'Sleep 7-8 hours', 'Practice gratitude']
+    }
   }
 }
 
@@ -1111,7 +1360,7 @@ async function createPDF(content: any, orderId: string) {
   return `https://example.com/pdfs/fitgenius-plan-${orderId}.pdf`
 }
 
-// Kapital Bank Payment Integration
+// Epoint Payment Integration
 app.post('/api/payment/create', async (c) => {
   const { orderId } = await c.req.json()
   
@@ -1128,20 +1377,20 @@ app.post('/api/payment/create', async (c) => {
       return c.json({ error: 'Order not found' }, 404)
     }
     
-    // Create Kapital Bank payment
-    const paymentData = await createKapitalPayment(order, c.env || {})
+    // Create Epoint payment
+    const paymentData = await createEpointPayment(order, c.env || {})
     
-    // Update order with Kapital session info
+    // Update order with Epoint transaction info
     await c.env.DB.prepare(`
       UPDATE orders 
-      SET kapital_order_id = ?, kapital_session_id = ?
+      SET epoint_transaction_id = ?
       WHERE id = ?
-    `).bind(paymentData.orderId, paymentData.sessionId, orderId).run()
+    `).bind(paymentData.transactionId, orderId).run()
     
     return c.json({
       paymentUrl: paymentData.paymentUrl,
-      orderId: paymentData.orderId,
-      sessionId: paymentData.sessionId
+      transactionId: paymentData.transactionId,
+      status: paymentData.status
     })
     
   } catch (error) {
@@ -1150,58 +1399,422 @@ app.post('/api/payment/create', async (c) => {
   }
 })
 
-async function createKapitalPayment(order: any, env: any) {
-  // Kapital Bank API integration
+// Helper function to generate Epoint signature
+async function generateEpointSignature(data: string, privateKey: string): Promise<string> {
+  const signatureString = privateKey + data + privateKey
+  // SHA1 hash
+  const encoder = new TextEncoder()
+  const dataBuffer = encoder.encode(signatureString)
+  const hashBuffer = await crypto.subtle.digest('SHA-1', dataBuffer)
+  const hashArray = Array.from(new Uint8Array(hashBuffer))
+  const hashBinary = String.fromCharCode(...hashArray)
+  return btoa(hashBinary)
+}
+
+async function createEpointPayment(order: any, env: any) {
+  // Epoint API integration
+  const apiUrl = env.EPOINT_API_URL || 'https://epoint.az/api/1/request'
+  
+  // Create payment request
   const paymentRequest = {
-    merchantId: env.KAPITAL_MERCHANT_ID,
-    amount: Math.round(order.amount * 100), // Convert to cents
-    currency: '840', // USD currency code
-    description: `FitGenius ${order.plan_type} Plan - Order #${order.id}`,
-    language: 'AZ',
-    approveUrl: env.KAPITAL_APPROVE_URL,
-    cancelUrl: env.KAPITAL_CANCEL_URL,
-    declineUrl: env.KAPITAL_DECLINE_URL
+    public_key: env.EPOINT_PUBLIC_KEY,
+    amount: parseFloat(order.amount.toFixed(2)),
+    currency: 'AZN',
+    description: `FitGenius ${order.plan_type || 'plan'}`,
+    order_id: order.id.toString(),
+    language: 'az',
+    is_installment: 0
   }
   
-  // For sandbox/development, return mock data
-  // In production, this would make actual API calls to Kapital Bank
-  const mockOrderId = Date.now().toString()
-  const mockSessionId = 'SESSION_' + Math.random().toString(36).substring(7).toUpperCase()
-  
-  return {
-    orderId: mockOrderId,
-    sessionId: mockSessionId,
-    paymentUrl: `https://e-commerce.kapitalbank.az/?ORDERID=${mockOrderId}&SESSIONID=${mockSessionId}`
+  try {
+    console.log('Creating Epoint payment:', paymentRequest)
+    
+    // Encode data as base64
+    const jsonString = JSON.stringify(paymentRequest)
+    const encodedData = btoa(jsonString)
+    
+    // Generate signature
+    const signature = await generateEpointSignature(encodedData, env.EPOINT_PRIVATE_KEY)
+    
+    // Create form data
+    const formData = new URLSearchParams()
+    formData.append('data', encodedData)
+    formData.append('signature', signature)
+    
+    // Call Epoint API
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: formData.toString()
+    })
+    
+    if (!response.ok) {
+      const errorText = await response.text()
+      console.error('Epoint API error:', errorText)
+      console.error('Request was:', JSON.stringify(paymentRequest, null, 2))
+      throw new Error(`Payment creation failed: ${response.status} - ${errorText}`)
+    }
+    
+    const data: any = await response.json()
+    console.log('Epoint payment created:', data)
+    
+    // Return payment details
+    // Expected response: { status: "success", transaction: "TRANS_ID", redirect_url: "..." }
+    return {
+      transactionId: data.transaction,
+      paymentUrl: data.redirect_url,
+      status: data.status
+    }
+  } catch (error) {
+    console.error('Epoint payment creation error:', error)
+    throw error
   }
 }
 
-// Payment callback routes
-app.get('/payment/approve', async (c) => {
-  const orderId = c.req.query('ORDERID')
-  const sessionId = c.req.query('SESSIONID')
+// Epoint callback handler (result_url)
+app.post('/api/payment/callback', async (c) => {
+  try {
+    // Get data and signature from Epoint
+    const formData = await c.req.parseBody()
+    const receivedData = formData.data as string
+    const receivedSignature = formData.signature as string
+    
+    // Verify signature to prevent fraud
+    const expectedSignature = await generateEpointSignature(receivedData, c.env.EPOINT_PRIVATE_KEY)
+    
+    if (receivedSignature !== expectedSignature) {
+      console.error('Invalid signature from Epoint callback')
+      return c.text('Invalid signature', 403)
+    }
+    
+    // Decode payment result
+    const decodedData = atob(receivedData)
+    const paymentResult = JSON.parse(decodedData)
+    
+    console.log('Epoint callback received:', paymentResult)
+    
+    // Extract payment details
+    const orderId = paymentResult.order_id
+    const status = paymentResult.status
+    const transactionId = paymentResult.transaction
+    const amount = paymentResult.amount
+    const cardMask = paymentResult.card_mask
+    
+    if (status === 'success') {
+      // Payment successful - update database
+      await c.env.DB.prepare(`
+        UPDATE orders 
+        SET status = 'paid', 
+            paid_at = datetime('now'),
+            epoint_transaction_id = ?
+        WHERE id = ?
+      `).bind(transactionId, orderId).run()
+      
+      // Get order with user data for AI generation
+      const foundOrder = await c.env.DB.prepare(`
+        SELECT o.*, u.questionnaire_data, u.user_path, u.name, u.email
+        FROM orders o
+        JOIN users u ON o.user_id = u.id
+        WHERE o.id = ?
+      `).bind(orderId).first()
+      
+      if (foundOrder) {
+        // Generate AI plan in background
+        generateAndStorePlan(foundOrder, c.env).catch(err => 
+          console.error('AI generation error:', err)
+        )
+      }
+      
+      console.log(`Payment successful for order ${orderId}, transaction ${transactionId}`)
+    } else {
+      // Payment failed
+      const errorCode = paymentResult.code
+      const errorMessage = paymentResult.message
+      
+      await c.env.DB.prepare(`
+        UPDATE orders 
+        SET status = 'failed'
+        WHERE id = ?
+      `).bind(orderId).run()
+      
+      console.log(`Payment failed for order ${orderId}: ${errorMessage}`)
+    }
+    
+    // Must return 200 OK to acknowledge receipt
+    return c.text('OK', 200)
+    
+  } catch (error) {
+    console.error('Callback processing error:', error)
+    return c.text('Error', 500)
+  }
+})
+
+// NEW ROUTES - Matching Epoint registration URLs
+// These match the exact URLs registered with Epoint: fitgenius.top/success, /error, /result
+
+// Result URL - Server-to-server callback from Epoint
+app.post('/result', async (c) => {
+  try {
+    // Get data and signature from Epoint
+    const formData = await c.req.parseBody()
+    const receivedData = formData.data as string
+    const receivedSignature = formData.signature as string
+    
+    // Verify signature to prevent fraud
+    const expectedSignature = await generateEpointSignature(receivedData, c.env.EPOINT_PRIVATE_KEY)
+    
+    if (receivedSignature !== expectedSignature) {
+      console.error('Invalid signature from Epoint callback')
+      return c.text('Invalid signature', 403)
+    }
+    
+    // Decode payment result
+    const decodedData = atob(receivedData)
+    const paymentResult = JSON.parse(decodedData)
+    
+    console.log('Epoint /result callback received:', paymentResult)
+    
+    // Extract payment details
+    const orderId = paymentResult.order_id
+    const status = paymentResult.status
+    const transactionId = paymentResult.transaction
+    
+    if (status === 'success') {
+      // Payment successful - update database
+      await c.env.DB.prepare(`
+        UPDATE orders 
+        SET status = 'paid', 
+            paid_at = datetime('now'),
+            epoint_transaction_id = ?
+        WHERE id = ?
+      `).bind(transactionId, orderId).run()
+      
+      // Get order with user data for AI generation
+      const foundOrder = await c.env.DB.prepare(`
+        SELECT o.*, u.questionnaire_data, u.user_path, u.name, u.email
+        FROM orders o
+        JOIN users u ON o.user_id = u.id
+        WHERE o.id = ?
+      `).bind(orderId).first()
+      
+      if (foundOrder) {
+        // Generate AI plan in background
+        generateAndStorePlan(foundOrder, c.env).catch(err => 
+          console.error('AI generation error:', err)
+        )
+      }
+      
+      console.log(`Payment successful for order ${orderId}, transaction ${transactionId}`)
+    } else {
+      // Payment failed
+      await c.env.DB.prepare(`
+        UPDATE orders 
+        SET status = 'failed'
+        WHERE id = ?
+      `).bind(orderId).run()
+      
+      console.log(`Payment failed for order ${orderId}`)
+    }
+    
+    // Must return 200 OK to acknowledge receipt
+    return c.text('OK', 200)
+    
+  } catch (error) {
+    console.error('Callback processing error:', error)
+    return c.text('Error', 500)
+  }
+})
+
+// Success URL - User redirect after successful payment
+app.get('/success', async (c) => {
+  const transactionId = c.req.query('transaction') || c.req.query('transaction_id')
+  const orderId = c.req.query('order_id')
   
   try {
-    if (!orderId || !sessionId) {
-      throw new Error('Missing payment parameters')
+    // If we have transaction ID, try to verify and find order
+    let foundOrder = null
+    
+    if (transactionId) {
+      // Verify payment with Epoint
+      const isValid = await verifyEpointPayment(transactionId, c.env)
+      
+      if (isValid) {
+        // Update order if not already updated by callback
+        await c.env.DB.prepare(`
+          UPDATE orders 
+          SET status = 'paid', paid_at = datetime('now')
+          WHERE epoint_transaction_id = ? AND status != 'paid'
+        `).bind(transactionId).run()
+        
+        // Get the order
+        foundOrder = await c.env.DB.prepare(`
+          SELECT o.*, u.questionnaire_data, u.user_path, u.name, u.email
+          FROM orders o
+          JOIN users u ON o.user_id = u.id
+          WHERE o.epoint_transaction_id = ?
+        `).bind(transactionId).first()
+        
+        if (foundOrder) {
+          // Generate AI plan in background (if not already generated)
+          generateAndStorePlan(foundOrder, c.env).catch(err => console.error('AI generation error:', err))
+        }
+      }
+    } else if (orderId) {
+      // Fallback: find by order ID
+      foundOrder = await c.env.DB.prepare(`
+        SELECT o.*, u.name
+        FROM orders o
+        JOIN users u ON o.user_id = u.id
+        WHERE o.id = ?
+      `).bind(orderId).first()
     }
-    // Verify payment with Kapital Bank
-    const isValid = await verifyKapitalPayment(orderId, sessionId)
+    
+    return c.html(`
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Payment Successful - FitGenius</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+      </head>
+      <body>
+        <div class="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center">
+          <div class="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
+            <div class="w-16 h-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-800 mb-4">Payment Successful! 🎉</h1>
+            <p class="text-gray-600 mb-6">Your payment has been processed successfully.</p>
+            ${foundOrder ? `
+              <div class="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-lg p-4 mb-6">
+                <p class="text-sm text-gray-700 mb-2">Order ID: <strong>#${foundOrder.id}</strong></p>
+                <p class="text-sm text-gray-700">We're generating your personalized plan now!</p>
+              </div>
+              <a href="/payment/${foundOrder.id}" class="inline-block bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-200">
+                View My Plan
+              </a>
+            ` : `
+              <p class="text-gray-500 text-sm mb-6">Your plan will be ready shortly. Check your email for details.</p>
+              <a href="/" class="inline-block bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-200">
+                Return Home
+              </a>
+            `}
+          </div>
+        </div>
+      </body>
+      </html>
+    `)
+  } catch (error) {
+    console.error('Success page error:', error)
+    return c.html(`
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Payment Processing - FitGenius</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+      </head>
+      <body>
+        <div class="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center">
+          <div class="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
+            <div class="w-16 h-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-800 mb-4">Payment Received! ✓</h1>
+            <p class="text-gray-600 mb-6">Your payment is being processed.</p>
+            <a href="/" class="inline-block bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-200">
+              Return Home
+            </a>
+          </div>
+        </div>
+      </body>
+      </html>
+    `)
+  }
+})
+
+// Error URL - User redirect after failed payment
+app.get('/error', async (c) => {
+  const errorMessage = c.req.query('message') || 'Payment could not be completed'
+  const orderId = c.req.query('order_id')
+  
+  return c.html(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Payment Failed - FitGenius</title>
+      <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+      <div class="min-h-screen bg-gradient-to-br from-red-50 to-orange-50 flex items-center justify-center">
+        <div class="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
+          <div class="w-16 h-16 bg-gradient-to-r from-red-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+            </svg>
+          </div>
+          <h1 class="text-3xl font-bold text-gray-800 mb-4">Payment Failed</h1>
+          <p class="text-gray-600 mb-2">${errorMessage}</p>
+          <p class="text-gray-500 text-sm mb-6">Don't worry, you haven't been charged.</p>
+          ${orderId ? `
+            <a href="/payment/${orderId}" class="inline-block bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-200 mb-3">
+              Try Again
+            </a>
+            <br>
+          ` : ''}
+          <a href="/" class="inline-block text-gray-600 hover:text-gray-800 underline mt-2">
+            Return Home
+          </a>
+        </div>
+      </div>
+    </body>
+    </html>
+  `)
+})
+
+// OLD ROUTES - Keep for backward compatibility
+// Payment callback routes
+app.get('/payment/success', async (c) => {
+  // Epoint sends transaction ID as query parameter
+  const transactionId = c.req.query('transaction') || c.req.query('transaction_id')
+  
+  try {
+    if (!transactionId) {
+      throw new Error('Missing transaction ID')
+    }
+    
+    // Verify payment with Epoint
+    const isValid = await verifyEpointPayment(transactionId, c.env)
     
     if (isValid) {
       // Find and update order status in database
       await c.env.DB.prepare(`
         UPDATE orders 
         SET status = 'paid', paid_at = datetime('now')
-        WHERE kapital_order_id = ? AND kapital_session_id = ?
-      `).bind(orderId, sessionId).run()
+        WHERE epoint_transaction_id = ?
+      `).bind(transactionId).run()
       
-      // Get the updated order
+      // Get the updated order with user data
       const foundOrder = await c.env.DB.prepare(`
-        SELECT * FROM orders 
-        WHERE kapital_order_id = ? AND kapital_session_id = ?
-      `).bind(orderId, sessionId).first()
+        SELECT o.*, u.questionnaire_data, u.user_path, u.name, u.email
+        FROM orders o
+        JOIN users u ON o.user_id = u.id
+        WHERE o.epoint_transaction_id = ?
+      `).bind(transactionId).first()
       
       if (foundOrder) {
+        // Generate AI plan in background (don't wait)
+        generateAndStorePlan(foundOrder, c.env).catch(err => console.error('AI generation error:', err))
         
         return c.html(`
           <!DOCTYPE html>
@@ -1221,28 +1834,53 @@ app.get('/payment/approve', async (c) => {
                   </svg>
                 </div>
                 <h2 class="text-2xl font-bold text-gray-800 mb-4">🎉 Payment Successful!</h2>
-                <p class="text-gray-600 mb-6">Your personalized weight loss plan is being generated...</p>
+                <p class="text-gray-600 mb-6">Your personalized weight loss plan is being generated by our AI...</p>
+                <div id="status" class="mb-4 text-sm text-gray-500">⏳ Generating your plan...</div>
                 <button 
-                  onclick="generatePDF('${foundOrder?.id}')"
-                  class="bg-gradient-to-r from-blue-500 to-turquoise-500 text-white font-bold py-3 px-6 rounded-lg hover:shadow-lg w-full"
+                  id="downloadBtn"
+                  onclick="downloadPDF('${foundOrder?.id}')"
+                  disabled
+                  class="bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold py-3 px-6 rounded-lg hover:shadow-lg w-full disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Download Your Plan PDF
                 </button>
-                <p class="text-sm text-gray-500 mt-4">You'll also receive a copy via email</p>
+                <p class="text-sm text-gray-500 mt-4">Your plan will be ready in 15-30 seconds</p>
               </div>
             </div>
             <script>
-              async function generatePDF(orderId) {
+              let checkCount = 0;
+              const maxChecks = 60; // Check for 60 seconds
+              
+              async function checkPlanStatus(orderId) {
                 try {
-                  const response = await fetch('/api/generate-pdf/' + orderId, { method: 'POST' });
+                  const response = await fetch('/api/plan-status/' + orderId);
                   const data = await response.json();
-                  if (data.pdfUrl) {
-                    window.open(data.pdfUrl, '_blank');
+                  
+                  if (data.ready) {
+                    document.getElementById('status').innerHTML = '✅ Your plan is ready!';
+                    document.getElementById('downloadBtn').disabled = false;
+                    return true;
+                  } else {
+                    checkCount++;
+                    if (checkCount < maxChecks) {
+                      setTimeout(() => checkPlanStatus(orderId), 1000);
+                    } else {
+                      document.getElementById('status').innerHTML = '⏰ Taking longer than expected. Please try downloading in a minute.';
+                      document.getElementById('downloadBtn').disabled = false;
+                    }
                   }
                 } catch (error) {
-                  alert('PDF generation in progress. Check your email in a few minutes.');
+                  console.error('Status check error:', error);
+                  document.getElementById('downloadBtn').disabled = false;
                 }
               }
+              
+              function downloadPDF(orderId) {
+                window.location.href = '/api/download-plan/' + orderId;
+              }
+              
+              // Start checking plan status
+              checkPlanStatus('${foundOrder?.id}');
             </script>
           </body>
           </html>
@@ -1272,35 +1910,16 @@ app.get('/payment/approve', async (c) => {
   }
 })
 
-app.get('/payment/cancel', async (c) => {
-  return c.html(`
-    <html><head><script src="https://cdn.tailwindcss.com"></script></head><body>
-    <div class="min-h-screen bg-gradient-to-br from-yellow-50 to-orange-50 flex items-center justify-center">
-      <div class="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
-        <h2 class="text-2xl font-bold text-yellow-600 mb-4">Payment Cancelled</h2>
-        <p class="text-gray-600 mb-6">You cancelled the payment process.</p>
-        <button 
-          onclick="window.location.href='/'"
-          class="bg-gradient-to-r from-blue-500 to-turquoise-500 text-white font-bold py-3 px-6 rounded-lg"
-        >
-          Return Home
-        </button>
-      </div>
-    </div>
-    </body></html>
-  `)
-})
-
-app.get('/payment/decline', async (c) => {
+app.get('/payment/error', async (c) => {
   return c.html(`
     <html><head><script src="https://cdn.tailwindcss.com"></script></head><body>
     <div class="min-h-screen bg-gradient-to-br from-red-50 to-pink-50 flex items-center justify-center">
       <div class="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
-        <h2 class="text-2xl font-bold text-red-600 mb-4">Payment Declined</h2>
-        <p class="text-gray-600 mb-6">Your payment was declined. Please check your card details and try again.</p>
+        <h2 class="text-2xl font-bold text-red-600 mb-4">Payment Failed</h2>
+        <p class="text-gray-600 mb-6">Your payment could not be processed. Please check your card details and try again.</p>
         <button 
           onclick="window.location.href='/'"
-          class="bg-gradient-to-r from-blue-500 to-turquoise-500 text-white font-bold py-3 px-6 rounded-lg"
+          class="bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold py-3 px-6 rounded-lg"
         >
           Try Again
         </button>
@@ -1310,10 +1929,364 @@ app.get('/payment/decline', async (c) => {
   `)
 })
 
-async function verifyKapitalPayment(orderId: string, sessionId: string) {
-  // In production, this would verify the payment with Kapital Bank API
-  // For development, always return true
-  return true
+async function verifyEpointPayment(transactionId: string, env: any) {
+  // Verify payment status with Epoint API
+  const checkUrl = env.EPOINT_CHECK_URL || 'https://epoint.az/api/1/get-status'
+  
+  const requestData = {
+    public_key: env.EPOINT_PUBLIC_KEY,
+    transaction: transactionId,
+    language: 'az'
+  }
+  
+  try {
+    // Encode data as base64
+    const jsonString = JSON.stringify(requestData)
+    const encodedData = btoa(jsonString)
+    
+    // Generate signature
+    const signature = await generateEpointSignature(encodedData, env.EPOINT_PRIVATE_KEY)
+    
+    // Create form data
+    const formData = new URLSearchParams()
+    formData.append('data', encodedData)
+    formData.append('signature', signature)
+    
+    // Call Epoint Status API
+    const response = await fetch(checkUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: formData.toString()
+    })
+    
+    if (!response.ok) {
+      console.error('Epoint verification failed:', response.status)
+      return false
+    }
+    
+    const data: any = await response.json()
+    
+    // Check if payment status is 'success' or 'paid'
+    return data.status === 'success' || data.status === 'paid' || data.status === 'approved'
+  } catch (error) {
+    console.error('Payment verification error:', error)
+    return false
+  }
+}
+
+// Generate AI plan and store in database after successful payment
+async function generateAndStorePlan(order: any, env: any) {
+  try {
+    console.log('Generating AI plan for order:', order.id)
+    
+    // Parse questionnaire data
+    const questionnaireData = JSON.parse(order.questionnaire_data || '{}')
+    
+    // Generate AI plan (will try OpenRouter, then Gemini, then fallback)
+    // Store Gemini key in global for access in generateAIPlan
+    if (env.GEMINI_API_KEY) {
+      (globalThis as any).GEMINI_API_KEY = env.GEMINI_API_KEY
+    }
+    const aiResult = await generateAIPlan(questionnaireData, order.user_path, order.plan_type, env.OPENROUTER_API_KEY)
+    
+    // Store AI plan in database
+    await env.DB.prepare(`
+      UPDATE orders 
+      SET ai_plan_content = ?
+      WHERE id = ?
+    `).bind(JSON.stringify(aiResult.fullPlan), order.id).run()
+    
+    console.log('AI plan generated and stored successfully')
+    
+    // Note: PDF generation would happen here when user requests download
+    // We don't generate PDF immediately to save resources
+    
+  } catch (error) {
+    console.error('Failed to generate and store plan:', error)
+  }
+}
+
+// Check if AI plan is ready
+app.get('/api/plan-status/:orderId', async (c) => {
+  const orderId = c.req.param('orderId')
+  
+  try {
+    const order = await c.env.DB.prepare(
+      'SELECT ai_plan_content FROM orders WHERE id = ?'
+    ).bind(orderId).first()
+    
+    return c.json({ ready: !!order?.ai_plan_content })
+  } catch (error) {
+    return c.json({ ready: false })
+  }
+})
+
+// API endpoint to download generated PDF
+app.get('/api/download-plan/:orderId', async (c) => {
+  const orderId = c.req.param('orderId')
+  
+  try {
+    // Get order with AI plan
+    const order = await c.env.DB.prepare(`
+      SELECT o.*, u.name, u.email
+      FROM orders o
+      JOIN users u ON o.user_id = u.id
+      WHERE o.id = ? AND o.status = 'paid'
+    `).bind(orderId).first()
+    
+    if (!order || !order.ai_plan_content) {
+      return c.json({ error: 'Plan not found or not yet generated' }, 404)
+    }
+    
+    const aiPlan = JSON.parse(order.ai_plan_content)
+    
+    // Generate PDF
+    const pdfBuffer = await generatePDF(aiPlan, order)
+    
+    // Return PDF
+    return new Response(pdfBuffer, {
+      headers: {
+        'Content-Type': 'application/pdf',
+        'Content-Disposition': `attachment; filename="FitGenius-Plan-${order.name}.pdf"`
+      }
+    })
+    
+  } catch (error) {
+    console.error('PDF download error:', error)
+    return c.json({ error: 'Failed to generate PDF' }, 500)
+  }
+})
+
+// Generate visually appealing PDF from AI plan data
+async function generatePDF(aiPlan: any, order: any): Promise<Uint8Array> {
+  const PDFDocument = (await import('pdfkit')).default as any
+  
+  return new Promise((resolve, reject) => {
+    try {
+      // Create PDF document
+      const doc = new PDFDocument({
+        size: 'A4',
+        margins: { top: 50, bottom: 50, left: 50, right: 50 }
+      })
+      
+      const chunks: Buffer[] = []
+      
+      doc.on('data', (chunk: Buffer) => chunks.push(chunk))
+      doc.on('end', () => resolve(new Uint8Array(Buffer.concat(chunks))))
+      doc.on('error', reject)
+      
+      // Colors
+      const primaryColor = '#06B6D4' // Cyan
+      const secondaryColor = '#3B82F6' // Blue
+      const darkGray = '#1F2937'
+      const lightGray = '#6B7280'
+      
+      // Cover Page
+      doc.rect(0, 0, doc.page.width, 250).fill(primaryColor)
+      
+      doc.fontSize(40).fillColor('white').font('Helvetica-Bold')
+        .text('FitGenius', 50, 80, { align: 'center' })
+      
+      doc.fontSize(28).font('Helvetica')
+        .text('Your Personalized Weight Loss Plan', 50, 140, { align: 'center' })
+      
+      doc.fontSize(16).font('Helvetica-Bold').fillColor(darkGray)
+        .text(`Prepared for: ${order.name}`, 50, 300)
+      
+      doc.fontSize(14).font('Helvetica').fillColor(lightGray)
+        .text(`Plan Type: ${order.plan_type.toUpperCase()}`, 50, 330)
+        .text(`Generated: ${new Date().toLocaleDateString()}`, 50, 350)
+      
+      // Executive Summary
+      doc.addPage()
+      doc.fontSize(24).fillColor(primaryColor).font('Helvetica-Bold')
+        .text('Executive Summary', 50, 50)
+      
+      doc.fontSize(12).fillColor(darkGray).font('Helvetica')
+        .text(aiPlan.executiveSummary?.greeting || 'Welcome to your transformation journey!', 50, 100, {
+          width: 500,
+          align: 'left'
+        })
+      
+      doc.moveDown().text(aiPlan.executiveSummary?.overview || '', {
+        width: 500
+      })
+      
+      // Nutrition Targets
+      doc.addPage()
+      doc.fontSize(24).fillColor(primaryColor).font('Helvetica-Bold')
+        .text('Nutrition Targets', 50, 50)
+      
+      const nutrition = aiPlan.nutritionTargets || {}
+      doc.fontSize(14).fillColor(darkGray).font('Helvetica-Bold')
+        .text('Daily Caloric Target:', 50, 120)
+      doc.fontSize(18).fillColor(secondaryColor).font('Helvetica-Bold')
+        .text(`${nutrition.dailyCalories || 1500} calories`, 50, 145)
+      
+      doc.fontSize(12).fillColor(darkGray).font('Helvetica')
+        .text(`Protein: ${nutrition.protein || '25-30%'}`, 50, 190)
+        .text(`Carbohydrates: ${nutrition.carbs || '40-45%'}`, 50, 210)
+        .text(`Fats: ${nutrition.fats || '25-30%'}`, 50, 230)
+        .text(`Water: ${nutrition.water || '2-3 liters/day'}`, 50, 250)
+      
+      // Weekly Plan
+      doc.addPage()
+      doc.fontSize(24).fillColor(primaryColor).font('Helvetica-Bold')
+        .text('4-Week Breakdown', 50, 50)
+      
+      const weeklyPlan = aiPlan.weeklyPlan || []
+      let yPos = 120
+      
+      weeklyPlan.slice(0, 4).forEach((week: any, index: number) => {
+        if (yPos > 700) {
+          doc.addPage()
+          yPos = 50
+        }
+        
+        doc.fontSize(16).fillColor(secondaryColor).font('Helvetica-Bold')
+          .text(`Week ${week.week || index + 1}: ${week.focus || 'Building Habits'}`, 50, yPos)
+        
+        yPos += 30
+        doc.fontSize(11).fillColor(darkGray).font('Helvetica')
+          .text(week.mealStructure || '', 50, yPos, { width: 500 })
+        
+        yPos += 80
+      })
+      
+      // Meal Plan
+      if (aiPlan.mealPlan) {
+        doc.addPage()
+        doc.fontSize(24).fillColor(primaryColor).font('Helvetica-Bold')
+          .text('Meal Plan Options', 50, 50)
+        
+        // Breakfast
+        doc.fontSize(18).fillColor(secondaryColor).font('Helvetica-Bold')
+          .text('Breakfast Options', 50, 110)
+        
+        yPos = 140
+        const breakfasts = aiPlan.mealPlan.breakfast || []
+        breakfasts.slice(0, 5).forEach((meal: any) => {
+          doc.fontSize(12).fillColor(darkGray).font('Helvetica-Bold')
+            .text(`• ${meal.name}`, 50, yPos)
+          doc.fontSize(10).font('Helvetica').fillColor(lightGray)
+            .text(`${meal.calories} cal - ${meal.description || ''}`, 60, yPos + 15, { width: 480 })
+          yPos += 45
+        })
+        
+        // Lunch
+        doc.addPage()
+        doc.fontSize(18).fillColor(secondaryColor).font('Helvetica-Bold')
+          .text('Lunch Options', 50, 50)
+        
+        yPos = 80
+        const lunches = aiPlan.mealPlan.lunch || []
+        lunches.slice(0, 5).forEach((meal: any) => {
+          doc.fontSize(12).fillColor(darkGray).font('Helvetica-Bold')
+            .text(`• ${meal.name}`, 50, yPos)
+          doc.fontSize(10).font('Helvetica').fillColor(lightGray)
+            .text(`${meal.calories} cal - ${meal.description || ''}`, 60, yPos + 15, { width: 480 })
+          yPos += 45
+        })
+        
+        // Dinner
+        yPos += 20
+        if (yPos > 650) {
+          doc.addPage()
+          yPos = 50
+        }
+        
+        doc.fontSize(18).fillColor(secondaryColor).font('Helvetica-Bold')
+          .text('Dinner Options', 50, yPos)
+        
+        yPos += 30
+        const dinners = aiPlan.mealPlan.dinner || []
+        dinners.slice(0, 5).forEach((meal: any) => {
+          if (yPos > 700) {
+            doc.addPage()
+            yPos = 50
+          }
+          doc.fontSize(12).fillColor(darkGray).font('Helvetica-Bold')
+            .text(`• ${meal.name}`, 50, yPos)
+          doc.fontSize(10).font('Helvetica').fillColor(lightGray)
+            .text(`${meal.calories} cal - ${meal.description || ''}`, 60, yPos + 15, { width: 480 })
+          yPos += 45
+        })
+      }
+      
+      // Workout Plan
+      if (aiPlan.workoutPlan && order.plan_type !== 'basic') {
+        doc.addPage()
+        doc.fontSize(24).fillColor(primaryColor).font('Helvetica-Bold')
+          .text('Workout Schedule', 50, 50)
+        
+        yPos = 110
+        const schedule = aiPlan.workoutPlan.schedule || []
+        schedule.forEach((day: any) => {
+          if (yPos > 700) {
+            doc.addPage()
+            yPos = 50
+          }
+          
+          doc.fontSize(14).fillColor(secondaryColor).font('Helvetica-Bold')
+            .text(`${day.day}: ${day.type}`, 50, yPos)
+          doc.fontSize(11).fillColor(darkGray).font('Helvetica')
+            .text(`Duration: ${day.duration}`, 50, yPos + 20)
+          doc.fontSize(10).fillColor(lightGray)
+            .text(day.exercises?.join(', ') || '', 50, yPos + 40, { width: 500 })
+          
+          yPos += 85
+        })
+      }
+      
+      // Progress Tracking
+      doc.addPage()
+      doc.fontSize(24).fillColor(primaryColor).font('Helvetica-Bold')
+        .text('Progress Tracking', 50, 50)
+      
+      doc.fontSize(12).fillColor(darkGray).font('Helvetica')
+        .text('Track these metrics weekly:', 50, 110)
+      
+      yPos = 140
+      const tracking = aiPlan.progressTracking || {}
+      const measurements = tracking.measurements || ['Weight', 'Waist circumference', 'Energy levels', 'Sleep quality']
+      measurements.forEach((metric: string) => {
+        doc.fontSize(11).text(`✓ ${metric}`, 70, yPos)
+        yPos += 20
+      })
+      
+      // Mindset & Motivation
+      doc.addPage()
+      doc.fontSize(24).fillColor(primaryColor).font('Helvetica-Bold')
+        .text('Mindset & Motivation', 50, 50)
+      
+      const mindset = aiPlan.mindset || {}
+      if (mindset.affirmations) {
+        doc.fontSize(14).fillColor(secondaryColor).font('Helvetica-Bold')
+          .text('Daily Affirmations', 50, 110)
+        
+        yPos = 140
+        mindset.affirmations.slice(0, 5).forEach((affirmation: string) => {
+          doc.fontSize(11).fillColor(darkGray).font('Helvetica-Oblique')
+            .text(`"${affirmation}"`, 70, yPos, { width: 470 })
+          yPos += 35
+        })
+      }
+      
+      // Footer on last page
+      doc.fontSize(10).fillColor(lightGray).font('Helvetica')
+        .text('© 2025 FitGenius - Your Partner in Health & Wellness', 50, doc.page.height - 80, {
+          align: 'center',
+          width: doc.page.width - 100
+        })
+      
+      doc.end()
+      
+    } catch (error) {
+      reject(error)
+    }
+  })
 }
 
 app.get('/payment/:orderId', async (c) => {
@@ -1325,13 +2298,745 @@ app.get('/payment/:orderId', async (c) => {
         <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Complete Your Payment</h2>
         <div className="text-center">
           <p className="text-gray-600 mb-4">Order #{orderId}</p>
-          <p className="text-sm text-gray-500 mb-6">Kapital Bank payment integration will be implemented here</p>
+          <p className="text-sm text-gray-500 mb-6">Secure payment processing with Epoint</p>
           <button className="bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold py-3 px-6 rounded-lg">
-            Pay with Kapital Bank
+            Pay with Epoint
           </button>
         </div>
       </div>
     </div>
+  )
+})
+
+// Terms of Service Page
+app.get('/terms', (c) => {
+  return c.html(
+    <html lang="en">
+      <head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Terms of Service - FitGenius</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+      </head>
+      <body className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 min-h-screen">
+        <div className="max-w-4xl mx-auto px-6 py-12">
+          <div className="bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-8 md:p-12">
+            <div className="mb-8">
+              <a href="/" className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors mb-6">
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Back to Home
+              </a>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Terms of Service</h1>
+              <p className="text-gray-400">Last Updated: January 2025</p>
+            </div>
+
+            <div className="prose prose-invert prose-cyan max-w-none">
+              <div className="space-y-8 text-gray-300 leading-relaxed">
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">1. Acceptance of Terms</h2>
+                  <p className="mb-4">
+                    By accessing and using FitGenius ("the Service"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to these Terms of Service, please do not use our Service.
+                  </p>
+                  <p>
+                    These terms apply to all visitors, users, and others who access or use the Service. We reserve the right to update and change the Terms of Service at any time without notice.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">2. Description of Service</h2>
+                  <p className="mb-4">
+                    FitGenius provides personalized weight loss and fitness planning services powered by artificial intelligence. Our Service includes:
+                  </p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Personalized questionnaire assessment</li>
+                    <li>AI-generated customized fitness and nutrition plans</li>
+                    <li>Downloadable PDF reports with detailed recommendations</li>
+                    <li>Meal planning and workout schedules</li>
+                    <li>Progress tracking guidelines</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">3. Medical Disclaimer</h2>
+                  <div className="bg-yellow-900/30 border border-yellow-600/50 rounded-lg p-6">
+                    <p className="mb-4 font-semibold text-yellow-400">IMPORTANT NOTICE:</p>
+                    <p className="mb-4">
+                      FitGenius is NOT a medical service and does not provide medical advice, diagnosis, or treatment. The information and plans provided are for educational and informational purposes only.
+                    </p>
+                    <p className="mb-4">
+                      Before starting any weight loss, exercise, or nutrition program, you should consult with a qualified healthcare professional, especially if you have any pre-existing medical conditions, are taking medications, are pregnant or nursing, or have any concerns about your health.
+                    </p>
+                    <p>
+                      Individual results may vary. The plans generated are general recommendations and may not be suitable for everyone. Always listen to your body and seek professional medical advice if you experience any adverse effects.
+                    </p>
+                  </div>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">4. User Account and Responsibilities</h2>
+                  <p className="mb-4">
+                    When you create an account with us, you must provide information that is accurate, complete, and current at all times. Failure to do so constitutes a breach of the Terms.
+                  </p>
+                  <p className="mb-4">You are responsible for:</p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Safeguarding your account password</li>
+                    <li>Any activities or actions under your account</li>
+                    <li>Providing accurate health and fitness information in questionnaires</li>
+                    <li>Using the Service in a lawful manner</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">5. Payment and Pricing</h2>
+                  <p className="mb-4">
+                    Access to personalized plans requires a one-time payment. Prices are displayed in AZN and processed through our secure payment partner, Epoint.
+                  </p>
+                  <p className="mb-4">
+                    Payment terms:
+                  </p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>All payments are processed securely via Epoint payment gateway</li>
+                    <li>Prices are subject to change without prior notice</li>
+                    <li>You agree to pay all charges at the prices then in effect</li>
+                    <li>Payment is required before plan generation and delivery</li>
+                    <li>We accept major credit and debit cards</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">6. Refund Policy</h2>
+                  <p className="mb-4">
+                    Due to the digital and personalized nature of our Service, refunds are handled on a case-by-case basis. Please see our detailed <a href="/refund" className="text-cyan-400 hover:text-cyan-300">Refund Policy</a> for more information.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">7. Intellectual Property Rights</h2>
+                  <p className="mb-4">
+                    The Service and its original content, features, and functionality are and will remain the exclusive property of FitGenius. The Service is protected by copyright, trademark, and other laws.
+                  </p>
+                  <p className="mb-4">
+                    You may not:
+                  </p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Reproduce, duplicate, copy, or exploit any portion of the Service without express written permission</li>
+                    <li>Modify or create derivative works based on the Service</li>
+                    <li>Share, redistribute, or resell your personalized plan to others</li>
+                    <li>Use the Service for any commercial purposes without our consent</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">8. Limitation of Liability</h2>
+                  <p className="mb-4">
+                    In no event shall FitGenius, its directors, employees, partners, agents, suppliers, or affiliates be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation:
+                  </p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Loss of profits, data, use, goodwill, or other intangible losses</li>
+                    <li>Personal injury or property damage</li>
+                    <li>Any results (or lack thereof) from following our recommendations</li>
+                    <li>Unauthorized access to or use of our servers and/or any personal information stored therein</li>
+                  </ul>
+                  <p className="mt-4">
+                    Our total liability shall not exceed the amount you paid for the Service.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">9. User Conduct</h2>
+                  <p className="mb-4">You agree not to:</p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Use the Service for any unlawful purpose</li>
+                    <li>Attempt to gain unauthorized access to any portion of the Service</li>
+                    <li>Interfere with or disrupt the Service or servers</li>
+                    <li>Transmit any viruses, malware, or malicious code</li>
+                    <li>Collect or harvest any information about other users</li>
+                    <li>Impersonate any person or entity</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">10. Third-Party Services</h2>
+                  <p className="mb-4">
+                    Our Service may contain links to third-party websites or services (including payment processors) that are not owned or controlled by FitGenius.
+                  </p>
+                  <p>
+                    We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party websites or services. You acknowledge and agree that FitGenius shall not be responsible or liable for any damage or loss caused by or in connection with the use of any such content or services.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">11. Privacy</h2>
+                  <p>
+                    Your use of the Service is also governed by our Privacy Policy. Please review our <a href="/privacy" className="text-cyan-400 hover:text-cyan-300">Privacy Policy</a> to understand our practices.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">12. Termination</h2>
+                  <p className="mb-4">
+                    We may terminate or suspend access to our Service immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms.
+                  </p>
+                  <p>
+                    Upon termination, your right to use the Service will immediately cease. All provisions of the Terms which by their nature should survive termination shall survive termination.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">13. Dispute Resolution</h2>
+                  <p className="mb-4">
+                    Any disputes arising out of or relating to these Terms or the Service shall be resolved through binding arbitration in accordance with the commercial arbitration rules of the applicable jurisdiction.
+                  </p>
+                  <p>
+                    You agree to first attempt to resolve any dispute informally by contacting us at <a href="mailto:support@fitgenius.com" className="text-cyan-400 hover:text-cyan-300">support@fitgenius.com</a>.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">14. Changes to Terms</h2>
+                  <p>
+                    We reserve the right to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect. Continued use of the Service after changes constitutes acceptance of the new Terms.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">15. Contact Us</h2>
+                  <p className="mb-4">
+                    If you have any questions about these Terms, please contact us:
+                  </p>
+                  <div className="bg-gray-800/50 rounded-lg p-4">
+                    <p>Email: <a href="mailto:support@fitgenius.com" className="text-cyan-400 hover:text-cyan-300">support@fitgenius.com</a></p>
+                    <p className="mt-2">Website: <a href="/" className="text-cyan-400 hover:text-cyan-300">FitGenius.com</a></p>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>
+  )
+})
+
+// Privacy Policy Page
+app.get('/privacy', (c) => {
+  return c.html(
+    <html lang="en">
+      <head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Privacy Policy - FitGenius</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+      </head>
+      <body className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 min-h-screen">
+        <div className="max-w-4xl mx-auto px-6 py-12">
+          <div className="bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-8 md:p-12">
+            <div className="mb-8">
+              <a href="/" className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors mb-6">
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Back to Home
+              </a>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Privacy Policy</h1>
+              <p className="text-gray-400">Last Updated: January 2025</p>
+            </div>
+
+            <div className="prose prose-invert prose-cyan max-w-none">
+              <div className="space-y-8 text-gray-300 leading-relaxed">
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">1. Introduction</h2>
+                  <p className="mb-4">
+                    Welcome to FitGenius ("we," "our," or "us"). We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our Service.
+                  </p>
+                  <p>
+                    Please read this Privacy Policy carefully. If you do not agree with the terms of this Privacy Policy, please do not access the Service.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">2. Information We Collect</h2>
+                  
+                  <h3 className="text-xl font-semibold text-white mb-3 mt-6">2.1 Personal Information You Provide</h3>
+                  <p className="mb-4">We collect information that you voluntarily provide when using our Service, including:</p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li><strong>Account Information:</strong> Name, email address, phone number</li>
+                    <li><strong>Health & Fitness Data:</strong> Age, gender, height, weight, fitness goals, dietary preferences, activity level, medical conditions, fitness experience</li>
+                    <li><strong>Payment Information:</strong> Processed securely through Epoint (we do not store your full payment card details)</li>
+                  </ul>
+
+                  <h3 className="text-xl font-semibold text-white mb-3 mt-6">2.2 Automatically Collected Information</h3>
+                  <p className="mb-4">When you access our Service, we automatically collect certain information, including:</p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li><strong>Device Information:</strong> IP address, browser type, operating system, device identifiers</li>
+                    <li><strong>Usage Data:</strong> Pages visited, time spent on pages, click patterns, referring URLs</li>
+                    <li><strong>Cookies and Tracking Technologies:</strong> We use cookies and similar technologies to track activity and store information</li>
+                  </ul>
+
+                  <h3 className="text-xl font-semibold text-white mb-3 mt-6">2.3 Information from Third Parties</h3>
+                  <p>We may receive information about you from third parties, such as:</p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Payment processors (Epoint) confirming transaction details</li>
+                    <li>Analytics providers (if applicable)</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">3. How We Use Your Information</h2>
+                  <p className="mb-4">We use the information we collect for the following purposes:</p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li><strong>Provide Services:</strong> Generate personalized fitness and nutrition plans based on your questionnaire responses</li>
+                    <li><strong>Process Payments:</strong> Handle transactions securely through our payment partner</li>
+                    <li><strong>Communication:</strong> Send you order confirmations, plan delivery, and support responses</li>
+                    <li><strong>Improve Service:</strong> Analyze usage patterns to enhance user experience and plan quality</li>
+                    <li><strong>Legal Compliance:</strong> Comply with applicable laws and regulations</li>
+                    <li><strong>Security:</strong> Detect and prevent fraud, abuse, or security incidents</li>
+                    <li><strong>Marketing:</strong> Send promotional emails (you can opt-out at any time)</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">4. How We Share Your Information</h2>
+                  <p className="mb-4">We do not sell your personal information. We may share your information in the following situations:</p>
+                  
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="text-lg font-semibold text-white mb-2">4.1 Service Providers</h3>
+                      <p>We share information with third-party service providers who perform services on our behalf:</p>
+                      <ul className="list-disc list-inside space-y-1 ml-4 mt-2">
+                        <li><strong>Epoint:</strong> Payment processing</li>
+                        <li><strong>AI Services:</strong> OpenRouter and Google Gemini for plan generation</li>
+                        <li><strong>Cloudflare:</strong> Hosting and infrastructure</li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg font-semibold text-white mb-2">4.2 Legal Requirements</h3>
+                      <p>We may disclose your information if required by law or in response to valid requests by public authorities.</p>
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg font-semibold text-white mb-2">4.3 Business Transfers</h3>
+                      <p>If we are involved in a merger, acquisition, or sale of assets, your information may be transferred.</p>
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg font-semibold text-white mb-2">4.4 With Your Consent</h3>
+                      <p>We may share your information for any other purpose with your explicit consent.</p>
+                    </div>
+                  </div>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">5. Data Retention</h2>
+                  <p className="mb-4">
+                    We retain your personal information only for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required by law.
+                  </p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Account and questionnaire data: Retained while your account is active</li>
+                    <li>Transaction records: Retained for 7 years for accounting and legal purposes</li>
+                    <li>Usage data: Typically retained for 2 years</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">6. Data Security</h2>
+                  <p className="mb-4">
+                    We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.
+                  </p>
+                  <p className="mb-4">Security measures include:</p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Encryption of data in transit (HTTPS/TLS)</li>
+                    <li>Secure database storage with access controls</li>
+                    <li>Regular security audits and updates</li>
+                    <li>Payment processing through PCI-DSS compliant providers</li>
+                  </ul>
+                  <p className="mt-4 text-yellow-400">
+                    However, no method of transmission over the Internet is 100% secure. While we strive to protect your information, we cannot guarantee absolute security.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">7. Your Privacy Rights</h2>
+                  <p className="mb-4">Depending on your location, you may have the following rights:</p>
+                  
+                  <div className="space-y-3">
+                    <div className="bg-gray-800/50 rounded-lg p-4">
+                      <h3 className="font-semibold text-white mb-2">🔍 Right to Access</h3>
+                      <p>Request a copy of the personal information we hold about you</p>
+                    </div>
+
+                    <div className="bg-gray-800/50 rounded-lg p-4">
+                      <h3 className="font-semibold text-white mb-2">✏️ Right to Rectification</h3>
+                      <p>Request correction of inaccurate or incomplete information</p>
+                    </div>
+
+                    <div className="bg-gray-800/50 rounded-lg p-4">
+                      <h3 className="font-semibold text-white mb-2">🗑️ Right to Deletion</h3>
+                      <p>Request deletion of your personal information (subject to legal obligations)</p>
+                    </div>
+
+                    <div className="bg-gray-800/50 rounded-lg p-4">
+                      <h3 className="font-semibold text-white mb-2">🚫 Right to Restriction</h3>
+                      <p>Request restriction of processing of your personal information</p>
+                    </div>
+
+                    <div className="bg-gray-800/50 rounded-lg p-4">
+                      <h3 className="font-semibold text-white mb-2">📦 Right to Data Portability</h3>
+                      <p>Receive your data in a structured, machine-readable format</p>
+                    </div>
+
+                    <div className="bg-gray-800/50 rounded-lg p-4">
+                      <h3 className="font-semibold text-white mb-2">⛔ Right to Object</h3>
+                      <p>Object to processing of your personal information</p>
+                    </div>
+
+                    <div className="bg-gray-800/50 rounded-lg p-4">
+                      <h3 className="font-semibold text-white mb-2">📧 Right to Opt-Out</h3>
+                      <p>Unsubscribe from marketing communications at any time</p>
+                    </div>
+                  </div>
+
+                  <p className="mt-4">
+                    To exercise any of these rights, please contact us at <a href="mailto:privacy@fitgenius.com" className="text-cyan-400 hover:text-cyan-300">privacy@fitgenius.com</a>.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">8. Cookies and Tracking Technologies</h2>
+                  <p className="mb-4">We use cookies and similar tracking technologies to:</p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Maintain your session and keep you logged in</li>
+                    <li>Remember your preferences</li>
+                    <li>Analyze site traffic and usage patterns</li>
+                    <li>Improve site functionality and user experience</li>
+                  </ul>
+                  <p className="mt-4">
+                    You can control cookies through your browser settings. However, disabling cookies may affect the functionality of our Service.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">9. International Data Transfers</h2>
+                  <p className="mb-4">
+                    Your information may be transferred to and processed in countries other than your country of residence. These countries may have data protection laws that differ from those in your country.
+                  </p>
+                  <p>
+                    We ensure appropriate safeguards are in place to protect your information when transferred internationally, in compliance with applicable data protection laws.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">10. Children's Privacy</h2>
+                  <p className="mb-4">
+                    Our Service is not intended for individuals under the age of 18. We do not knowingly collect personal information from children.
+                  </p>
+                  <p>
+                    If you are a parent or guardian and believe your child has provided us with personal information, please contact us, and we will delete such information from our systems.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">11. Third-Party Links</h2>
+                  <p>
+                    Our Service may contain links to third-party websites. We are not responsible for the privacy practices of these external sites. We encourage you to read their privacy policies.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">12. California Privacy Rights (CCPA)</h2>
+                  <p className="mb-4">If you are a California resident, you have additional rights under the California Consumer Privacy Act (CCPA):</p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Right to know what personal information is collected, used, shared, or sold</li>
+                    <li>Right to delete personal information held by us</li>
+                    <li>Right to opt-out of the sale of personal information (we do not sell your information)</li>
+                    <li>Right to non-discrimination for exercising your CCPA rights</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">13. European Privacy Rights (GDPR)</h2>
+                  <p className="mb-4">If you are in the European Economic Area (EEA), you have rights under the General Data Protection Regulation (GDPR):</p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Legal basis for processing: Consent, contract performance, legitimate interests</li>
+                    <li>Right to withdraw consent at any time</li>
+                    <li>Right to lodge a complaint with a supervisory authority</li>
+                    <li>All rights listed in Section 7 of this policy</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">14. Changes to This Privacy Policy</h2>
+                  <p className="mb-4">
+                    We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.
+                  </p>
+                  <p>
+                    We encourage you to review this Privacy Policy periodically for any changes. Changes are effective when posted on this page.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">15. Contact Us</h2>
+                  <p className="mb-4">
+                    If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:
+                  </p>
+                  <div className="bg-gray-800/50 rounded-lg p-6">
+                    <p className="mb-2"><strong className="text-white">Email:</strong> <a href="mailto:privacy@fitgenius.com" className="text-cyan-400 hover:text-cyan-300">privacy@fitgenius.com</a></p>
+                    <p className="mb-2"><strong className="text-white">Support:</strong> <a href="mailto:support@fitgenius.com" className="text-cyan-400 hover:text-cyan-300">support@fitgenius.com</a></p>
+                    <p><strong className="text-white">Website:</strong> <a href="/" className="text-cyan-400 hover:text-cyan-300">FitGenius.com</a></p>
+                  </div>
+                  <p className="mt-4 text-sm text-gray-400">
+                    We aim to respond to all legitimate requests within 30 days.
+                  </p>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>
+  )
+})
+
+// Refund Policy Page
+app.get('/refund', (c) => {
+  return c.html(
+    <html lang="en">
+      <head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Refund Policy - FitGenius</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+      </head>
+      <body className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 min-h-screen">
+        <div className="max-w-4xl mx-auto px-6 py-12">
+          <div className="bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-8 md:p-12">
+            <div className="mb-8">
+              <a href="/" className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors mb-6">
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Back to Home
+              </a>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Refund Policy</h1>
+              <p className="text-gray-400">Last Updated: January 2025</p>
+            </div>
+
+            <div className="prose prose-invert prose-cyan max-w-none">
+              <div className="space-y-8 text-gray-300 leading-relaxed">
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">1. Overview</h2>
+                  <p className="mb-4">
+                    At FitGenius, we strive to provide high-quality personalized fitness and nutrition plans. We understand that sometimes a product or service may not meet your expectations. This Refund Policy outlines the circumstances under which refunds may be granted.
+                  </p>
+                  <p>
+                    Due to the digital and personalized nature of our service, refunds are evaluated on a case-by-case basis. Please read this policy carefully before making a purchase.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">2. Refund Eligibility</h2>
+                  
+                  <div className="bg-green-900/30 border border-green-600/50 rounded-lg p-6 mb-6">
+                    <h3 className="text-xl font-semibold text-green-400 mb-3">✅ You MAY be eligible for a refund if:</h3>
+                    <ul className="list-disc list-inside space-y-2 ml-4">
+                      <li>You completed the payment but did not receive your personalized plan within 24 hours</li>
+                      <li>There was a technical error that prevented plan generation despite successful payment</li>
+                      <li>You were charged multiple times for the same order due to a system error</li>
+                      <li>The plan delivered is completely blank, corrupted, or unreadable</li>
+                      <li>You can demonstrate that the plan generated does not align with the information you provided in the questionnaire due to a system malfunction</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-red-900/30 border border-red-600/50 rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-red-400 mb-3">❌ You are NOT eligible for a refund if:</h3>
+                    <ul className="list-disc list-inside space-y-2 ml-4">
+                      <li>You simply changed your mind after receiving your personalized plan</li>
+                      <li>You provided inaccurate information in the questionnaire that resulted in a plan not suitable for you</li>
+                      <li>You did not follow the recommendations in the plan</li>
+                      <li>You did not achieve your desired results (results vary by individual)</li>
+                      <li>You request a refund more than 14 days after purchase</li>
+                      <li>You have already downloaded or accessed your personalized plan PDF and it was delivered correctly</li>
+                      <li>You shared or distributed your plan to others</li>
+                    </ul>
+                  </div>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">3. Refund Request Process</h2>
+                  <p className="mb-4">To request a refund, please follow these steps:</p>
+                  
+                  <div className="space-y-4">
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0 w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center font-bold mr-4">1</div>
+                      <div>
+                        <h3 className="font-semibold text-white mb-2">Contact Our Support Team</h3>
+                        <p>Email us at <a href="mailto:support@fitgenius.com" className="text-cyan-400 hover:text-cyan-300">support@fitgenius.com</a> with the subject line "Refund Request"</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0 w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center font-bold mr-4">2</div>
+                      <div>
+                        <h3 className="font-semibold text-white mb-2">Provide Required Information</h3>
+                        <p className="mb-2">Include the following in your email:</p>
+                        <ul className="list-disc list-inside space-y-1 ml-4">
+                          <li>Your full name and email address used for the purchase</li>
+                          <li>Order ID or transaction reference number</li>
+                          <li>Date of purchase</li>
+                          <li>Detailed reason for the refund request</li>
+                          <li>Any supporting evidence (screenshots, error messages, etc.)</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0 w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center font-bold mr-4">3</div>
+                      <div>
+                        <h3 className="font-semibold text-white mb-2">Review Process</h3>
+                        <p>Our team will review your request within 3-5 business days and may request additional information if needed</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0 w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center font-bold mr-4">4</div>
+                      <div>
+                        <h3 className="font-semibold text-white mb-2">Decision Notification</h3>
+                        <p>You will receive an email with our decision. If approved, the refund will be processed as outlined in Section 4</p>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">4. Refund Processing Timeline</h2>
+                  <p className="mb-4">If your refund request is approved:</p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li><strong>Processing Time:</strong> Refunds are initiated within 5-7 business days after approval</li>
+                    <li><strong>Payment Method:</strong> Refunds will be credited to the original payment method used for the purchase</li>
+                    <li><strong>Bank Processing:</strong> Depending on your bank or card issuer, it may take an additional 5-10 business days for the refund to appear in your account</li>
+                    <li><strong>Notification:</strong> You will receive an email confirmation once the refund has been processed</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">5. Partial Refunds</h2>
+                  <p className="mb-4">In certain circumstances, partial refunds may be granted, such as:</p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>If you received a plan but certain sections were incomplete due to technical issues</li>
+                    <li>If there was a service disruption that significantly impacted your experience</li>
+                    <li>At our discretion, as a goodwill gesture for any inconvenience caused</li>
+                  </ul>
+                  <p className="mt-4">
+                    Partial refund amounts are determined on a case-by-case basis and will be communicated to you before processing.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">6. Chargebacks and Disputes</h2>
+                  <p className="mb-4">
+                    We encourage you to contact us directly before initiating a chargeback with your bank or card issuer. Chargebacks can be costly and time-consuming for both parties.
+                  </p>
+                  <p className="mb-4">
+                    If you initiate a chargeback without first attempting to resolve the issue with us:
+                  </p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>We will provide evidence to your bank/card issuer demonstrating that the service was delivered as promised</li>
+                    <li>Your account may be suspended pending resolution of the dispute</li>
+                    <li>You may be liable for any fees incurred as a result of the chargeback if it is found to be illegitimate</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">7. Non-Refundable Circumstances</h2>
+                  <p className="mb-4">The following are explicitly non-refundable:</p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Dissatisfaction with results due to lack of adherence to the plan</li>
+                    <li>Plans that were successfully delivered and accurately generated based on your inputs</li>
+                    <li>Change of mind or buyer's remorse after receiving the plan</li>
+                    <li>Requests made more than 14 days after the date of purchase</li>
+                    <li>Any promotional or discounted purchases (unless legally required)</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">8. Technical Issues and Support</h2>
+                  <p className="mb-4">
+                    Before requesting a refund for technical issues, please contact our support team. Many issues can be quickly resolved:
+                  </p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li><strong>PDF Won't Open:</strong> We can resend your plan or provide it in an alternative format</li>
+                    <li><strong>Missing Plan:</strong> Check your spam folder; we can resend your plan to a different email address</li>
+                    <li><strong>Payment Confirmation Issues:</strong> We can verify your payment status and manually trigger plan delivery</li>
+                  </ul>
+                  <p className="mt-4">
+                    Contact: <a href="mailto:support@fitgenius.com" className="text-cyan-400 hover:text-cyan-300">support@fitgenius.com</a>
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">9. Exceptions and Special Circumstances</h2>
+                  <p className="mb-4">
+                    We understand that exceptional circumstances may arise. If you believe your situation warrants special consideration, please contact us and explain your circumstances in detail.
+                  </p>
+                  <p>
+                    While we cannot guarantee a refund in all cases, we will review each request fairly and may offer alternatives such as:
+                  </p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Regenerating your plan with updated information</li>
+                    <li>Providing a credit for future purchases</li>
+                    <li>Offering additional support or resources</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">10. Legal Rights</h2>
+                  <p className="mb-4">
+                    This Refund Policy does not affect your statutory rights as a consumer. Depending on your jurisdiction, you may have additional rights under consumer protection laws.
+                  </p>
+                  <p>
+                    For customers in the European Union, you have the right to withdraw from the purchase within 14 days. However, by requesting the generation and delivery of your personalized plan, you expressly agree to waive this right as the service is fully performed before the end of the withdrawal period.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">11. Changes to This Policy</h2>
+                  <p>
+                    We reserve the right to modify this Refund Policy at any time. Changes will be effective immediately upon posting on our website. Your continued use of our services after changes are posted constitutes acceptance of the revised policy.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-white mb-4">12. Contact Information</h2>
+                  <p className="mb-4">
+                    If you have any questions about this Refund Policy or wish to request a refund, please contact us:
+                  </p>
+                  <div className="bg-gray-800/50 rounded-lg p-6">
+                    <p className="mb-2"><strong className="text-white">Refund Requests:</strong> <a href="mailto:support@fitgenius.com" className="text-cyan-400 hover:text-cyan-300">support@fitgenius.com</a></p>
+                    <p className="mb-2"><strong className="text-white">Subject Line:</strong> "Refund Request"</p>
+                    <p className="mb-2"><strong className="text-white">Response Time:</strong> 3-5 business days</p>
+                    <p><strong className="text-white">Website:</strong> <a href="/" className="text-cyan-400 hover:text-cyan-300">FitGenius.com</a></p>
+                  </div>
+                </section>
+
+                <div className="mt-8 p-6 bg-cyan-900/30 border border-cyan-600/50 rounded-lg">
+                  <h3 className="text-lg font-semibold text-cyan-400 mb-3">💡 Tips for a Smooth Experience</h3>
+                  <ul className="space-y-2">
+                    <li>✅ Provide accurate information in your questionnaire for the best personalized plan</li>
+                    <li>✅ Check your email (including spam folder) for your plan delivery</li>
+                    <li>✅ Contact support immediately if you encounter any technical issues</li>
+                    <li>✅ Keep your order ID and transaction details for reference</li>
+                    <li>✅ Review the plan thoroughly and contact us within 14 days if you have concerns</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>
   )
 })
 

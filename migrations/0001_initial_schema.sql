@@ -22,10 +22,9 @@ CREATE TABLE IF NOT EXISTS orders (
   user_id INTEGER NOT NULL,
   plan_type TEXT NOT NULL,
   amount DECIMAL(10,2) NOT NULL,
-  currency TEXT DEFAULT 'USD',
+  currency TEXT DEFAULT 'AZN',
   status TEXT DEFAULT 'pending',
-  kapital_order_id TEXT,
-  kapital_session_id TEXT,
+  epoint_transaction_id TEXT,
   ai_plan_content TEXT,
   pdf_url TEXT,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -47,4 +46,5 @@ CREATE TABLE IF NOT EXISTS questionnaire_sessions (
 CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
 CREATE INDEX IF NOT EXISTS idx_orders_user_id ON orders(user_id);
 CREATE INDEX IF NOT EXISTS idx_orders_status ON orders(status);
+CREATE INDEX IF NOT EXISTS idx_orders_epoint_transaction ON orders(epoint_transaction_id);
 CREATE INDEX IF NOT EXISTS idx_questionnaire_sessions_expires ON questionnaire_sessions(expires_at);
