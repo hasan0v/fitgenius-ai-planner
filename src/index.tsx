@@ -637,7 +637,6 @@ app.get('/', (c) => {
               <ul className="space-y-2 text-sm">
                 <li><a href="/terms" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
                 <li><a href="/privacy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="/refund" className="text-gray-400 hover:text-white transition-colors">Refund Policy</a></li>
               </ul>
             </div>
             
@@ -645,8 +644,9 @@ app.get('/', (c) => {
             <div>
               <h4 className="font-semibold mb-4 text-cyan-400">Support</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="mailto:support@fitgenius.com" className="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
-                <li><a href="#faq" className="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+                <li><a href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+                <li><a href="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+                <li><a href="/about" className="text-gray-400 hover:text-white transition-colors">About</a></li>
               </ul>
             </div>
             
@@ -654,13 +654,7 @@ app.get('/', (c) => {
             <div>
               <h4 className="font-semibold mb-4 text-cyan-400">Connect</h4>
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors">
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                </a>
-                <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors">
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
-                </a>
-                <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors">
+                <a href="https://www.instagram.com/fit.geniuss/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors">
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
                 </a>
               </div>
@@ -2315,27 +2309,50 @@ app.get('/terms', (c) => {
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Terms of Service - FitGenius</title>
+        
+        <title>Terms of Service - FitGenius | AI Weight Loss Platform</title>
+        <meta name="description" content="Read FitGenius Terms of Service. Learn about our policies, user agreements, and guidelines for using our AI-powered weight loss planning platform." />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://fitgenius.top/terms" />
+        
+        <meta property="og:title" content="Terms of Service - FitGenius" />
+        <meta property="og:description" content="FitGenius Terms of Service and user agreement for our AI-powered weight loss platform." />
+        <meta property="og:url" content="https://fitgenius.top/terms" />
+        <meta property="og:type" content="website" />
+        
         <script src="https://cdn.tailwindcss.com"></script>
       </head>
-      <body className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 min-h-screen">
+      <body className="bg-gradient-to-br from-blue-50 via-white to-cyan-50 min-h-screen">
+        {/* Navigation Bar */}
+        <nav className="container mx-auto px-4 py-6">
+          <div className="flex items-center justify-between">
+            <a href="/" className="flex items-center space-x-3">
+              <img src="/images/logo.png" alt="FitGenius Logo" className="h-12 w-auto hover:scale-105 transition-transform duration-300" />
+            </a>
+            <div className="flex items-center space-x-6">
+              <a href="/" className="text-gray-600 hover:text-cyan-600 font-medium transition-colors">Home</a>
+              <a href="/about" className="text-gray-600 hover:text-cyan-600 font-medium transition-colors">About</a>
+              <a href="/faq" className="text-gray-600 hover:text-cyan-600 font-medium transition-colors">FAQ</a>
+            </div>
+          </div>
+        </nav>
         <div className="max-w-4xl mx-auto px-6 py-12">
-          <div className="bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-8 md:p-12">
+          <div className="bg-white rounded-3xl shadow-lg border border-cyan-200/50 p-8 md:p-12">
             <div className="mb-8">
-              <a href="/" className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors mb-6">
+              <a href="/" className="inline-flex items-center text-cyan-600 hover:text-cyan-700 transition-colors mb-6">
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                 </svg>
                 Back to Home
               </a>
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Terms of Service</h1>
-              <p className="text-gray-400">Last Updated: January 2025</p>
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Terms of Service</h1>
+              <p className="text-gray-600">Last Updated: January 2025</p>
             </div>
 
-            <div className="prose prose-invert prose-cyan max-w-none">
-              <div className="space-y-8 text-gray-300 leading-relaxed">
+            <div className="prose max-w-none">
+              <div className="space-y-8 text-gray-700 leading-relaxed">
                 <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">1. Acceptance of Terms</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Acceptance of Terms</h2>
                   <p className="mb-4">
                     By accessing and using FitGenius ("the Service"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to these Terms of Service, please do not use our Service.
                   </p>
@@ -2345,7 +2362,7 @@ app.get('/terms', (c) => {
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">2. Description of Service</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Description of Service</h2>
                   <p className="mb-4">
                     FitGenius provides personalized weight loss and fitness planning services powered by artificial intelligence. Our Service includes:
                   </p>
@@ -2359,9 +2376,9 @@ app.get('/terms', (c) => {
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">3. Medical Disclaimer</h2>
-                  <div className="bg-yellow-900/30 border border-yellow-600/50 rounded-lg p-6">
-                    <p className="mb-4 font-semibold text-yellow-400">IMPORTANT NOTICE:</p>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Medical Disclaimer</h2>
+                  <div className="bg-yellow-50 border border-yellow-300 rounded-lg p-6">
+                    <p className="mb-4 font-semibold text-yellow-800">IMPORTANT NOTICE:</p>
                     <p className="mb-4">
                       FitGenius is NOT a medical service and does not provide medical advice, diagnosis, or treatment. The information and plans provided are for educational and informational purposes only.
                     </p>
@@ -2375,7 +2392,7 @@ app.get('/terms', (c) => {
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">4. User Account and Responsibilities</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4">4. User Account and Responsibilities</h2>
                   <p className="mb-4">
                     When you create an account with us, you must provide information that is accurate, complete, and current at all times. Failure to do so constitutes a breach of the Terms.
                   </p>
@@ -2389,7 +2406,7 @@ app.get('/terms', (c) => {
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">5. Payment and Pricing</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Payment and Pricing</h2>
                   <p className="mb-4">
                     Access to personalized plans requires a one-time payment. Prices are displayed in AZN and processed through our secure payment partner, Epoint.
                   </p>
@@ -2406,10 +2423,21 @@ app.get('/terms', (c) => {
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">6. Refund Policy</h2>
-                  <p className="mb-4">
-                    Due to the digital and personalized nature of our Service, refunds are handled on a case-by-case basis. Please see our detailed <a href="/refund" className="text-cyan-400 hover:text-cyan-300">Refund Policy</a> for more information.
-                  </p>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4">6. No Refund Policy</h2>
+                  <div className="bg-yellow-50 border border-yellow-300 rounded-lg p-6">
+                    <p className="mb-4 text-gray-800">
+                      Due to the digital and personalized nature of our Service, <strong>all sales are final and non-refundable</strong>. Once your AI-generated plan has been created and delivered, no refunds will be issued.
+                    </p>
+                    <p className="mb-4">
+                      By completing your purchase, you acknowledge that:
+                    </p>
+                    <ul className="list-disc list-inside space-y-2 ml-4">
+                      <li>You have provided accurate information in the questionnaire</li>
+                      <li>Your personalized plan will be generated based on this information</li>
+                      <li>The service will be considered delivered once the plan is available for download</li>
+                      <li>No refunds will be provided after plan delivery</li>
+                    </ul>
+                  </div>
                 </section>
 
                 <section>
@@ -2429,7 +2457,7 @@ app.get('/terms', (c) => {
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">8. Limitation of Liability</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Limitation of Liability</h2>
                   <p className="mb-4">
                     In no event shall FitGenius, its directors, employees, partners, agents, suppliers, or affiliates be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation:
                   </p>
@@ -2445,7 +2473,7 @@ app.get('/terms', (c) => {
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">9. User Conduct</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4">9. User Conduct</h2>
                   <p className="mb-4">You agree not to:</p>
                   <ul className="list-disc list-inside space-y-2 ml-4">
                     <li>Use the Service for any unlawful purpose</li>
@@ -2490,7 +2518,7 @@ app.get('/terms', (c) => {
                     Any disputes arising out of or relating to these Terms or the Service shall be resolved through binding arbitration in accordance with the commercial arbitration rules of the applicable jurisdiction.
                   </p>
                   <p>
-                    You agree to first attempt to resolve any dispute informally by contacting us at <a href="mailto:support@fitgenius.com" className="text-cyan-400 hover:text-cyan-300">support@fitgenius.com</a>.
+                    You agree to first attempt to resolve any dispute informally by contacting us at <a href="mailto:contact@fitgenius.top" className="text-cyan-600 hover:text-cyan-700">contact@fitgenius.top</a>.
                   </p>
                 </section>
 
@@ -2507,14 +2535,823 @@ app.get('/terms', (c) => {
                     If you have any questions about these Terms, please contact us:
                   </p>
                   <div className="bg-gray-800/50 rounded-lg p-4">
-                    <p>Email: <a href="mailto:support@fitgenius.com" className="text-cyan-400 hover:text-cyan-300">support@fitgenius.com</a></p>
-                    <p className="mt-2">Website: <a href="/" className="text-cyan-400 hover:text-cyan-300">FitGenius.com</a></p>
+                    <p>Email: <a href="mailto:contact@fitgenius.top" className="text-cyan-400 hover:text-cyan-300">contact@fitgenius.top</a></p>
+                    <p className="mt-2">Website: <a href="/" className="text-cyan-400 hover:text-cyan-300">fitgenius.top</a></p>
                   </div>
                 </section>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Footer */}
+        <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-12 mt-20">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+              <div>
+                <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">FitGenius</h3>
+                <p className="text-gray-400 text-sm">Your AI-powered partner in achieving sustainable weight loss and building healthier habits.</p>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4 text-cyan-400">Legal</h4>
+                <ul className="space-y-2 text-sm">
+                  <li><a href="/terms" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+                  <li><a href="/privacy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4 text-cyan-400">Support</h4>
+                <ul className="space-y-2 text-sm">
+                  <li><a href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+                  <li><a href="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+                  <li><a href="/about" className="text-gray-400 hover:text-white transition-colors">About</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4 text-cyan-400">Connect</h4>
+                <div className="flex space-x-4">
+                  <a href="https://www.instagram.com/fit.geniuss/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors">
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="border-t border-gray-700 pt-8 text-center text-sm text-gray-400">
+              <p>&copy; {new Date().getFullYear()} FitGenius. All rights reserved.</p>
+              <p className="mt-2 text-xs"><span className="text-yellow-400">⚠️</span> Medical Disclaimer: This service provides general wellness information only. Always consult with a healthcare provider before starting any weight loss program.</p>
+            </div>
+          </div>
+        </footer>
+      </body>
+    </html>
+  )
+})
+
+// FAQ Page
+app.get('/faq', (c) => {
+  return c.html(
+    <html lang="en">
+      <head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <title>FAQ - Frequently Asked Questions | FitGenius Weight Loss Plans</title>
+        <meta name="description" content="Find answers to common questions about FitGenius AI-powered weight loss plans, pricing, privacy, refunds, and how our personalized fitness programs work." />
+        <meta name="keywords" content="weight loss FAQ, FitGenius questions, diet plan help, fitness program FAQ, personalized plan questions" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://fitgenius.top/faq" />
+        
+        <meta property="og:title" content="FAQ - FitGenius Weight Loss Plans" />
+        <meta property="og:description" content="Get answers to frequently asked questions about our AI-powered personalized weight loss plans." />
+        <meta property="og:url" content="https://fitgenius.top/faq" />
+        <meta property="og:type" content="website" />
+        
+        {/* FAQ Structured Data */}
+        <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How much does a personalized weight loss plan cost?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Our personalized weight loss plan is priced at $9.99 (one-time payment). This includes a comprehensive, AI-generated PDF plan customized to your specific goals, dietary preferences, activity level, and lifestyle."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What information do I need to provide to get my plan?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You'll complete a detailed questionnaire covering: Current weight & goal weight, Height, age, gender, Activity level, Dietary preferences (vegan, vegetarian, etc.), Health conditions or restrictions, Fitness experience level, and Daily schedule/availability."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How quickly will I receive my personalized plan?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Your plan is generated instantly after payment confirmation. You'll receive a downloadable PDF via email within seconds. The email includes your complete plan and instructions to get started."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is my personal and payment information secure?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. We use industry-standard encryption (SSL/TLS) for all data transmission. Payment processing is handled by Stripe, a PCI-DSS compliant payment processor. We never store your full credit card details."
+              }
+            }
+          ]
+        })}
+        </script>
+        
+        <script src="https://cdn.tailwindcss.com"></script>
+      </head>
+      <body className="bg-gradient-to-br from-blue-50 via-white to-cyan-50 min-h-screen">
+        {/* Navigation Bar */}
+        <nav className="container mx-auto px-4 py-6">
+          <div className="flex items-center justify-between">
+            <a href="/" className="flex items-center space-x-3">
+              <img src="/images/logo.png" alt="FitGenius Logo" className="h-12 w-auto hover:scale-105 transition-transform duration-300" />
+            </a>
+            <div className="flex items-center space-x-6">
+              <a href="/" className="text-gray-600 hover:text-cyan-600 font-medium transition-colors">Home</a>
+              <a href="/about" className="text-gray-600 hover:text-cyan-600 font-medium transition-colors">About</a>
+              <a href="/faq" className="text-gray-600 hover:text-cyan-600 font-medium transition-colors">FAQ</a>
+            </div>
+          </div>
+        </nav>
+        <div className="max-w-4xl mx-auto px-6 py-12">
+          <div className="bg-white rounded-3xl shadow-lg border border-cyan-200/50 p-8 md:p-12">
+            <div className="mb-8">
+              <a href="/" className="inline-flex items-center text-cyan-600 hover:text-cyan-700 transition-colors mb-6">
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Back to Home
+              </a>
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h1>
+              <p className="text-gray-600">Find answers to common questions about FitGenius and our services</p>
+            </div>
+
+            <div className="space-y-6">
+              {/* Getting Started */}
+              <div className="border-b border-gray-200 pb-6">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                  <span className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm font-bold">1</span>
+                  Getting Started
+                </h2>
+                
+                <div className="space-y-6 ml-11">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">❓</span> What is FitGenius?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      FitGenius is an AI-powered platform that creates personalized weight loss and fitness plans tailored to your unique goals, lifestyle, and preferences. Our advanced algorithms analyze your inputs and generate comprehensive 30-day plans including meal plans, workout routines, and progress tracking guidance.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">❓</span> How does the questionnaire work?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Our questionnaire collects detailed information about your health profile, fitness goals, dietary preferences, lifestyle habits, and any medical considerations. This data is crucial for generating a plan that's safe and effective for your specific situation. The questionnaire takes about 5-10 minutes to complete.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">❓</span> What plan options are available?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed mb-3">
+                      We offer three plan types:
+                    </p>
+                    <ul className="space-y-2 ml-4">
+                      <li className="text-gray-700"><strong>Basic Plan:</strong> Personalized meal plans and nutritional guidance without workout routines</li>
+                      <li className="text-gray-700"><strong>Standard Plan:</strong> Meal plans combined with beginner-friendly workout routines (3-4 times per week)</li>
+                      <li className="text-gray-700"><strong>Premium Plan:</strong> Complete fitness and nutrition program with advanced workout plans, nutrition optimization, and detailed progress tracking</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">❓</span> How long does it take to get my plan?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      After successful payment, your personalized plan is generated instantly using our AI system. You'll receive a PDF download link via email within seconds, and can access it anytime from your account.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Payment & Pricing */}
+              <div className="border-b border-gray-200 pb-6">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                  <span className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm font-bold">2</span>
+                  Payment & Pricing
+                </h2>
+                
+                <div className="space-y-6 ml-11">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">💳</span> What payment methods do you accept?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      We accept all major credit and debit cards (Visa, Mastercard, American Express) through our secure payment partner, Epoint. All transactions are encrypted and PCI-DSS compliant for your security.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">💳</span> Is there a refund policy?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      No refunds are issued for generated plans. However, if you experience a technical issue or your plan is not generated properly, we'll regenerate it at no additional cost. For payment disputes, please contact our support team at contact@fitgenius.top.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">💳</span> Is my payment information secure?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Yes, absolutely. We don't store your full payment card details on our servers. All credit card information is processed securely through Epoint, which is PCI-DSS Level 1 certified. Your transaction data is encrypted end-to-end.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">💳</span> Can I get an invoice?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Yes, you'll receive a detailed invoice via email after successful payment. The invoice includes plan details, amount paid, and can be used for expense reporting or record-keeping.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Plans & Features */}
+              <div className="border-b border-gray-200 pb-6">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                  <span className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm font-bold">3</span>
+                  Plans & Features
+                </h2>
+                
+                <div className="space-y-6 ml-11">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">🏃</span> How personalized is my plan?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Your plan is fully personalized based on 15+ factors including age, current weight, target weight, height, activity level, dietary preferences, food restrictions, health conditions, fitness experience, workout preferences, sleep patterns, stress levels, and more. Our AI analyzes all this data to create a unique plan just for you.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">🏃</span> Can I update my plan?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Plans are generated based on your questionnaire responses at purchase time. If your situation changes significantly or you'd like a plan adjustment, you can purchase a new plan at any time with updated information. Contact us at contact@fitgenius.top for custom plan modifications.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">🏃</span> What's included in the PDF?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed mb-3">
+                      Your PDF plan includes:
+                    </p>
+                    <ul className="space-y-2 ml-4 text-gray-700">
+                      <li>✓ Personalized welcome message and goal breakdown</li>
+                      <li>✓ Daily caloric targets and macro nutrient recommendations</li>
+                      <li>✓ 4-week structured meal plan with variety</li>
+                      <li>✓ 50+ meal options across breakfast, lunch, dinner, and snacks</li>
+                      <li>✓ Workout routines (if applicable to your plan)</li>
+                      <li>✓ Weekly goals and progress tracking sheets</li>
+                      <li>✓ Tips for sustainability and habit building</li>
+                      <li>✓ Troubleshooting advice for common challenges</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">🏃</span> Are there follow-up plans or coaching?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Currently, FitGenius provides one-time, 30-day plans. After completing your plan, you can purchase a new plan for the next phase of your journey. We're developing personalized coaching features for future releases. Subscribe to our updates for announcements!
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Health & Safety */}
+              <div className="border-b border-gray-200 pb-6">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                  <span className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm font-bold">4</span>
+                  Health & Safety
+                </h2>
+                
+                <div className="space-y-6 ml-11">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">⚕️</span> Is FitGenius a substitute for professional medical advice?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      No. FitGenius provides general wellness information and personalized fitness guidance only. It is NOT a substitute for professional medical advice, diagnosis, or treatment. Always consult with a healthcare provider before starting any weight loss program, especially if you have existing health conditions or take medications.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">⚕️</span> Can people with health conditions use FitGenius?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Yes, our questionnaire includes a section for health conditions and medications. We use this information to generate safer, more appropriate plans. However, individuals with serious health conditions should consult their healthcare provider before using any plan. Our plans are designed to be adaptable and can be modified based on professional medical advice.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">⚕️</span> What if I don't feel comfortable with something in my plan?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      You can modify any aspect of your plan as needed. Skip exercises that don't work for you, substitute meals you don't like with similar alternatives, and adjust portions based on how you feel. It's your plan—make it work for your life. If you'd like professional guidance, consult a doctor, nutritionist, or personal trainer.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">⚕️</span> How quickly will I see results?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Results vary based on individual factors like starting weight, metabolism, adherence, and exercise. Most people see initial changes (energy levels, bloating reduction) within 1-2 weeks and noticeable weight loss within 4-6 weeks. Remember: sustainable weight loss is typically 0.5-1 kg per week. Consistency is more important than speed.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Privacy & Data */}
+              <div className="border-b border-gray-200 pb-6">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                  <span className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm font-bold">5</span>
+                  Privacy & Data
+                </h2>
+                
+                <div className="space-y-6 ml-11">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">🔒</span> How is my personal information protected?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      We take data privacy very seriously. Your information is encrypted in transit (HTTPS/TLS) and stored securely in our database with access controls. We comply with GDPR and CCPA regulations, and we never sell your personal data. Read our full Privacy Policy for detailed information.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">🔒</span> Can I delete my data?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Yes. You have the right to request deletion of your personal data at any time. Contact us at contact@fitgenius.top with a deletion request, and we'll remove your information within 30 days (subject to legal retention requirements for financial records).
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">🔒</span> Will my health data be shared?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      No. Your health and fitness questionnaire responses are used solely to generate your personalized plan. We do not share your health data with third parties, advertisers, or other users. Your data is only accessible by our AI systems for plan generation and by our support team if needed to assist you.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">🔒</span> How long is my data stored?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Your account and plan data are retained as long as your account is active. Transaction records are kept for 7 years for accounting and legal compliance. You can request data deletion anytime, and we'll remove your information within 30 days.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Technical Support */}
+              <div className="pb-6">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                  <span className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm font-bold">6</span>
+                  Technical Support
+                </h2>
+                
+                <div className="space-y-6 ml-11">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">🔧</span> The questionnaire isn't loading. What should I do?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Try refreshing your browser (F5 or Ctrl+R), clearing your browser cache, or using a different browser. Make sure JavaScript is enabled. If the issue persists, email us at contact@fitgenius.top with your browser details, and we'll investigate.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">🔧</span> I'm not receiving my plan PDF after payment.
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Check your email (including spam/promotions folder). PDFs are sent within seconds of successful payment. If you still don't see it after 5 minutes, contact us at contact@fitgenius.top with your order ID, and we'll regenerate and send your plan immediately.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">🔧</span> The payment form isn't working.
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Ensure your browser allows pop-ups and JavaScript. Try clearing cookies and cache, or use a different browser. Verify your internet connection is stable. If issues continue, contact support at contact@fitgenius.top, and we'll process your payment manually.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                      <span className="text-cyan-600 mr-2">🔧</span> I have a different technical issue. How can I reach support?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Email our support team at contact@fitgenius.top with a detailed description of the issue, your browser/device info, and any error messages you see. We aim to respond within 24 hours. For urgent issues, include "URGENT" in the subject line.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact CTA */}
+            <div className="mt-12 pt-8 border-t border-gray-200">
+              <div className="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-2xl p-8 text-center">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Didn't find your answer?</h3>
+                <p className="text-gray-600 mb-4">Our support team is here to help. Contact us anytime!</p>
+                <a href="mailto:contact@fitgenius.top" className="inline-block bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-200">
+                  Contact Support
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-12 mt-20">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+              <div>
+                <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">FitGenius</h3>
+                <p className="text-gray-400 text-sm">Your AI-powered partner in achieving sustainable weight loss and building healthier habits.</p>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4 text-cyan-400">Legal</h4>
+                <ul className="space-y-2 text-sm">
+                  <li><a href="/terms" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+                  <li><a href="/privacy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4 text-cyan-400">Support</h4>
+                <ul className="space-y-2 text-sm">
+                  <li><a href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+                  <li><a href="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+                  <li><a href="/about" className="text-gray-400 hover:text-white transition-colors">About</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4 text-cyan-400">Connect</h4>
+                <div className="flex space-x-4">
+                  <a href="https://www.instagram.com/fit.geniuss/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors">
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="border-t border-gray-700 pt-8 text-center text-sm text-gray-400">
+              <p>&copy; {new Date().getFullYear()} FitGenius. All rights reserved.</p>
+              <p className="mt-2 text-xs"><span className="text-yellow-400">⚠️</span> Medical Disclaimer: This service provides general wellness information only. Always consult with a healthcare provider before starting any weight loss program.</p>
+            </div>
+          </div>
+        </footer>
+      </body>
+    </html>
+  )
+})
+
+// About Page
+app.get('/about', (c) => {
+  return c.html(
+    <html lang="en">
+      <head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <title>About FitGenius - AI-Powered Weight Loss Platform | Our Mission</title>
+        <meta name="description" content="Learn about FitGenius - the AI-powered platform revolutionizing personalized weight loss. Discover our mission to make fitness accessible and sustainable for everyone." />
+        <meta name="keywords" content="about FitGenius, AI fitness platform, weight loss technology, personalized health, fitness mission" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://fitgenius.top/about" />
+        
+        <meta property="og:title" content="About FitGenius - AI-Powered Weight Loss Platform" />
+        <meta property="og:description" content="Learn about our mission to revolutionize personalized weight loss through AI technology." />
+        <meta property="og:url" content="https://fitgenius.top/about" />
+        <meta property="og:type" content="website" />
+        
+        <script src="https://cdn.tailwindcss.com"></script>
+      </head>
+      <body className="bg-gradient-to-br from-blue-50 via-white to-cyan-50 min-h-screen">
+        {/* Navigation Bar */}
+        <nav className="container mx-auto px-4 py-6">
+          <div className="flex items-center justify-between">
+            <a href="/" className="flex items-center space-x-3">
+              <img src="/images/logo.png" alt="FitGenius Logo" className="h-12 w-auto hover:scale-105 transition-transform duration-300" />
+            </a>
+            <div className="flex items-center space-x-6">
+              <a href="/" className="text-gray-600 hover:text-cyan-600 font-medium transition-colors">Home</a>
+              <a href="/about" className="text-gray-600 hover:text-cyan-600 font-medium transition-colors">About</a>
+              <a href="/faq" className="text-gray-600 hover:text-cyan-600 font-medium transition-colors">FAQ</a>
+            </div>
+          </div>
+        </nav>
+        <div className="max-w-4xl mx-auto px-6 py-12">
+          <div className="bg-white rounded-3xl shadow-lg border border-cyan-200/50 p-8 md:p-12">
+            <a href="/" className="inline-flex items-center text-cyan-600 hover:text-cyan-700 transition-colors mb-6">
+              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+              </svg>
+              Back to Home
+            </a>
+
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">About FitGenius</h1>
+            <p className="text-gray-700 mb-6">FitGenius creates personalized, AI-generated 30-day weight loss plans tailored to your goals, lifestyle, and medical considerations. Our mission is to make safe, effective, and sustainable weight loss accessible to everyone.</p>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">What we do</h3>
+                <p className="text-gray-700">We analyze your questionnaire responses and generate a structured plan that includes nutrition targets, a weekly meal plan, workout recommendations, and progress-tracking guidance. Plans are generated instantly after purchase and delivered as a downloadable PDF.</p>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Our values</h3>
+                <ul className="list-disc list-inside ml-4 text-gray-700 space-y-2">
+                  <li>Evidence-informed guidance</li>
+                  <li>Personalization and safety first</li>
+                  <li>Sustainability over quick fixes</li>
+                  <li>Privacy and data protection</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="mt-8">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Contact</h3>
+              <p className="text-gray-700">For questions or support, email us at <a href="mailto:contact@fitgenius.top" className="text-cyan-600 hover:text-cyan-700">contact@fitgenius.top</a>.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-12 mt-20">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+              <div>
+                <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">FitGenius</h3>
+                <p className="text-gray-400 text-sm">Your AI-powered partner in achieving sustainable weight loss and building healthier habits.</p>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4 text-cyan-400">Legal</h4>
+                <ul className="space-y-2 text-sm">
+                  <li><a href="/terms" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+                  <li><a href="/privacy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4 text-cyan-400">Support</h4>
+                <ul className="space-y-2 text-sm">
+                  <li><a href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+                  <li><a href="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+                  <li><a href="/about" className="text-gray-400 hover:text-white transition-colors">About</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4 text-cyan-400">Connect</h4>
+                <div className="flex space-x-4">
+                  <a href="https://www.instagram.com/fit.geniuss/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors">
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="border-t border-gray-700 pt-8 text-center text-sm text-gray-400">
+              <p>&copy; {new Date().getFullYear()} FitGenius. All rights reserved.</p>
+              <p className="mt-2 text-xs"><span className="text-yellow-400">⚠️</span> Medical Disclaimer: This service provides general wellness information only. Always consult with a healthcare provider before starting any weight loss program.</p>
+            </div>
+          </div>
+        </footer>
+      </body>
+    </html>
+  )
+})
+
+// Contact Page
+app.get('/contact', (c) => {
+  return c.html(
+    <html lang="en">
+      <head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <title>Contact FitGenius - Get Support for Your Weight Loss Journey</title>
+        <meta name="description" content="Contact FitGenius support team. Get help with your personalized weight loss plan, technical issues, or general inquiries. Email, phone, and Instagram support available." />
+        <meta name="keywords" content="contact FitGenius, customer support, weight loss help, fitness support, FitGenius contact" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://fitgenius.top/contact" />
+        
+        <meta property="og:title" content="Contact FitGenius - Customer Support" />
+        <meta property="og:description" content="Get in touch with FitGenius support team for help with your weight loss journey." />
+        <meta property="og:url" content="https://fitgenius.top/contact" />
+        <meta property="og:type" content="website" />
+        
+        {/* Local Business Structured Data */}
+        <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          "name": "Contact FitGenius",
+          "description": "Contact FitGenius for support with your personalized weight loss plan",
+          "url": "https://fitgenius.top/contact"
+        })}
+        </script>
+        
+        <script src="https://cdn.tailwindcss.com"></script>
+      </head>
+      <body className="bg-gradient-to-br from-blue-50 via-white to-cyan-50 min-h-screen">
+        {/* Navigation Bar */}
+        <nav className="container mx-auto px-4 py-6">
+          <div className="flex items-center justify-between">
+            <a href="/" className="flex items-center space-x-3">
+              <img src="/images/logo.png" alt="FitGenius Logo" className="h-12 w-auto hover:scale-105 transition-transform duration-300" />
+            </a>
+            <div className="flex items-center space-x-6">
+              <a href="/" className="text-gray-600 hover:text-cyan-600 font-medium transition-colors">Home</a>
+              <a href="/about" className="text-gray-600 hover:text-cyan-600 font-medium transition-colors">About</a>
+              <a href="/faq" className="text-gray-600 hover:text-cyan-600 font-medium transition-colors">FAQ</a>
+            </div>
+          </div>
+        </nav>
+
+        <div className="max-w-5xl mx-auto px-6 py-12">
+          <div className="bg-white rounded-3xl shadow-lg border border-cyan-200/50 p-8 md:p-12">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Get in Touch</h1>
+            <p className="text-gray-600 mb-12">Have questions? We're here to help. Reach out to us and we'll respond as soon as possible.</p>
+
+            <div className="grid md:grid-cols-2 gap-12">
+              {/* Contact Information */}
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h2>
+                
+                <div className="space-y-6">
+                  {/* Email */}
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                      </svg>
+                    </div>
+                    <div className="ml-4">
+                      <h3 className="text-lg font-semibold text-gray-900">Email</h3>
+                      <a href="mailto:contact@fitgenius.top" className="text-cyan-600 hover:text-cyan-700 transition-colors">contact@fitgenius.top</a>
+                    </div>
+                  </div>
+
+                  {/* Phone */}
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                      </svg>
+                    </div>
+                    <div className="ml-4">
+                      <h3 className="text-lg font-semibold text-gray-900">Phone</h3>
+                      <a href="tel:+994553858220" className="text-cyan-600 hover:text-cyan-700 transition-colors">+994 55 385 82 20</a>
+                    </div>
+                  </div>
+
+                  {/* Instagram */}
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/>
+                      </svg>
+                    </div>
+                    <div className="ml-4">
+                      <h3 className="text-lg font-semibold text-gray-900">Instagram</h3>
+                      <a href="https://www.instagram.com/fit.geniuss/" target="_blank" rel="noopener noreferrer" className="text-cyan-600 hover:text-cyan-700 transition-colors">@fit.geniuss</a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Response Time */}
+                <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                  <div className="flex items-center">
+                    <svg className="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <p className="text-sm text-gray-700"><strong>Typical response time:</strong> Within 24 hours</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Contact Form */}
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h2>
+                
+                <form className="space-y-6">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                    <input 
+                      type="text" 
+                      id="name" 
+                      name="name" 
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
+                      placeholder="Your name"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                    <input 
+                      type="email" 
+                      id="email" 
+                      name="email" 
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
+                      placeholder="your@email.com"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                    <input 
+                      type="text" 
+                      id="subject" 
+                      name="subject" 
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
+                      placeholder="How can we help?"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                    <textarea 
+                      id="message" 
+                      name="message" 
+                      rows={6}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
+                      placeholder="Tell us more about your inquiry..."
+                      required
+                    ></textarea>
+                  </div>
+
+                  <button 
+                    type="submit" 
+                    className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+                  >
+                    Send Message
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-12 mt-20">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+              <div>
+                <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">FitGenius</h3>
+                <p className="text-gray-400 text-sm">Your AI-powered partner in achieving sustainable weight loss and building healthier habits.</p>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4 text-cyan-400">Legal</h4>
+                <ul className="space-y-2 text-sm">
+                  <li><a href="/terms" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+                  <li><a href="/privacy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4 text-cyan-400">Support</h4>
+                <ul className="space-y-2 text-sm">
+                  <li><a href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+                  <li><a href="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+                  <li><a href="/about" className="text-gray-400 hover:text-white transition-colors">About</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4 text-cyan-400">Connect</h4>
+                <div className="flex space-x-4">
+                  <a href="https://www.instagram.com/fit.geniuss/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors">
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="border-t border-gray-700 pt-8 text-center text-sm text-gray-400">
+              <p>&copy; {new Date().getFullYear()} FitGenius. All rights reserved.</p>
+              <p className="mt-2 text-xs"><span className="text-yellow-400">⚠️</span> Medical Disclaimer: This service provides general wellness information only. Always consult with a healthcare provider before starting any weight loss program.</p>
+            </div>
+          </div>
+        </footer>
       </body>
     </html>
   )
@@ -2527,27 +3364,51 @@ app.get('/privacy', (c) => {
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Privacy Policy - FitGenius</title>
+        
+        <title>Privacy Policy - FitGenius | Data Protection & Security</title>
+        <meta name="description" content="Read FitGenius Privacy Policy. Learn how we collect, use, and protect your personal data. GDPR and CCPA compliant privacy practices for your weight loss journey." />
+        <meta name="keywords" content="FitGenius privacy, data protection, GDPR, CCPA, privacy policy, data security" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://fitgenius.top/privacy" />
+        
+        <meta property="og:title" content="Privacy Policy - FitGenius" />
+        <meta property="og:description" content="FitGenius Privacy Policy - Learn how we protect your personal data." />
+        <meta property="og:url" content="https://fitgenius.top/privacy" />
+        <meta property="og:type" content="website" />
+        
         <script src="https://cdn.tailwindcss.com"></script>
       </head>
-      <body className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 min-h-screen">
+      <body className="bg-gradient-to-br from-blue-50 via-white to-cyan-50 min-h-screen">
+        {/* Navigation Bar */}
+        <nav className="container mx-auto px-4 py-6">
+          <div className="flex items-center justify-between">
+            <a href="/" className="flex items-center space-x-3">
+              <img src="/images/logo.png" alt="FitGenius Logo" className="h-12 w-auto hover:scale-105 transition-transform duration-300" />
+            </a>
+            <div className="flex items-center space-x-6">
+              <a href="/" className="text-gray-600 hover:text-cyan-600 font-medium transition-colors">Home</a>
+              <a href="/about" className="text-gray-600 hover:text-cyan-600 font-medium transition-colors">About</a>
+              <a href="/faq" className="text-gray-600 hover:text-cyan-600 font-medium transition-colors">FAQ</a>
+            </div>
+          </div>
+        </nav>
         <div className="max-w-4xl mx-auto px-6 py-12">
-          <div className="bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-8 md:p-12">
+          <div className="bg-white rounded-3xl shadow-lg border border-cyan-200/50 p-8 md:p-12">
             <div className="mb-8">
-              <a href="/" className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors mb-6">
+              <a href="/" className="inline-flex items-center text-cyan-600 hover:text-cyan-700 transition-colors mb-6">
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                 </svg>
                 Back to Home
               </a>
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Privacy Policy</h1>
-              <p className="text-gray-400">Last Updated: January 2025</p>
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Privacy Policy</h1>
+              <p className="text-gray-600">Last Updated: January 2025</p>
             </div>
 
-            <div className="prose prose-invert prose-cyan max-w-none">
-              <div className="space-y-8 text-gray-300 leading-relaxed">
+            <div className="prose max-w-none">
+              <div className="space-y-8 text-gray-700 leading-relaxed">
                 <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">1. Introduction</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
                   <p className="mb-4">
                     Welcome to FitGenius ("we," "our," or "us"). We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our Service.
                   </p>
@@ -2557,9 +3418,9 @@ app.get('/privacy', (c) => {
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">2. Information We Collect</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Information We Collect</h2>
                   
-                  <h3 className="text-xl font-semibold text-white mb-3 mt-6">2.1 Personal Information You Provide</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3 mt-6">2.1 Personal Information You Provide</h3>
                   <p className="mb-4">We collect information that you voluntarily provide when using our Service, including:</p>
                   <ul className="list-disc list-inside space-y-2 ml-4">
                     <li><strong>Account Information:</strong> Name, email address, phone number</li>
@@ -2567,7 +3428,7 @@ app.get('/privacy', (c) => {
                     <li><strong>Payment Information:</strong> Processed securely through Epoint (we do not store your full payment card details)</li>
                   </ul>
 
-                  <h3 className="text-xl font-semibold text-white mb-3 mt-6">2.2 Automatically Collected Information</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3 mt-6">2.2 Automatically Collected Information</h3>
                   <p className="mb-4">When you access our Service, we automatically collect certain information, including:</p>
                   <ul className="list-disc list-inside space-y-2 ml-4">
                     <li><strong>Device Information:</strong> IP address, browser type, operating system, device identifiers</li>
@@ -2584,7 +3445,7 @@ app.get('/privacy', (c) => {
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">3. How We Use Your Information</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4">3. How We Use Your Information</h2>
                   <p className="mb-4">We use the information we collect for the following purposes:</p>
                   <ul className="list-disc list-inside space-y-2 ml-4">
                     <li><strong>Provide Services:</strong> Generate personalized fitness and nutrition plans based on your questionnaire responses</li>
@@ -2598,7 +3459,7 @@ app.get('/privacy', (c) => {
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">4. How We Share Your Information</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4">4. How We Share Your Information</h2>
                   <p className="mb-4">We do not sell your personal information. We may share your information in the following situations:</p>
                   
                   <div className="space-y-4">
@@ -2700,7 +3561,7 @@ app.get('/privacy', (c) => {
                   </div>
 
                   <p className="mt-4">
-                    To exercise any of these rights, please contact us at <a href="mailto:privacy@fitgenius.com" className="text-cyan-400 hover:text-cyan-300">privacy@fitgenius.com</a>.
+                    To exercise any of these rights, please contact us at <a href="mailto:contact@fitgenius.top" className="text-cyan-400 hover:text-cyan-300">contact@fitgenius.top</a>.
                   </p>
                 </section>
 
@@ -2783,9 +3644,9 @@ app.get('/privacy', (c) => {
                     If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:
                   </p>
                   <div className="bg-gray-800/50 rounded-lg p-6">
-                    <p className="mb-2"><strong className="text-white">Email:</strong> <a href="mailto:privacy@fitgenius.com" className="text-cyan-400 hover:text-cyan-300">privacy@fitgenius.com</a></p>
-                    <p className="mb-2"><strong className="text-white">Support:</strong> <a href="mailto:support@fitgenius.com" className="text-cyan-400 hover:text-cyan-300">support@fitgenius.com</a></p>
-                    <p><strong className="text-white">Website:</strong> <a href="/" className="text-cyan-400 hover:text-cyan-300">FitGenius.com</a></p>
+                    <p className="mb-2"><strong className="text-white">Email:</strong> <a href="mailto:contact@fitgenius.top" className="text-cyan-400 hover:text-cyan-300">contact@fitgenius.top</a></p>
+                    {/* <p className="mb-2"><strong className="text-white">Support:</strong> <a href="mailto:contact@fitgenius.top" className="text-cyan-400 hover:text-cyan-300">contact@fitgenius.top</a></p> */}
+                    <p><strong className="text-white">Website:</strong> <a href="/" className="text-cyan-400 hover:text-cyan-300">fitgenius.top</a></p>
                   </div>
                   <p className="mt-4 text-sm text-gray-400">
                     We aim to respond to all legitimate requests within 30 days.
@@ -2795,246 +3656,45 @@ app.get('/privacy', (c) => {
             </div>
           </div>
         </div>
-      </body>
-    </html>
-  )
-})
 
-// Refund Policy Page
-app.get('/refund', (c) => {
-  return c.html(
-    <html lang="en">
-      <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Refund Policy - FitGenius</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-      </head>
-      <body className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 min-h-screen">
-        <div className="max-w-4xl mx-auto px-6 py-12">
-          <div className="bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-8 md:p-12">
-            <div className="mb-8">
-              <a href="/" className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors mb-6">
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                </svg>
-                Back to Home
-              </a>
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Refund Policy</h1>
-              <p className="text-gray-400">Last Updated: January 2025</p>
-            </div>
-
-            <div className="prose prose-invert prose-cyan max-w-none">
-              <div className="space-y-8 text-gray-300 leading-relaxed">
-                <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">1. Overview</h2>
-                  <p className="mb-4">
-                    At FitGenius, we strive to provide high-quality personalized fitness and nutrition plans. We understand that sometimes a product or service may not meet your expectations. This Refund Policy outlines the circumstances under which refunds may be granted.
-                  </p>
-                  <p>
-                    Due to the digital and personalized nature of our service, refunds are evaluated on a case-by-case basis. Please read this policy carefully before making a purchase.
-                  </p>
-                </section>
-
-                <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">2. Refund Eligibility</h2>
-                  
-                  <div className="bg-green-900/30 border border-green-600/50 rounded-lg p-6 mb-6">
-                    <h3 className="text-xl font-semibold text-green-400 mb-3">✅ You MAY be eligible for a refund if:</h3>
-                    <ul className="list-disc list-inside space-y-2 ml-4">
-                      <li>You completed the payment but did not receive your personalized plan within 24 hours</li>
-                      <li>There was a technical error that prevented plan generation despite successful payment</li>
-                      <li>You were charged multiple times for the same order due to a system error</li>
-                      <li>The plan delivered is completely blank, corrupted, or unreadable</li>
-                      <li>You can demonstrate that the plan generated does not align with the information you provided in the questionnaire due to a system malfunction</li>
-                    </ul>
-                  </div>
-
-                  <div className="bg-red-900/30 border border-red-600/50 rounded-lg p-6">
-                    <h3 className="text-xl font-semibold text-red-400 mb-3">❌ You are NOT eligible for a refund if:</h3>
-                    <ul className="list-disc list-inside space-y-2 ml-4">
-                      <li>You simply changed your mind after receiving your personalized plan</li>
-                      <li>You provided inaccurate information in the questionnaire that resulted in a plan not suitable for you</li>
-                      <li>You did not follow the recommendations in the plan</li>
-                      <li>You did not achieve your desired results (results vary by individual)</li>
-                      <li>You request a refund more than 14 days after purchase</li>
-                      <li>You have already downloaded or accessed your personalized plan PDF and it was delivered correctly</li>
-                      <li>You shared or distributed your plan to others</li>
-                    </ul>
-                  </div>
-                </section>
-
-                <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">3. Refund Request Process</h2>
-                  <p className="mb-4">To request a refund, please follow these steps:</p>
-                  
-                  <div className="space-y-4">
-                    <div className="flex items-start">
-                      <div className="flex-shrink-0 w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center font-bold mr-4">1</div>
-                      <div>
-                        <h3 className="font-semibold text-white mb-2">Contact Our Support Team</h3>
-                        <p>Email us at <a href="mailto:support@fitgenius.com" className="text-cyan-400 hover:text-cyan-300">support@fitgenius.com</a> with the subject line "Refund Request"</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start">
-                      <div className="flex-shrink-0 w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center font-bold mr-4">2</div>
-                      <div>
-                        <h3 className="font-semibold text-white mb-2">Provide Required Information</h3>
-                        <p className="mb-2">Include the following in your email:</p>
-                        <ul className="list-disc list-inside space-y-1 ml-4">
-                          <li>Your full name and email address used for the purchase</li>
-                          <li>Order ID or transaction reference number</li>
-                          <li>Date of purchase</li>
-                          <li>Detailed reason for the refund request</li>
-                          <li>Any supporting evidence (screenshots, error messages, etc.)</li>
-                        </ul>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start">
-                      <div className="flex-shrink-0 w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center font-bold mr-4">3</div>
-                      <div>
-                        <h3 className="font-semibold text-white mb-2">Review Process</h3>
-                        <p>Our team will review your request within 3-5 business days and may request additional information if needed</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start">
-                      <div className="flex-shrink-0 w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center font-bold mr-4">4</div>
-                      <div>
-                        <h3 className="font-semibold text-white mb-2">Decision Notification</h3>
-                        <p>You will receive an email with our decision. If approved, the refund will be processed as outlined in Section 4</p>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-
-                <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">4. Refund Processing Timeline</h2>
-                  <p className="mb-4">If your refund request is approved:</p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li><strong>Processing Time:</strong> Refunds are initiated within 5-7 business days after approval</li>
-                    <li><strong>Payment Method:</strong> Refunds will be credited to the original payment method used for the purchase</li>
-                    <li><strong>Bank Processing:</strong> Depending on your bank or card issuer, it may take an additional 5-10 business days for the refund to appear in your account</li>
-                    <li><strong>Notification:</strong> You will receive an email confirmation once the refund has been processed</li>
-                  </ul>
-                </section>
-
-                <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">5. Partial Refunds</h2>
-                  <p className="mb-4">In certain circumstances, partial refunds may be granted, such as:</p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>If you received a plan but certain sections were incomplete due to technical issues</li>
-                    <li>If there was a service disruption that significantly impacted your experience</li>
-                    <li>At our discretion, as a goodwill gesture for any inconvenience caused</li>
-                  </ul>
-                  <p className="mt-4">
-                    Partial refund amounts are determined on a case-by-case basis and will be communicated to you before processing.
-                  </p>
-                </section>
-
-                <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">6. Chargebacks and Disputes</h2>
-                  <p className="mb-4">
-                    We encourage you to contact us directly before initiating a chargeback with your bank or card issuer. Chargebacks can be costly and time-consuming for both parties.
-                  </p>
-                  <p className="mb-4">
-                    If you initiate a chargeback without first attempting to resolve the issue with us:
-                  </p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>We will provide evidence to your bank/card issuer demonstrating that the service was delivered as promised</li>
-                    <li>Your account may be suspended pending resolution of the dispute</li>
-                    <li>You may be liable for any fees incurred as a result of the chargeback if it is found to be illegitimate</li>
-                  </ul>
-                </section>
-
-                <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">7. Non-Refundable Circumstances</h2>
-                  <p className="mb-4">The following are explicitly non-refundable:</p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>Dissatisfaction with results due to lack of adherence to the plan</li>
-                    <li>Plans that were successfully delivered and accurately generated based on your inputs</li>
-                    <li>Change of mind or buyer's remorse after receiving the plan</li>
-                    <li>Requests made more than 14 days after the date of purchase</li>
-                    <li>Any promotional or discounted purchases (unless legally required)</li>
-                  </ul>
-                </section>
-
-                <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">8. Technical Issues and Support</h2>
-                  <p className="mb-4">
-                    Before requesting a refund for technical issues, please contact our support team. Many issues can be quickly resolved:
-                  </p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li><strong>PDF Won't Open:</strong> We can resend your plan or provide it in an alternative format</li>
-                    <li><strong>Missing Plan:</strong> Check your spam folder; we can resend your plan to a different email address</li>
-                    <li><strong>Payment Confirmation Issues:</strong> We can verify your payment status and manually trigger plan delivery</li>
-                  </ul>
-                  <p className="mt-4">
-                    Contact: <a href="mailto:support@fitgenius.com" className="text-cyan-400 hover:text-cyan-300">support@fitgenius.com</a>
-                  </p>
-                </section>
-
-                <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">9. Exceptions and Special Circumstances</h2>
-                  <p className="mb-4">
-                    We understand that exceptional circumstances may arise. If you believe your situation warrants special consideration, please contact us and explain your circumstances in detail.
-                  </p>
-                  <p>
-                    While we cannot guarantee a refund in all cases, we will review each request fairly and may offer alternatives such as:
-                  </p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>Regenerating your plan with updated information</li>
-                    <li>Providing a credit for future purchases</li>
-                    <li>Offering additional support or resources</li>
-                  </ul>
-                </section>
-
-                <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">10. Legal Rights</h2>
-                  <p className="mb-4">
-                    This Refund Policy does not affect your statutory rights as a consumer. Depending on your jurisdiction, you may have additional rights under consumer protection laws.
-                  </p>
-                  <p>
-                    For customers in the European Union, you have the right to withdraw from the purchase within 14 days. However, by requesting the generation and delivery of your personalized plan, you expressly agree to waive this right as the service is fully performed before the end of the withdrawal period.
-                  </p>
-                </section>
-
-                <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">11. Changes to This Policy</h2>
-                  <p>
-                    We reserve the right to modify this Refund Policy at any time. Changes will be effective immediately upon posting on our website. Your continued use of our services after changes are posted constitutes acceptance of the revised policy.
-                  </p>
-                </section>
-
-                <section>
-                  <h2 className="text-2xl font-bold text-white mb-4">12. Contact Information</h2>
-                  <p className="mb-4">
-                    If you have any questions about this Refund Policy or wish to request a refund, please contact us:
-                  </p>
-                  <div className="bg-gray-800/50 rounded-lg p-6">
-                    <p className="mb-2"><strong className="text-white">Refund Requests:</strong> <a href="mailto:support@fitgenius.com" className="text-cyan-400 hover:text-cyan-300">support@fitgenius.com</a></p>
-                    <p className="mb-2"><strong className="text-white">Subject Line:</strong> "Refund Request"</p>
-                    <p className="mb-2"><strong className="text-white">Response Time:</strong> 3-5 business days</p>
-                    <p><strong className="text-white">Website:</strong> <a href="/" className="text-cyan-400 hover:text-cyan-300">FitGenius.com</a></p>
-                  </div>
-                </section>
-
-                <div className="mt-8 p-6 bg-cyan-900/30 border border-cyan-600/50 rounded-lg">
-                  <h3 className="text-lg font-semibold text-cyan-400 mb-3">💡 Tips for a Smooth Experience</h3>
-                  <ul className="space-y-2">
-                    <li>✅ Provide accurate information in your questionnaire for the best personalized plan</li>
-                    <li>✅ Check your email (including spam folder) for your plan delivery</li>
-                    <li>✅ Contact support immediately if you encounter any technical issues</li>
-                    <li>✅ Keep your order ID and transaction details for reference</li>
-                    <li>✅ Review the plan thoroughly and contact us within 14 days if you have concerns</li>
-                  </ul>
+        {/* Footer */}
+        <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-12 mt-20">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+              <div>
+                <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">FitGenius</h3>
+                <p className="text-gray-400 text-sm">Your AI-powered partner in achieving sustainable weight loss and building healthier habits.</p>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4 text-cyan-400">Legal</h4>
+                <ul className="space-y-2 text-sm">
+                  <li><a href="/terms" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+                  <li><a href="/privacy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4 text-cyan-400">Support</h4>
+                <ul className="space-y-2 text-sm">
+                  <li><a href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+                  <li><a href="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+                  <li><a href="/about" className="text-gray-400 hover:text-white transition-colors">About</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4 text-cyan-400">Connect</h4>
+                <div className="flex space-x-4">
+                  <a href="https://www.instagram.com/fit.geniuss/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors">
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+                  </a>
                 </div>
               </div>
             </div>
+            <div className="border-t border-gray-700 pt-8 text-center text-sm text-gray-400">
+              <p>&copy; {new Date().getFullYear()} FitGenius. All rights reserved.</p>
+              <p className="mt-2 text-xs"><span className="text-yellow-400">⚠️</span> Medical Disclaimer: This service provides general wellness information only. Always consult with a healthcare provider before starting any weight loss program.</p>
+            </div>
           </div>
-        </div>
+        </footer>
       </body>
     </html>
   )

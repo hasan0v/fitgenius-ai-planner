@@ -33,7 +33,6 @@
 | `/payment/:orderId` | GET | Order details and payment page |
 | `/terms` | GET | Terms of Service |
 | `/privacy` | GET | Privacy Policy |
-| `/refund` | GET | Refund Policy |
 
 ### API Endpoints
 
