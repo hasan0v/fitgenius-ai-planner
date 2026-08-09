@@ -1,16 +1,27 @@
-# FitGenius - AI-Powered Weight Loss Plan Generator
+# FitGenius AI Planner
 
-## Project Overview
+An AI-assisted platform that generates personalized nutrition and activity plans with payment and PDF delivery workflows.
+
+| Field | Value |
+| --- | --- |
+| Focus | Applied AI and product engineering |
+| Status | Active portfolio project |
+
+## Overview
+
+An AI-assisted platform that generates personalized nutrition and activity plans with payment and PDF delivery workflows.
+
+## Project details
 
 **FitGenius** is an intelligent weight loss plan generator that creates personalized 30-day transformation programs using advanced AI technology. The application guides users through a comprehensive questionnaire and generates customized plans with meal suggestions, workout routines, and supplement recommendations based on individual needs, goals, and lifestyle.
 
-## 🌟 Key Features
+## Features
 
-### ✅ Currently Implemented
+### Currently Implemented
 
 - **Interactive Questionnaire System**: Smart multi-step assessment with conditional routing
 - **AI-Powered Plan Generation**: OpenRouter Gemini 2.5 Pro integration for personalized plans
-- **Three-Tier Pricing Model**: 
+- **Three-Tier Pricing Model**:
   - Essential Plan (9.90 AZN): Core weight loss plan
   - Complete Plan (14.90 AZN): + Meal suggestions and recipes
   - Ultimate Plan (29.90 AZN): + Workouts and supplements
@@ -20,7 +31,7 @@
 - **Cloudflare D1 Database**: Persistent data storage for users, orders, and sessions
 - **User Path Classification**: Beginner/Intermediate/Advanced routing
 
-## 🎯 Application URLs
+## Application URLs
 
 ### Main Routes
 
@@ -47,7 +58,7 @@
 | `/api/download-plan/:orderId` | GET | Download PDF plan |
 | `/api/generate-pdf/:orderId` | POST | Generate PDF for order |
 
-## 🔐 Epoint Payment Integration
+## Epoint Payment Integration
 
 ### Configuration
 
@@ -80,7 +91,7 @@ OPENROUTER_API_KEY=<your-key>
 GEMINI_API_KEY=<your-key>
 ```
 
-## 🏗️ Technology Stack
+## Technology
 
 - **Backend**: Hono framework on Cloudflare Workers
 - **Frontend**: Vanilla JavaScript with Tailwind CSS
@@ -90,7 +101,7 @@ GEMINI_API_KEY=<your-key>
 - **Deployment**: Cloudflare Pages
 - **PDF Generation**: PDFKit with custom styling
 
-## 📊 Database Schema
+## Database Schema
 
 ### Tables
 
@@ -113,7 +124,7 @@ GEMINI_API_KEY=<your-key>
 - Current progress and responses
 - Auto-expiration (24 hours)
 
-## 🚀 Development
+## Development
 
 ### Local Setup
 
@@ -147,27 +158,27 @@ npx wrangler d1 execute DB --remote --file=migrations/0001_initial_schema.sql
 npx wrangler d1 execute DB --remote --file=migrations/0002_epoint_migration.sql
 ```
 
-## 📦 Project Structure
+## Architecture
 
 ```
-├── src/
-│   ├── index.tsx           # Main application server
-│   └── renderer.tsx        # SSR renderer
-├── public/
-│   └── static/
-│       ├── app.js         # Frontend JavaScript
-│       └── styles.css     # Custom styles
-├── migrations/
-│   ├── 0001_initial_schema.sql
-│   └── 0002_epoint_migration.sql
-├── .env                   # Production environment
-├── .dev.vars             # Development environment
-├── wrangler.jsonc        # Cloudflare configuration
-├── package.json
-└── README.md
+ src/
+    index.tsx           # Main application server
+    renderer.tsx        # SSR renderer
+ public/
+    static/
+        app.js         # Frontend JavaScript
+        styles.css     # Custom styles
+ migrations/
+    0001_initial_schema.sql
+    0002_epoint_migration.sql
+ .env                   # Production environment
+ .dev.vars             # Development environment
+ wrangler.jsonc        # Cloudflare configuration
+ package.json
+ README.md
 ```
 
-## 🔒 Security Features
+## Security Features
 
 - **Payment Security**: Cryptographic signature verification on all Epoint callbacks
 - **Data Encryption**: Secure storage of sensitive user data
@@ -175,7 +186,7 @@ npx wrangler d1 execute DB --remote --file=migrations/0002_epoint_migration.sql
 - **Signature Validation**: SHA1 + base64 verification prevents fraud
 - **Rate Limiting**: API protection against abuse
 
-## 📱 User Journey
+## User Journey
 
 1. **Landing Page** → User clicks "Start Your Transformation"
 2. **Questionnaire** → Complete personalized assessment
@@ -186,7 +197,7 @@ npx wrangler d1 execute DB --remote --file=migrations/0002_epoint_migration.sql
 7. **AI Generation** → Background plan creation
 8. **Download PDF** → Comprehensive personalized guide
 
-## 🌐 Production Deployment
+## Production Deployment
 
 ### Cloudflare Pages Setup
 
@@ -208,33 +219,44 @@ npx wrangler d1 create fitgenius-db
 npx wrangler d1 execute DB --remote --file=migrations/0001_initial_schema.sql
 ```
 
-## � Documentation
+## Documentation
 
 - **EPOINT_ROUTES_VERIFIED.md** - Complete URL verification and testing guide
 - **EPOINT_MIGRATION_COMPLETE.md** - Migration from Kapitalbank to Epoint
 - **EPOINT_FIXES_APPLIED.md** - Critical security fixes applied
 - **PRODUCTION_SETUP_GUIDE.md** - Deployment instructions
 
-## 🎯 Current Status
+## Current Status
 
-✅ **Production Ready**
+ **Production Ready**
 - Epoint payment integration complete with security
 - Database schema finalized
 - AI plan generation working
 - PDF generation implemented
 - All routes tested and verified
 
-🔄 **Next Steps**
+ **Next Steps**
 - Obtain Epoint private key
 - Deploy to Cloudflare Pages
 - Test end-to-end payment flow
 - Monitor production metrics
 
-## 📞 Support
+## Support
 
 **Production URL**: https://fitgenius.top
-**GitHub Repository**: https://github.com/hasan0v/Weight-Loss-Plan-Generator
+**GitHub Repository**: https://github.com/hasan0v/fitgenius-ai-planner
 
 ---
 
 **FitGenius** is a complete, production-ready solution for personalized weight loss planning with secure payment processing and AI-powered plan generation, specifically designed for the Azerbaijan market.
+
+## Repository
+
+```bash
+git clone https://github.com/hasan0v/fitgenius-ai-planner.git
+cd fitgenius-ai-planner
+```
+
+## Status
+
+Active portfolio project.
